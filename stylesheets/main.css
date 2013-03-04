@@ -1,0 +1,2229 @@
+/*$tabs-border-color: #8c8c8c*/
+/* line 1, sass/_default.scss */
+body {
+  font-family: Tahoma, Arial, Sans-serif;
+  color: #7d7d7d;
+  font-size: 14px;
+}
+
+/* line 6, sass/_default.scss */
+ul {
+  list-style-type: none;
+}
+/* line 8, sass/_default.scss */
+ul.bullets {
+  list-style-type: disc;
+}
+
+/* line 13, sass/_default.scss */
+p {
+  margin-top: 5px;
+}
+
+/* line 16, sass/_default.scss */
+a {
+  text-decoration: none;
+}
+/* line 18, sass/_default.scss */
+a:visited {
+  color: #2177c8;
+}
+/* line 21, sass/_default.scss */
+a:hover {
+  color: #2177c8;
+  text-decoration: underline;
+}
+
+/* line 28, sass/_default.scss */
+.accent-block {
+  background-color: #efefef;
+  border: 1px solid #e2e2e7;
+  padding: 10px;
+}
+
+/* line 31, sass/_default.scss */
+h1, h2, h3 {
+  color: #114d09;
+  margin-bottom: 0;
+  font-weight: lighter;
+}
+
+/* line 36, sass/_default.scss */
+h1 {
+  font-size: 24px;
+}
+
+/* line 39, sass/_default.scss */
+h2 {
+  font-size: 20px;
+}
+
+/* line 42, sass/_default.scss */
+h3 {
+  font-size: 16px;
+}
+
+/* line 45, sass/_default.scss */
+img {
+  border-style: none;
+}
+
+/* line 49, sass/_default.scss */
+.clear {
+  clear: both;
+}
+
+/* line 53, sass/_default.scss */
+.cms {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 55, sass/_default.scss */
+.cms img, .cms ul, .cms h1, .cms h2, .cms h3, .cms h4, .cms h5, .cms h6 {
+  clear: both;
+}
+/* line 58, sass/_default.scss */
+.cms img, .cms object {
+  float: left;
+  margin: 10px 10px 10px 0;
+}
+/* line 61, sass/_default.scss */
+.cms img.float-none, .cms object.float-none {
+  float: none;
+}
+/* line 64, sass/_default.scss */
+.cms img.float-right, .cms object.float-right {
+  float: right;
+}
+
+/* line 1, sass/_elements.scss */
+#welcome {
+  text-align: center;
+}
+
+/* line 4, sass/_elements.scss */
+#logo {
+  padding-top: 30px;
+}
+/* line 6, sass/_elements.scss */
+#logo img, #logo a {
+  width: 280px;
+  height: 119px;
+}
+
+/* line 12, sass/_elements.scss */
+.strong {
+  font-weight: bold;
+}
+
+/* line 16, sass/_elements.scss */
+.header-inverse {
+  margin: 0;
+  padding: 2px 5px;
+  color: white;
+  font-weight: bold;
+  background-color: #545854;
+}
+
+/* line 24, sass/_elements.scss */
+#flash-messages {
+  background-color: #CD5C5C;
+  padding: 10px 200px;
+  text-align: center;
+}
+/* line 28, sass/_elements.scss */
+#flash-messages .notice {
+  color: black;
+}
+
+/* line 33, sass/_elements.scss */
+#search {
+  float: right;
+}
+
+/* line 38, sass/_elements.scss */
+.float-container {
+  overflow: hidden;
+  *zoom: 1;
+}
+
+/* line 43, sass/_elements.scss */
+#search input[type=text] {
+  float: left;
+  border: 1px solid #e1e0e0;
+  color: #7d7d7d;
+  height: 20px;
+  width: 172px;
+  background-color: #ffffff;
+}
+/* line 53, sass/_elements.scss */
+#search #search-submit {
+  float: left;
+}
+/* line 56, sass/_elements.scss */
+#search input[type=submit] {
+  display: block;
+  padding: 0;
+  margin: 0;
+  height: 22px;
+  width: 22px;
+  border: none;
+  background: url(../images/search-go.jpg) 0 0 no-repeat;
+  color: #b5b5b5;
+}
+/* line 66, sass/_elements.scss */
+#search .social-button {
+  float: left;
+  margin-left: 6px;
+}
+/* line 70, sass/_elements.scss */
+#search .contact-top {
+  position: absolute;
+  bottom: -10px;
+  right: 0px;
+}
+/* line 74, sass/_elements.scss */
+#search .contact-top a {
+  color: #7d7d7d;
+}
+
+/* line 80, sass/_elements.scss */
+#result-metrics {
+  position: relative;
+}
+/* line 82, sass/_elements.scss */
+#result-metrics .result-term {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* line 87, sass/_elements.scss */
+#result-metrics .result-count {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* line 94, sass/_elements.scss */
+.modal {
+  width: 400px;
+}
+
+/* line 100, sass/_elements.scss */
+#current_blocks {
+  margin: 10px 0;
+}
+
+/* line 104, sass/_elements.scss */
+.current-block {
+  float: left;
+  width: 260px;
+  margin: 0px 2px;
+  padding: 10px 2px;
+}
+/* line 110, sass/_elements.scss */
+.current-block .map-link {
+  width: 245px;
+  height: 275px;
+  background: url("../images/temp-map.png");
+  margin-top: 5px;
+}
+/* line 117, sass/_elements.scss */
+.current-block .latest_news {
+  font-size: 10pt;
+}
+/* line 119, sass/_elements.scss */
+.current-block .latest_news p {
+  margin-top: 0;
+}
+/* line 122, sass/_elements.scss */
+.current-block .latest_news h3 a {
+  color: #114d09;
+}
+/* line 125, sass/_elements.scss */
+.current-block .latest_news .attribution {
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* line 131, sass/_elements.scss */
+.current-block.scroll {
+  overflow: auto;
+}
+
+/* line 136, sass/_elements.scss */
+#slideshow {
+  margin-top: 10px;
+  margin-left: 84px;
+  float: left;
+  position: relative;
+  height: 250px;
+  width: 240px;
+}
+/* line 143, sass/_elements.scss */
+#slideshow .slide {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 200px;
+  overflow: hidden;
+}
+/* line 150, sass/_elements.scss */
+#slideshow .slide .image {
+  height: 180px;
+}
+/* line 153, sass/_elements.scss */
+#slideshow .slide .caption {
+  font-size: 10px;
+}
+/* line 157, sass/_elements.scss */
+#slideshow #slidetabs {
+  position: absolute;
+  top: 200px;
+  left: 0;
+}
+/* line 161, sass/_elements.scss */
+#slideshow #slidetabs .slidetabs {
+  float: left;
+}
+/* line 163, sass/_elements.scss */
+#slideshow #slidetabs .slidetabs a {
+  margin: 0;
+  padding: 2px;
+  border: 1px solid #b5b5b5;
+  background-color: white;
+  color: #545854;
+  font-size: 11px;
+}
+/* line 170, sass/_elements.scss */
+#slideshow #slidetabs .slidetabs a:hover, #slideshow #slidetabs .slidetabs a.current {
+  background-color: #efefef;
+  border-color: #545854;
+  text-decoration: none;
+}
+/* line 179, sass/_elements.scss */
+#slideshow .forward, #slideshow .backward {
+  margin: 0;
+  display: block;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  font-size: 1px;
+  text-indent: -9999em;
+  float: left;
+}
+/* line 189, sass/_elements.scss */
+#slideshow .forward {
+  background: white url("../images/next_arrow.gif") no-repeat;
+}
+/* line 193, sass/_elements.scss */
+#slideshow .backward {
+  background: white url("../images/previous_arrow.gif") no-repeat;
+}
+
+/* line 199, sass/_elements.scss */
+.tooltip {
+  display: none;
+}
+
+/* line 204, sass/_elements.scss */
+.cms_edit_container .tooltip {
+  display: block;
+}
+
+/* line 208, sass/_elements.scss */
+.tooltip-open {
+  background-color: #efefef;
+  border: 1px solid #e2e2e7;
+  padding: 10px;
+  padding: 10px;
+  width: 500px;
+  text-size: 6px;
+}
+/* line 213, sass/_elements.scss */
+.tooltip-open h3 {
+  margin: 0 0 10px 0;
+}
+
+/* line 218, sass/_elements.scss */
+.tip.icon {
+  display: inline;
+  margin: 0;
+}
+/* line 222, sass/_elements.scss */
+.tip.icon img {
+  width: 18px;
+  height: 18px;
+  margin-bottom: -4px;
+  margin-left: 5px;
+}
+/* line 227, sass/_elements.scss */
+.tip.icon img:hover {
+  width: 21px;
+}
+
+/* line 234, sass/_elements.scss */
+.closed .slide {
+  display: none;
+}
+
+/* line 237, sass/_elements.scss */
+.slide-toggle {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 239, sass/_elements.scss */
+.slide-toggle h1 {
+  float: left;
+}
+/* line 242, sass/_elements.scss */
+.slide-toggle .arrow {
+  float: left;
+  background: url("../images/slide-arrows.png") no-repeat;
+  width: 14px;
+  height: 14px;
+  margin: 7px 0 0 15px;
+}
+/* line 248, sass/_elements.scss */
+.slide-toggle .arrow.open {
+  background-position: -15px 2px;
+}
+
+/* line 255, sass/_elements.scss */
+#footer {
+  padding: 12px 15px;
+  font-size: 15px;
+}
+/* line 258, sass/_elements.scss */
+#footer ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 261, sass/_elements.scss */
+#footer ul li {
+  float: left;
+  /*for ie*/
+  display: block;
+}
+/* line 265, sass/_elements.scss */
+#footer ul li a {
+  color: #b5b5b5;
+  float: left;
+  margin-left: 35px;
+}
+
+/* line 274, sass/_elements.scss */
+.warning {
+  color: #333333;
+}
+
+/* line 277, sass/_elements.scss */
+.not-found {
+  display: none;
+}
+
+/* line 280, sass/_elements.scss */
+.no-data {
+  color: gray;
+}
+/* line 282, sass/_elements.scss */
+.no-data:visited {
+  color: gray;
+}
+
+/* line 1, sass/_layout.scss */
+body {
+  width: 1024px;
+  background: white url("../images/header-background.jpg") repeat-x;
+  margin: 0 auto;
+}
+
+/* line 7, sass/_layout.scss */
+#page {
+  min-width: 1024px;
+}
+
+/* line 10, sass/_layout.scss */
+#header {
+  width: 1024px;
+  height: 150px;
+}
+
+/* line 16, sass/_layout.scss */
+#logo {
+  float: left;
+}
+
+/* line 20, sass/_layout.scss */
+#search {
+  position: relative;
+  height: 53px;
+  float: left;
+  margin-top: 77px;
+  margin-left: 430px;
+}
+
+/* line 30, sass/_layout.scss */
+.banner {
+  height: 250px;
+  position: relative;
+  margin-bottom: 10px;
+}
+/* line 34, sass/_layout.scss */
+.banner .title-block {
+  position: absolute;
+  bottom: 0;
+  background: url("../images/banners/opaque-header.png");
+  width: 100%;
+  height: 100px;
+}
+/* line 40, sass/_layout.scss */
+.banner .title-block.volcano {
+  height: 70px;
+}
+/* line 43, sass/_layout.scss */
+.banner .title-block h1, .banner .title-block h2 {
+  color: #545854;
+  margin: 0;
+  margin-left: 15px;
+}
+/* line 48, sass/_layout.scss */
+.banner .title-block h1 {
+  font-size: 40px;
+  margin-top: 10px;
+}
+/* line 52, sass/_layout.scss */
+.banner .title-block h2 {
+  font-size: 25px;
+}
+/* line 56, sass/_layout.scss */
+.banner.volcano {
+  height: 200px;
+  background: url("../images/banners/volcanoes-banner.jpg") no-repeat;
+}
+/* line 60, sass/_layout.scss */
+.banner.blog {
+  background: url("../images/banners/panpoint.jpg") no-repeat;
+}
+/* line 63, sass/_layout.scss */
+.banner.mount-baker {
+  background: url("../images/banners/mount-baker-banner.jpg") no-repeat;
+}
+/* line 66, sass/_layout.scss */
+.banner.glacier-peak {
+  background: url("../images/banners/glacier-peak-banner.jpg") no-repeat;
+}
+/* line 69, sass/_layout.scss */
+.banner.mount-rainier {
+  background: url("../images/banners/mount-rainier-banner.jpg") no-repeat;
+}
+/* line 72, sass/_layout.scss */
+.banner.mount-st-helens {
+  background: url("../images/banners/mount-st-helens-banner.jpg") no-repeat;
+}
+/* line 75, sass/_layout.scss */
+.banner.mount-adams {
+  background: url("../images/banners/mount-adams-banner.jpg") no-repeat;
+}
+/* line 78, sass/_layout.scss */
+.banner.mount-hood {
+  background: url("../images/banners/mount-hood-banner.jpg") no-repeat;
+}
+/* line 81, sass/_layout.scss */
+.banner.mount-jefferson {
+  background: url("../images/banners/mount-jefferson-banner.jpg") no-repeat;
+}
+/* line 84, sass/_layout.scss */
+.banner.three-sisters {
+  background: url("../images/banners/three-sisters-banner.jpg") no-repeat;
+}
+/* line 87, sass/_layout.scss */
+.banner.newberry {
+  background: url("../images/banners/newberry-banner.jpg") no-repeat;
+}
+/* line 90, sass/_layout.scss */
+.banner.crater-lake {
+  background: url("../images/banners/crater-lake-banner.jpg") no-repeat;
+}
+
+/* line 97, sass/_layout.scss */
+#stage-warning {
+  background-color: #CD5C5C;
+  height: 40px;
+  color: black;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* line 104, sass/_layout.scss */
+.interior {
+  overflow: hidden;
+  *zoom: 1;
+  width: 100%;
+}
+
+/* line 108, sass/_layout.scss */
+#left-column {
+  float: left;
+  width: 200px;
+  padding-top: 13px;
+  color: border-color-dark;
+}
+
+/* line 115, sass/_layout.scss */
+#right-column {
+  float: left;
+  border-top: 1px solid #e1e0e0;
+  width: 824px;
+}
+
+/* line 121, sass/_layout.scss */
+#content, #current_blocks {
+  overflow: hidden;
+  *zoom: 1;
+}
+
+/* line 124, sass/_layout.scss */
+.current-block {
+  float: left;
+  font-size: 12px;
+  width: 248px;
+  height: 380px;
+  padding: 10px;
+}
+
+/* line 132, sass/_layout.scss */
+.mission-statement {
+  position: relative;
+  padding-bottom: 25px;
+  margin-top: 20px;
+}
+/* line 136, sass/_layout.scss */
+.mission-statement .cms {
+  float: left;
+  width: 500px;
+}
+
+/* line 144, sass/_layout.scss */
+.cms ul {
+  list-style-type: disc;
+}
+
+/* line 148, sass/_layout.scss */
+#subhead {
+  margin-top: 15px;
+  clear: both;
+}
+/* line 151, sass/_layout.scss */
+#subhead .cms {
+  float: left;
+  width: 568px;
+  margin-top: -20px;
+}
+/* line 155, sass/_layout.scss */
+#subhead .cms .blog-summary {
+  padding-left: 0;
+}
+/* line 162, sass/_layout.scss */
+#subhead img.subhead-img {
+  padding-left: 60px;
+  padding-right: 10px;
+  float: left;
+}
+
+/* line 171, sass/_layout.scss */
+#tier-content-col-left {
+  float: left;
+  width: 575px;
+}
+
+/* line 176, sass/_layout.scss */
+#tier-content-col-right {
+  position: relative;
+  float: right;
+  width: 150px;
+}
+
+/* line 182, sass/_layout.scss */
+#search-col-left {
+  float: left;
+  width: 550px;
+}
+
+/* line 187, sass/_layout.scss */
+#search-col-right {
+  padding-top: 45px;
+  float: right;
+  width: 230px;
+}
+
+/* line 193, sass/_layout.scss */
+#footer {
+  overflow: hidden;
+  *zoom: 1;
+  margin: 12px 0;
+}
+/* line 196, sass/_layout.scss */
+#footer p {
+  padding: 0;
+  margin: 0;
+}
+/* line 200, sass/_layout.scss */
+#footer ul {
+  margin-left: 20px;
+}
+
+/* line 1, sass/_menu.scss */
+#menu {
+  margin: 0;
+}
+/* line 3, sass/_menu.scss */
+#menu > ul {
+  margin-left: 35px;
+}
+/* line 6, sass/_menu.scss */
+#menu ul {
+  margin: 0;
+  padding: 0;
+}
+/* line 9, sass/_menu.scss */
+#menu ul li {
+  margin: 0 5px;
+}
+/* line 11, sass/_menu.scss */
+#menu ul li.open > a, #menu ul li.on > a {
+  color: #114d09;
+}
+/* line 14, sass/_menu.scss */
+#menu ul li.on > a {
+  border-bottom: 1px dashed #e1e0e0;
+  width: 100px;
+}
+/* line 18, sass/_menu.scss */
+#menu ul li a {
+  display: block;
+  padding: 5px 0;
+  color: #7d7d7d;
+}
+
+/* line 30, sass/_menu.scss */
+.secondary-nav {
+  float: right;
+  width: 150px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+/* line 35, sass/_menu.scss */
+.secondary-nav h1 {
+  font-size: 16px;
+  margin-top: 5px;
+}
+/* line 39, sass/_menu.scss */
+.secondary-nav ul {
+  padding: 0;
+  margin: 0;
+}
+/* line 43, sass/_menu.scss */
+.secondary-nav ul li a {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #545854;
+}
+/* line 50, sass/_menu.scss */
+.secondary-nav ul.depth-2 {
+  margin-left: 5px;
+  display: none;
+}
+/* line 54, sass/_menu.scss */
+.secondary-nav ul.depth-3 {
+  margin-left: 5px;
+  display: none;
+}
+/* line 59, sass/_menu.scss */
+.secondary-nav.recent-posts ul {
+  list-style-type: square;
+  list-style-position: inside;
+}
+
+/* line 66, sass/_menu.scss */
+.absolute .secondary-nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* line 73, sass/_menu.scss */
+#top-searches {
+  overflow: hidden;
+  *zoom: 1;
+  width: 230px;
+  padding: 10px;
+}
+/* line 77, sass/_menu.scss */
+#top-searches h1 {
+  font-size: 16px;
+  margin-top: 5px;
+}
+/* line 81, sass/_menu.scss */
+#top-searches ul {
+  padding: 0;
+  margin: 0;
+}
+/* line 85, sass/_menu.scss */
+#top-searches ul li a {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #545854;
+}
+
+/* line 95, sass/_menu.scss */
+#top-nav {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 99, sass/_menu.scss */
+#top-nav ul li a {
+  float: left;
+  font-size: 11px;
+  color: #545854;
+  margin-top: 2px;
+}
+/* line 105, sass/_menu.scss */
+#top-nav ul li span {
+  float: left;
+  margin: 0 5px;
+}
+
+/* line 113, sass/_menu.scss */
+#terms {
+  font-size: 10px;
+  margin-bottom: 10px;
+}
+/* line 116, sass/_menu.scss */
+#terms ul {
+  margin-left: 350px;
+  padding: 0;
+}
+/* line 119, sass/_menu.scss */
+#terms ul li {
+  display: block;
+}
+/* line 121, sass/_menu.scss */
+#terms ul li a {
+  color: #b5b5b5;
+  float: left;
+  margin-left: 4px;
+  margin-bottom: 10px;
+}
+
+/* line 131, sass/_menu.scss */
+ul.seismogram-description {
+  overflow: hidden;
+  *zoom: 1;
+  padding: 0;
+  list-style-type: none;
+}
+/* line 135, sass/_menu.scss */
+ul.seismogram-description li {
+  float: left;
+  margin-right: 15px;
+}
+
+/* line 141, sass/_menu.scss */
+#map-summary {
+  margin: 3px 0;
+  padding: 4px;
+}
+/* line 144, sass/_menu.scss */
+#map-summary ul {
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 149, sass/_menu.scss */
+#map-summary ul li {
+  color: black;
+  float: left;
+  margin-right: 4px;
+}
+/* line 153, sass/_menu.scss */
+#map-summary ul li.label {
+  color: #114d09;
+  margin-right: 2px;
+}
+
+/* line 1, sass/_forms.scss */
+button {
+  cursor: pointer;
+  color: #606160;
+  background-color: #e2e2e7;
+  border: 1px solid #41cff6;
+}
+/* line 6, sass/_forms.scss */
+button:hover {
+  border: 1px solid black;
+}
+
+/*we don't have our back catalog yet...*/
+/* line 12, sass/_forms.scss */
+.note {
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+/* line 17, sass/_forms.scss */
+.field-group, .field {
+  margin-bottom: 0 0 10px 0;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 18, sass/_forms.scss */
+.field-group.accent, .field.accent {
+  /*    margin:5px 0;*/
+  background-color: #e8e8e8;
+  padding: 5px 10px 10px 10px;
+}
+/* line 23, sass/_forms.scss */
+.field-group.bottom-margin, .field.bottom-margin {
+  margin-bottom: 20px;
+}
+
+/* line 29, sass/_forms.scss */
+.select-all {
+  float: right;
+}
+
+/* line 32, sass/_forms.scss */
+.label-header {
+  overflow: hidden;
+  *zoom: 1;
+  border-bottom: 5px solid #e8e8e8;
+  margin-bottom: 0;
+  padding: 5px 0;
+}
+
+/* line 39, sass/_forms.scss */
+.submit-pretty {
+  margin-top: 10px;
+  background-color: #efefef;
+  width: 80px;
+}
+
+/* line 45, sass/_forms.scss */
+#event-search.modal h2 {
+  margin-bottom: 10px;
+}
+
+/* line 1, sass/_map.scss */
+#map {
+  width: 500px;
+  height: 600px;
+  margin-bottom: 20px;
+}
+
+/* line 8, sass/_map.scss */
+#tier-content-col-left.map {
+  min-height: 50px;
+}
+
+/* line 13, sass/_map.scss */
+#map-col-left {
+  padding-top: 0;
+  float: left;
+  width: 500px;
+  margin-right: 20px;
+}
+
+/* line 20, sass/_map.scss */
+#map-col-right {
+  float: left;
+  width: 302px;
+}
+
+/* line 25, sass/_map.scss */
+#map-thumb-container {
+  width: 245px;
+  height: 275px;
+  overflow: hidden;
+}
+
+/* line 30, sass/_map.scss */
+#map-thumb {
+  width: 245px;
+  height: 300px;
+}
+
+/* line 35, sass/_map.scss */
+#map-historic {
+  width: 325px;
+  height: 400px;
+}
+
+/* line 40, sass/_map.scss */
+#map-volcano {
+  width: 500px;
+  height: 500px;
+}
+
+/* line 46, sass/_map.scss */
+.max-height {
+  height: 100%;
+  margin: 0;
+}
+
+/* line 51, sass/_map.scss */
+.max-area {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 56, sass/_map.scss */
+#cross-section-image {
+  display: none;
+}
+
+/* line 60, sass/_map.scss */
+.dialog-plot {
+  width: 980px;
+  height: 400px;
+  background-color: white;
+}
+/* line 64, sass/_map.scss */
+.dialog-plot .head {
+  position: relative;
+  height: 80px;
+}
+/* line 67, sass/_map.scss */
+.dialog-plot .head.cross {
+  height: 70px;
+}
+/* line 70, sass/_map.scss */
+.dialog-plot .head h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* line 75, sass/_map.scss */
+.dialog-plot .head .plot-side-a {
+  position: absolute;
+  left: 20px;
+  top: 65px;
+}
+/* line 81, sass/_map.scss */
+.dialog-plot .head .plot-side-b {
+  position: absolute;
+  right: 10px;
+  top: 65px;
+}
+/* line 87, sass/_map.scss */
+.dialog-plot .head .y-label {
+  position: absolute;
+  left: 0px;
+  top: 65px;
+  font-size: 10px;
+  color: black;
+}
+/* line 93, sass/_map.scss */
+.dialog-plot .head .y-label.cross {
+  top: 75px;
+}
+/* line 97, sass/_map.scss */
+.dialog-plot .head .logo {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+}
+/* line 103, sass/_map.scss */
+.dialog-plot .head .plot-legend {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+/* line 108, sass/_map.scss */
+.dialog-plot .head .plot-legend-title {
+  position: absolute;
+  top: 0px;
+  right: 165px;
+}
+/* line 114, sass/_map.scss */
+.dialog-plot .select-plot {
+  width: 980px;
+  height: 300px;
+}
+
+/* line 121, sass/_map.scss */
+#stations-legend-large {
+  float: left;
+  height: 120px;
+  width: 500px;
+  background: url("../images/map/stations-legend-large.png") no-repeat;
+  background-position: 20px 10px;
+}
+
+/* line 130, sass/_map.scss */
+#req-legend-scale {
+  float: left;
+  height: 120px;
+  width: 320px;
+  background: url("../images/map/eq-legend-scale.jpg") no-repeat;
+}
+
+/* line 137, sass/_map.scss */
+#req-legend-key {
+  float: left;
+  height: 140px;
+  width: 180px;
+  margin-top: 10px;
+  background: url("../images/map/eq-legend-key.png") no-repeat;
+}
+/* line 143, sass/_map.scss */
+#req-legend-key.depth, #req-legend-key.notable, #req-legend-key.historic.depth, #req-legend-key.volcano.depth, #req-legend-key.custom {
+  background-position: 0px -150px;
+}
+/* line 146, sass/_map.scss */
+#req-legend-key.historic {
+  background-position: 0px -315px;
+}
+/* line 149, sass/_map.scss */
+#req-legend-key.volcano {
+  background-position: 0px -460px;
+}
+/* line 152, sass/_map.scss */
+#req-legend-key.station {
+  background: url("../images/map/stations-legend.png") no-repeat;
+}
+
+/* line 157, sass/_map.scss */
+.loading {
+  position: relative;
+}
+/* line 159, sass/_map.scss */
+.loading img {
+  position: absolute;
+  top: 90px;
+  right: 60px;
+}
+
+/* line 166, sass/_map.scss */
+#map-ui {
+  overflow: hidden;
+  *zoom: 1;
+  color: #606160;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+/* line 171, sass/_map.scss */
+#map-ui .label {
+  margin: 5px 5px 0 0;
+  font-size: 14px;
+}
+/* line 176, sass/_map.scss */
+#map-ui #icon-toggle {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 180, sass/_map.scss */
+#map-ui .plot-type .radio-group {
+  margin: 0 16px 1px 0;
+  float: right;
+}
+/* line 183, sass/_map.scss */
+#map-ui .plot-type .radio-group label {
+  margin-right: 1px;
+}
+/* line 189, sass/_map.scss */
+#map-ui button {
+  float: left;
+  width: 110px;
+  margin-top: 10px;
+}
+/* line 198, sass/_map.scss */
+#map-ui .fancy-buttonset .label {
+  float: left;
+  font-size: 13px;
+}
+/* line 202, sass/_map.scss */
+#map-ui .fancy-buttonset .field-group {
+  float: left;
+}
+/* line 209, sass/_map.scss */
+#map-ui #plot-instructions .steps {
+  font-size: 12px;
+  /*display:none; */
+}
+/* line 215, sass/_map.scss */
+#map-ui .slider-control {
+  padding: 0 26px 0 16px;
+  margin-bottom: 20px;
+  background: url("../images/slider_bg.jpg") no-repeat;
+  background-position: 10px 20px;
+}
+/* line 220, sass/_map.scss */
+#map-ui .slider-control.mag-range-8 {
+  background-position: -25px 20px;
+  padding: 0 60px 0 12px;
+}
+/* line 224, sass/_map.scss */
+#map-ui .slider-control.mag-range-7 {
+  background-position: -52px 20px;
+  padding: 0 88px 0 12px;
+}
+/* line 228, sass/_map.scss */
+#map-ui .slider-control.mag-range-6 {
+  background-position: -82px 20px;
+  padding: 0 120px 0 12px;
+}
+/* line 232, sass/_map.scss */
+#map-ui .slider-control.mag-range-5 {
+  background-position: -112px 20px;
+  padding: 0 148px 0 12px;
+}
+/* line 236, sass/_map.scss */
+#map-ui .slider-control.mag-range-4 {
+  background-position: -139px 20px;
+  padding: 0 176px 0 12px;
+}
+/* line 240, sass/_map.scss */
+#map-ui .slider-control.mag-range-3 {
+  background-position: -168px 20px;
+  padding: 0 206px 0 12px;
+}
+/* line 244, sass/_map.scss */
+#map-ui .slider-control.mag-range-2 {
+  background-position: -196px 20px;
+  padding: 0 232px 0 12px;
+}
+/* line 248, sass/_map.scss */
+#map-ui .slider-control.mag-range-1 {
+  background-position: -226px 20px;
+  padding: 0 250px 0 12px;
+}
+/* line 252, sass/_map.scss */
+#map-ui .slider-control.mag-range-0 {
+  background-position: -256px 20px;
+  padding: 0 280px 0 12px;
+}
+/* line 256, sass/_map.scss */
+#map-ui .slider-control .slider {
+  padding: 0 26px 0 16px;
+  position: relative;
+  height: 50px;
+}
+/* line 261, sass/_map.scss */
+#map-ui .slider-control .slider .ui-slider-handle {
+  top: 20px;
+  position: absolute;
+  width: 9px;
+  height: 37px;
+  cursor: default;
+  border: 1px solid #afadad;
+  background: url("../images/slider_handle.jpg");
+}
+
+/* line 273, sass/_map.scss */
+#plot {
+  display: none;
+}
+
+/* line 277, sass/_map.scss */
+.modal-link h4 {
+  margin: 5px;
+}
+
+/* line 281, sass/_map.scss */
+#plot-ui {
+  position: relative;
+  overflow: hidden;
+  *zoom: 1;
+  padding: 10px;
+  /*  margin-top:10px;*/
+}
+/* line 286, sass/_map.scss */
+#plot-ui.open {
+  border: 1px solid #e1e0e0;
+}
+/* line 289, sass/_map.scss */
+#plot-ui h4 {
+  margin: 0;
+  /*    margin-bottom:3px;*/
+}
+/* line 293, sass/_map.scss */
+#plot-ui #plot-ui-close {
+  position: absolute;
+  top: 25px;
+  right: 10px;
+}
+
+/* line 301, sass/_map.scss */
+.field.draw {
+  margin-bottom: 10px;
+}
+/* line 304, sass/_map.scss */
+.field.plot {
+  margin-top: 10px;
+}
+
+/* line 308, sass/_map.scss */
+.slide {
+  display: none;
+}
+
+/* line 312, sass/_map.scss */
+#plot-instructions {
+  height: 70px;
+}
+/* line 314, sass/_map.scss */
+#plot-instructions ul {
+  margin: 0 0 4px 0;
+  padding: 0 0 0 4px;
+}
+/* line 317, sass/_map.scss */
+#plot-instructions ul li {
+  margin: 0;
+}
+
+/* line 323, sass/_map.scss */
+.checkbox-group {
+  margin-left: 10px;
+}
+/* line 325, sass/_map.scss */
+.checkbox-group td {
+  text-align: right;
+  margin-right: 50px;
+}
+
+/* line 332, sass/_map.scss */
+ul.ui-autocomplete {
+  width: 60px;
+  margin: 0;
+  padding: 0;
+  color: #606160;
+  border: 2px solid #e1e0e0;
+  background-color: white;
+}
+
+/* line 2, sass/_events.scss */
+#event .tabs {
+  width: 649px;
+}
+/* line 5, sass/_events.scss */
+#event .secondary-nav {
+  margin-top: 30px;
+}
+
+/* line 10, sass/_events.scss */
+table.header {
+  margin: 26px 0;
+}
+
+/* line 16, sass/_events.scss */
+.pane.waveforms img {
+  margin-top: 10px;
+}
+
+/* line 22, sass/_events.scss */
+ul.bib li {
+  margin: 0 0 10px 0;
+}
+
+/* line 27, sass/_events.scss */
+#historic-event-ui.historic {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 33, sass/_events.scss */
+.thumbs .thumb {
+  float: left;
+  margin: 4px;
+}
+
+/* root element for tabs  */
+/*.tabs .tabs-hide {
+    position: absolute !important;
+    left: -10000px !important;
+    display:block !important;
+}*/
+/* line 8, sass/_tabs.scss */
+.tabs {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0;
+  height: 32px;
+  border-bottom: 1px solid #8c8c8c;
+}
+
+/* single tab */
+/* line 17, sass/_tabs.scss */
+.tabs li {
+  float: left;
+  text-indent: 0;
+  padding: 0;
+  margin: 0 !important;
+  list-style-image: none !important;
+}
+
+/* link inside the tab. uses a background image */
+/* line 26, sass/_tabs.scss */
+.tabs a {
+  /*  background: url(/img/global/tabs.png) no-repeat -652px 0;*/
+  font-size: 14px;
+  display: block;
+  height: 30px;
+  line-height: 30px;
+  width: 111px;
+  text-align: center;
+  text-decoration: none;
+  color: #545854;
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  top: 1px;
+  border: 1px solid #8c8c8c;
+  border-bottom: none;
+}
+/* line 43, sass/_tabs.scss */
+.tabs a.additional-info {
+  width: 130px;
+}
+
+/*.tabs a:active {
+  outline:none;
+  background-color:#e8e8e8; 
+}
+*/
+/* when mouse enters the tab move the background image */
+/* line 54, sass/_tabs.scss */
+.tabs a:hover {
+  /*  background-position: -652px -31px;  */
+  text-decoration: underline;
+}
+
+/* active tab uses a class name "current". it's highlight is also done by moving the background image. */
+/* line 60, sass/_tabs.scss */
+.tabs .current, .tabs .current:hover, .tabs li.current a {
+  /*  background-position: -652px -62px;    */
+  cursor: default !important;
+  background-color: #e8e8e8;
+}
+
+/* Different widths for tabs: use a class name: w1, w2, w3 or w2 */
+/* initially all panes are hidden */
+/* line 72, sass/_tabs.scss */
+.panes .pane {
+  display: none;
+}
+
+/* line 1, sass/_tables.scss */
+table.fancy-table {
+  font-size: 11px;
+  width: 290px;
+  text-align: left;
+  border-spacing: 0;
+}
+
+/* line 9, sass/_tables.scss */
+table.fancy-table thead tr th, table.tablesorter tfoot tr th {
+  background-color: #e1e0e0;
+  border: 1px solid black;
+  font-size: 8pt;
+  padding: 4px;
+}
+
+/* line 17, sass/_tables.scss */
+table.fancy-table thead th {
+  min-width: 35px;
+}
+
+/* line 21, sass/_tables.scss */
+table.fancy-table tbody td {
+  padding: 6px;
+}
+
+/* line 25, sass/_tables.scss */
+table.format-limit {
+  border-collapse: collapse;
+}
+/* line 27, sass/_tables.scss */
+table.format-limit td {
+  margin: 0;
+  border: 1px solid #e1e0e0;
+  padding: 5px;
+}
+/* line 32, sass/_tables.scss */
+table.format-limit thead tr th {
+  background-color: #e1e0e0;
+  border: 1px solid black;
+  font-size: 8pt;
+}
+
+/* line 41, sass/_tables.scss */
+table.historic td.date {
+  width: 70px;
+}
+/* line 44, sass/_tables.scss */
+table.historic td.coordinates {
+  width: 85px;
+}
+
+/* line 49, sass/_tables.scss */
+#custom-search {
+  border-bottom: 1px solid #545854;
+  padding-bottom: 10px;
+}
+
+/*stolen from datatable css for overide*/
+/* line 56, sass/_tables.scss */
+table.dataTable tr.odd {
+  background-color: #efefef;
+}
+
+/* line 57, sass/_tables.scss */
+table.dataTable tr.even {
+  background-color: white;
+}
+
+/*table.dataTable tr.odd td.sorting_1 { background-color: $background-color-dark; }*/
+/*table.dataTable tr.odd td.sorting_2 { background-color: #DADCFF; }
+table.dataTable tr.odd td.sorting_3 { background-color: #E0E2FF; }*/
+/*table.dataTable tr.even td.sorting_1 { background-color: $background-color-light; }*/
+/*table.dataTable tr.even td.sorting_2 { background-color: #F2F3FF; }
+table.dataTable tr.even td.sorting_3 { background-color: #F9F9FF; }*/
+/* line 66, sass/_tables.scss */
+table.fancy-table tr.highlight-list td {
+  background-color: yellow;
+}
+
+/* line 72, sass/_tables.scss */
+table.event_version td, table.event_attributes td {
+  vertical-align: top;
+  text-align: left;
+  padding-bottom: 10px;
+  padding-left: 5px;
+}
+/* line 78, sass/_tables.scss */
+table.event_version td.label, table.event_attributes td.label {
+  text-align: right;
+}
+/* line 81, sass/_tables.scss */
+table.event_version td.links, table.event_attributes td.links {
+  text-align: center;
+}
+
+/* line 86, sass/_tables.scss */
+table.event_attributes td.label {
+  width: 195px;
+}
+
+/* line 91, sass/_tables.scss */
+td.row-label a {
+  padding-right: 10px;
+}
+
+/* line 94, sass/_tables.scss */
+th.tip a {
+  font-weight: normal;
+}
+
+/* line 99, sass/_tables.scss */
+table.volcano-count th {
+  text-align: left;
+}
+/* line 102, sass/_tables.scss */
+table.volcano-count td {
+  text-align: center;
+}
+/* line 105, sass/_tables.scss */
+table.volcano-count td.name {
+  width: 100px;
+  text-align: left;
+}
+/* line 109, sass/_tables.scss */
+table.volcano-count .elevated {
+  font-weight: bold;
+}
+
+/* line 114, sass/_tables.scss */
+.large-volc-link table.volcano-count {
+  font-size: 12px;
+}
+/* line 116, sass/_tables.scss */
+.large-volc-link table.volcano-count td {
+  width: 150px;
+}
+
+/*tr.even{
+  background-color:$gray-lightest;;
+}
+*/
+/* line 124, sass/_tables.scss */
+table.large {
+  width: 650px;
+  /*  border: 1px solid black ;*/
+}
+/* line 127, sass/_tables.scss */
+table.large td {
+  padding: 10px;
+}
+
+/* line 132, sass/_tables.scss */
+table.full {
+  width: 100%;
+  font-size: 11px;
+  /*  th.location{
+      width:320px;
+    }*/
+}
+/* line 135, sass/_tables.scss */
+table.full th.time {
+  width: 160px;
+}
+/* line 138, sass/_tables.scss */
+table.full th.depth {
+  width: 75px;
+}
+/* line 144, sass/_tables.scss */
+table.full td {
+  padding: 10px;
+}
+
+/*togle links on tables*/
+/* line 149, sass/_tables.scss */
+.toggle-links {
+  font-size: 12px;
+  height: 18px;
+  position: relative;
+}
+/* line 153, sass/_tables.scss */
+.toggle-links a {
+  position: absolute;
+  top: 0;
+}
+/* line 156, sass/_tables.scss */
+.toggle-links a.time {
+  left: 55px;
+}
+/* line 159, sass/_tables.scss */
+.toggle-links a.depth {
+  left: 215px;
+}
+
+/* line 165, sass/_tables.scss */
+.table-summary {
+  position: relative;
+  min-height: 60px;
+}
+/* line 168, sass/_tables.scss */
+.table-summary .pagination {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+}
+/* line 174, sass/_tables.scss */
+.table-summary .export-format {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* line 181, sass/_tables.scss */
+#eq-table {
+  position: relative;
+}
+/* line 184, sass/_tables.scss */
+#eq-table .modal-link #custom-search-link {
+  /*    float:right;*/
+  position: absolute;
+  top: 30px;
+  right: 0;
+}
+
+/* line 196, sass/_tables.scss */
+.full {
+  clear: both;
+}
+/* line 200, sass/_tables.scss */
+.full .toggle-links a.depth {
+  left: 660px;
+}
+
+/* line 2, sass/_blog.scss */
+.content.blog .title-block {
+  font-size: 12px;
+}
+/* line 4, sass/_blog.scss */
+.content.blog .title-block h3, .content.blog .title-block h4 {
+  color: #7d7d7d;
+  margin: 0;
+  padding: 0;
+}
+/* line 9, sass/_blog.scss */
+.content.blog .title-block h3 {
+  font-size: 18px;
+}
+/* line 11, sass/_blog.scss */
+.content.blog .title-block h3 a {
+  color: #7d7d7d;
+}
+/* line 13, sass/_blog.scss */
+.content.blog .title-block h4 {
+  font-size: 14px;
+  font-weight: bold;
+}
+/* line 18, sass/_blog.scss */
+.content.blog .body {
+  margin-top: 5px;
+}
+
+/* line 23, sass/_blog.scss */
+#latest-post-end {
+  height: 45px;
+}
+
+/* line 27, sass/_blog.scss */
+.comment-link a img {
+  margin-top: 4px;
+}
+
+/* line 31, sass/_blog.scss */
+.read_more {
+  margin-bottom: 20px;
+}
+
+/* line 35, sass/_blog.scss */
+.blog-summary {
+  padding: 10px;
+}
+/* line 38, sass/_blog.scss */
+.blog-summary .content.blog h3 a {
+  font-size: 14px;
+}
+/* line 41, sass/_blog.scss */
+.blog-summary .content.blog h4 {
+  font-size: 11px;
+}
+/* line 44, sass/_blog.scss */
+.blog-summary .content.blog a {
+  font-size: 12px;
+}
+/* line 47, sass/_blog.scss */
+.blog-summary .content.blog .blog-post-summary {
+  /*      font-size: 11px;*/
+}
+
+/*for blog post front page*/
+/* line 55, sass/_blog.scss */
+#subhead .content.blog {
+  margin-top: 15px;
+}
+/* line 57, sass/_blog.scss */
+#subhead .content.blog .title-block {
+  /*      font-size: 12px;*/
+}
+/* line 60, sass/_blog.scss */
+#subhead .content.blog .title-block h3 a {
+  color: #114d09;
+  font-size: 18px;
+}
+
+/* line 1, sass/_shakemaps.scss */
+.shakemaps {
+  overflow: hidden;
+  *zoom: 1;
+}
+
+/* line 4, sass/_shakemaps.scss */
+.shakemap {
+  float: left;
+  /*  width:410px;*/
+  margin-top: 15px;
+}
+/* line 8, sass/_shakemaps.scss */
+.shakemap img {
+  width: 410px;
+}
+/* line 11, sass/_shakemaps.scss */
+.shakemap .download {
+  margin-left: 30px;
+}
+
+/* line 15, sass/_shakemaps.scss */
+.tooltip-open.small {
+  z-index: 10000;
+  width: 700px;
+  font-size: 12px;
+}
+/* line 20, sass/_shakemaps.scss */
+.tooltip-open.small table td {
+  width: auto !important;
+}
+
+/*#fancybox-img{
+  width:600px;
+  height:700px;
+}*/
+/*
+ * jQuery UI Datepicker 1.8.11
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Datepicker#theming
+ */
+/* line 10, sass/_datepicker.scss */
+.ui-datepicker {
+  width: 17em;
+  padding: .2em .2em 0;
+  display: none;
+}
+
+/* line 11, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-header {
+  position: relative;
+  padding: .2em 0;
+}
+
+/* line 12, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+  position: absolute;
+  top: 2px;
+  width: 1.8em;
+  height: 1.8em;
+}
+
+/* line 13, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover {
+  top: 1px;
+}
+
+/* line 14, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-prev {
+  left: 2px;
+}
+
+/* line 15, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-next {
+  right: 2px;
+}
+
+/* line 16, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-prev-hover {
+  left: 1px;
+}
+
+/* line 17, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-next-hover {
+  right: 1px;
+}
+
+/* line 18, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -8px;
+  top: 50%;
+  margin-top: -8px;
+}
+
+/* line 19, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-title {
+  margin: 0 2.3em;
+  line-height: 1.8em;
+  text-align: center;
+}
+
+/* line 20, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-title select {
+  font-size: 1em;
+  margin: 1px 0;
+}
+
+/* line 21, sass/_datepicker.scss */
+.ui-datepicker select.ui-datepicker-month-year {
+  width: 100%;
+}
+
+/* line 23, sass/_datepicker.scss */
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+  width: 49%;
+}
+
+/* line 24, sass/_datepicker.scss */
+.ui-datepicker table {
+  width: 100%;
+  font-size: .9em;
+  border-collapse: collapse;
+  margin: 0 0 .4em;
+}
+
+/* line 25, sass/_datepicker.scss */
+.ui-datepicker th {
+  padding: .7em .3em;
+  text-align: center;
+  font-weight: bold;
+  border: 0;
+}
+
+/* line 26, sass/_datepicker.scss */
+.ui-datepicker td {
+  border: 0;
+  padding: 1px;
+}
+
+/* line 27, sass/_datepicker.scss */
+.ui-datepicker td span, .ui-datepicker td a {
+  display: block;
+  padding: .2em;
+  text-align: right;
+  text-decoration: none;
+}
+
+/* line 28, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-buttonpane {
+  background-image: none;
+  margin: .7em 0 0 0;
+  padding: 0 .2em;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+/* line 29, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-buttonpane button {
+  float: right;
+  margin: .5em .2em .4em;
+  cursor: pointer;
+  padding: .2em .6em .3em .6em;
+  width: auto;
+  overflow: visible;
+}
+
+/* line 30, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+  float: left;
+}
+
+/* with multiple calendars */
+/* line 33, sass/_datepicker.scss */
+.ui-datepicker.ui-datepicker-multi {
+  width: auto;
+}
+
+/* line 34, sass/_datepicker.scss */
+.ui-datepicker-multi .ui-datepicker-group {
+  float: left;
+}
+
+/* line 35, sass/_datepicker.scss */
+.ui-datepicker-multi .ui-datepicker-group table {
+  width: 95%;
+  margin: 0 auto .4em;
+}
+
+/* line 36, sass/_datepicker.scss */
+.ui-datepicker-multi-2 .ui-datepicker-group {
+  width: 50%;
+}
+
+/* line 37, sass/_datepicker.scss */
+.ui-datepicker-multi-3 .ui-datepicker-group {
+  width: 33.3%;
+}
+
+/* line 38, sass/_datepicker.scss */
+.ui-datepicker-multi-4 .ui-datepicker-group {
+  width: 25%;
+}
+
+/* line 39, sass/_datepicker.scss */
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header {
+  border-left-width: 0;
+}
+
+/* line 40, sass/_datepicker.scss */
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+  border-left-width: 0;
+}
+
+/* line 41, sass/_datepicker.scss */
+.ui-datepicker-multi .ui-datepicker-buttonpane {
+  clear: left;
+}
+
+/* line 42, sass/_datepicker.scss */
+.ui-datepicker-row-break {
+  clear: both;
+  width: 100%;
+}
+
+/* RTL support */
+/* line 45, sass/_datepicker.scss */
+.ui-datepicker-rtl {
+  direction: rtl;
+}
+
+/* line 46, sass/_datepicker.scss */
+.ui-datepicker-rtl .ui-datepicker-prev {
+  right: 2px;
+  left: auto;
+}
+
+/* line 47, sass/_datepicker.scss */
+.ui-datepicker-rtl .ui-datepicker-next {
+  left: 2px;
+  right: auto;
+}
+
+/* line 48, sass/_datepicker.scss */
+.ui-datepicker-rtl .ui-datepicker-prev:hover {
+  right: 1px;
+  left: auto;
+}
+
+/* line 49, sass/_datepicker.scss */
+.ui-datepicker-rtl .ui-datepicker-next:hover {
+  left: 1px;
+  right: auto;
+}
+
+/* line 50, sass/_datepicker.scss */
+.ui-datepicker-rtl .ui-datepicker-buttonpane {
+  clear: right;
+}
+
+/* line 51, sass/_datepicker.scss */
+.ui-datepicker-rtl .ui-datepicker-buttonpane button {
+  float: left;
+}
+
+/* line 52, sass/_datepicker.scss */
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current {
+  float: right;
+}
+
+/* line 53, sass/_datepicker.scss */
+.ui-datepicker-rtl .ui-datepicker-group {
+  float: right;
+}
+
+/* line 54, sass/_datepicker.scss */
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header {
+  border-right-width: 0;
+  border-left-width: 1px;
+}
+
+/* line 55, sass/_datepicker.scss */
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+  border-right-width: 0;
+  border-left-width: 1px;
+}
+
+/* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
+/* line 58, sass/_datepicker.scss */
+.ui-datepicker-cover {
+  display: none;
+  /*sorry for IE5*/
+  display/**/: block;
+  /*sorry for IE5*/
+  position: absolute;
+  /*must have*/
+  z-index: -1;
+  /*must have*/
+  filter: mask();
+  /*must have*/
+  top: -4px;
+  /*must have*/
+  left: -4px;
+  /*must have*/
+  width: 200px;
+  /*must have*/
+  height: 200px;
+  /*must have*/
+}
+
+/*Added by JC*/
+/* line 71, sass/_datepicker.scss */
+.ui-datepicker {
+  background-color: white;
+  border: 1px solid #b5b5b5;
+  width: 200px;
+  font-size: 12px;
+  padding: 10px;
+}
+/* line 78, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-header {
+  background-color: #efefef;
+}
+/* line 82, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-prev {
+  cursor: pointer;
+}
+/* line 86, sass/_datepicker.scss */
+.ui-datepicker .ui-datepicker-next {
+  cursor: pointer;
+}
+
+/* line 93, sass/_datepicker.scss */
+#datepicker input[type=text] {
+  width: 70px;
+}
+/* line 96, sass/_datepicker.scss */
+#datepicker #date-submit {
+  float: none;
+  display: inline;
+  width: 70px;
+}
+
+/* line 1, sass/_seismogram.scss */
+.waveviewer {
+  height: 800px;
+  width: 100%;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
+  background-position-x: -90px;
+  background-position-y: -10px;
+  /*  border: 1px solid black;*/
+  /*    &.image_0{
+        top:0;
+        background-position-y:-105px;
+        z-index:100;
+        &.pdt{
+          background-position-y: -500px;
+        }
+        &.pst{
+          background-position-y: -550px;
+        }
+      }
+      
+      &.image_1{
+        top:681px;
+        background-position-y: -114px;
+        z-index:101;
+        &.pdt{
+          top:286px;
+        }
+        &.pst{
+          top:236px;
+        }
+      }
+      
+      &.image_2{
+        background-position-y: -115px;
+        z-index:102;
+        &.pdt{
+          top:959px;
+        }
+        &.pst{
+          top:909px;
+        }
+      }*/
+  /*  }*/
+}
+/* line 9, sass/_seismogram.scss */
+.waveviewer.image-not-found {
+  background-image: url("../images/image-not-found.jpeg");
+  background-position-x: 0;
+  background-position-y: 0;
+}
+
+/* line 53, sass/_seismogram.scss */
+#waveviewer-ui {
+  margin-bottom: 20px;
+}
+/* line 55, sass/_seismogram.scss */
+#waveviewer-ui select {
+  margin-right: 10px;
+}
+
+/* line 60, sass/_seismogram.scss */
+#navigate {
+  margin-top: 20px;
+  position: relative;
+}
+/* line 64, sass/_seismogram.scss */
+#navigate a.center {
+  position: absolute;
+  left: 400px;
+  top: 0;
+}
+/* line 69, sass/_seismogram.scss */
+#navigate a.right {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* line 77, sass/_seismogram.scss */
+.seismogram-content {
+  width: 900px;
+}
+
+/* line 81, sass/_seismogram.scss */
+#seismogram-header {
+  position: relative;
+}
+/* line 83, sass/_seismogram.scss */
+#seismogram-header .nav-links {
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+/* line 88, sass/_seismogram.scss */
+#seismogram-header .non-net-logo {
+  width: 310px;
+  /*    border: 1px solid black;*/
+  position: absolute;
+  top: 30px;
+  right: 0;
+  padding: 0;
+  margin: 0;
+}
+/* line 96, sass/_seismogram.scss */
+#seismogram-header .non-net-logo a {
+  float: right;
+}
+/* line 99, sass/_seismogram.scss */
+#seismogram-header .non-net-logo a.ta {
+  background-color: #545854;
+}
+/* line 102, sass/_seismogram.scss */
+#seismogram-header .non-net-logo img {
+  width: 100px;
+}
+/* line 105, sass/_seismogram.scss */
+#seismogram-header .non-net-logo span {
+  margin: 10px 10px 0 0;
+  float: right;
+}
+
+/* line 112, sass/_seismogram.scss */
+.field-group.zone .change-zone {
+  margin-left: 100px;
+}
+
+/* line 117, sass/_seismogram.scss */
+.loading.seismogram {
+  position: relative;
+  margin-right: 350px;
+}
+
+/* line 122, sass/_seismogram.scss */
+.new-window {
+  display: none;
+}
+
+/* line 125, sass/_seismogram.scss */
+.seismogram-not-found {
+  /*  height:600px;*/
+  /*  width: 100%;*/
+  /*  background-image: url("../images/seismogram-not-found.png");*/
+  /*  background-repeat: no-repeat;*/
+  /*  background-position: 250px 20px;*/
+  display: none;
+}
