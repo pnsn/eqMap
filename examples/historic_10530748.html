@@ -37,7 +37,7 @@
                  {
                   eq:{
                     displayOnLoad: true,
-                    urls: [ 'http://localhost:3000/events/10530748/historic_event.json'],
+                    urls: [ 'http://staging.pnsn.org/events/10530748/historic_event.json?callback=?'],
                     icon: $.fn.eqMap.eqIcon,    
                     bubbleHtml: $.fn.eqMap.eqBubbleHtml,
                     listHtml: $.fn.eqMap.eqListHtml
@@ -48,7 +48,6 @@
         //]]>
   </script>
 </head>
-
   <body>
 
     <div id='page'>
@@ -94,6 +93,10 @@
               <li class="depth-1 first">
                 <a href="./station.html">Station Map with Clusters</a>
               </li>
+              <li class="depth-1 first">
+                <a href="./thumb.html">Thumbnail Map</a>
+              </li>
+              
             </ul>
             
           </div>

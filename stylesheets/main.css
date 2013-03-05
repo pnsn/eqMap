@@ -1066,7 +1066,7 @@ button:hover {
 #req-legend-scale {
   float: left;
   height: 120px;
-  width: 320px;
+  width: 260px;
   background: url("../images/map/eq-legend-scale.jpg") no-repeat;
 }
 
@@ -1074,39 +1074,61 @@ button:hover {
 #req-legend-key {
   float: left;
   height: 140px;
-  width: 180px;
+  width: 160px;
   margin-top: 10px;
+  margin-left: 40px;
   background: url("../images/map/eq-legend-key.png") no-repeat;
 }
-/* line 143, sass/_map.scss */
+/* line 144, sass/_map.scss */
 #req-legend-key.depth, #req-legend-key.notable, #req-legend-key.historic.depth, #req-legend-key.volcano.depth, #req-legend-key.custom {
   background-position: 0px -150px;
 }
-/* line 146, sass/_map.scss */
+/* line 147, sass/_map.scss */
 #req-legend-key.historic {
+  width: 160px;
   background-position: 0px -315px;
 }
-/* line 149, sass/_map.scss */
+/* line 151, sass/_map.scss */
 #req-legend-key.volcano {
+  width: 100px;
   background-position: 0px -460px;
 }
-/* line 152, sass/_map.scss */
+/* line 155, sass/_map.scss */
 #req-legend-key.station {
   background: url("../images/map/stations-legend.png") no-repeat;
 }
+/* line 158, sass/_map.scss */
+#req-legend-key.two-key {
+  margin-left: 0;
+}
 
-/* line 157, sass/_map.scss */
+/* line 162, sass/_map.scss */
+#req-legend-key2 {
+  float: left;
+  margin-left: 20px;
+  display: none;
+  height: 140px;
+  width: 100px;
+}
+/* line 168, sass/_map.scss */
+#req-legend-key2.two-key {
+  background: url("../images/map/stations-legend.png") no-repeat;
+  background-position: 0px 20px;
+  display: block;
+}
+
+/* line 175, sass/_map.scss */
 .loading {
   position: relative;
 }
-/* line 159, sass/_map.scss */
+/* line 177, sass/_map.scss */
 .loading img {
   position: absolute;
   top: 90px;
   right: 60px;
 }
 
-/* line 166, sass/_map.scss */
+/* line 184, sass/_map.scss */
 #map-ui {
   overflow: hidden;
   *zoom: 1;
@@ -1114,104 +1136,104 @@ button:hover {
   margin-top: 10px;
   margin-bottom: 20px;
 }
-/* line 171, sass/_map.scss */
+/* line 189, sass/_map.scss */
 #map-ui .label {
   margin: 5px 5px 0 0;
   font-size: 14px;
 }
-/* line 176, sass/_map.scss */
+/* line 194, sass/_map.scss */
 #map-ui #icon-toggle {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 180, sass/_map.scss */
+/* line 198, sass/_map.scss */
 #map-ui .plot-type .radio-group {
   margin: 0 16px 1px 0;
   float: right;
 }
-/* line 183, sass/_map.scss */
+/* line 201, sass/_map.scss */
 #map-ui .plot-type .radio-group label {
   margin-right: 1px;
 }
-/* line 189, sass/_map.scss */
+/* line 207, sass/_map.scss */
 #map-ui button {
   float: left;
   width: 110px;
   margin-top: 10px;
 }
-/* line 198, sass/_map.scss */
+/* line 216, sass/_map.scss */
 #map-ui .fancy-buttonset .label {
   float: left;
   font-size: 13px;
 }
-/* line 202, sass/_map.scss */
+/* line 220, sass/_map.scss */
 #map-ui .fancy-buttonset .field-group {
   float: left;
 }
-/* line 209, sass/_map.scss */
+/* line 227, sass/_map.scss */
 #map-ui #plot-instructions .steps {
   font-size: 12px;
   /*display:none; */
 }
-/* line 215, sass/_map.scss */
+/* line 233, sass/_map.scss */
 #map-ui .slider-control {
   padding: 0 26px 0 16px;
   margin-bottom: 20px;
   background: url("../images/slider_bg.jpg") no-repeat;
   background-position: 10px 20px;
 }
-/* line 220, sass/_map.scss */
+/* line 238, sass/_map.scss */
 #map-ui .slider-control.mag-range-8 {
   background-position: -25px 20px;
   padding: 0 60px 0 12px;
 }
-/* line 224, sass/_map.scss */
+/* line 242, sass/_map.scss */
 #map-ui .slider-control.mag-range-7 {
   background-position: -52px 20px;
   padding: 0 88px 0 12px;
 }
-/* line 228, sass/_map.scss */
+/* line 246, sass/_map.scss */
 #map-ui .slider-control.mag-range-6 {
   background-position: -82px 20px;
   padding: 0 120px 0 12px;
 }
-/* line 232, sass/_map.scss */
+/* line 250, sass/_map.scss */
 #map-ui .slider-control.mag-range-5 {
   background-position: -112px 20px;
   padding: 0 148px 0 12px;
 }
-/* line 236, sass/_map.scss */
+/* line 254, sass/_map.scss */
 #map-ui .slider-control.mag-range-4 {
   background-position: -139px 20px;
   padding: 0 176px 0 12px;
 }
-/* line 240, sass/_map.scss */
+/* line 258, sass/_map.scss */
 #map-ui .slider-control.mag-range-3 {
   background-position: -168px 20px;
   padding: 0 206px 0 12px;
 }
-/* line 244, sass/_map.scss */
+/* line 262, sass/_map.scss */
 #map-ui .slider-control.mag-range-2 {
   background-position: -196px 20px;
   padding: 0 232px 0 12px;
 }
-/* line 248, sass/_map.scss */
+/* line 266, sass/_map.scss */
 #map-ui .slider-control.mag-range-1 {
   background-position: -226px 20px;
   padding: 0 250px 0 12px;
 }
-/* line 252, sass/_map.scss */
+/* line 270, sass/_map.scss */
 #map-ui .slider-control.mag-range-0 {
   background-position: -256px 20px;
   padding: 0 280px 0 12px;
 }
-/* line 256, sass/_map.scss */
+/* line 274, sass/_map.scss */
 #map-ui .slider-control .slider {
   padding: 0 26px 0 16px;
   position: relative;
   height: 50px;
 }
-/* line 261, sass/_map.scss */
+/* line 279, sass/_map.scss */
 #map-ui .slider-control .slider .ui-slider-handle {
   top: 20px;
   position: absolute;
@@ -1222,17 +1244,17 @@ button:hover {
   background: url("../images/slider_handle.jpg");
 }
 
-/* line 273, sass/_map.scss */
+/* line 291, sass/_map.scss */
 #plot {
   display: none;
 }
 
-/* line 277, sass/_map.scss */
+/* line 295, sass/_map.scss */
 .modal-link h4 {
   margin: 5px;
 }
 
-/* line 281, sass/_map.scss */
+/* line 299, sass/_map.scss */
 #plot-ui {
   position: relative;
   overflow: hidden;
@@ -1240,61 +1262,61 @@ button:hover {
   padding: 10px;
   /*  margin-top:10px;*/
 }
-/* line 286, sass/_map.scss */
+/* line 304, sass/_map.scss */
 #plot-ui.open {
   border: 1px solid #e1e0e0;
 }
-/* line 289, sass/_map.scss */
+/* line 307, sass/_map.scss */
 #plot-ui h4 {
   margin: 0;
   /*    margin-bottom:3px;*/
 }
-/* line 293, sass/_map.scss */
+/* line 311, sass/_map.scss */
 #plot-ui #plot-ui-close {
   position: absolute;
   top: 25px;
   right: 10px;
 }
 
-/* line 301, sass/_map.scss */
+/* line 319, sass/_map.scss */
 .field.draw {
   margin-bottom: 10px;
 }
-/* line 304, sass/_map.scss */
+/* line 322, sass/_map.scss */
 .field.plot {
   margin-top: 10px;
 }
 
-/* line 308, sass/_map.scss */
+/* line 326, sass/_map.scss */
 .slide {
   display: none;
 }
 
-/* line 312, sass/_map.scss */
+/* line 330, sass/_map.scss */
 #plot-instructions {
   height: 70px;
 }
-/* line 314, sass/_map.scss */
+/* line 332, sass/_map.scss */
 #plot-instructions ul {
   margin: 0 0 4px 0;
   padding: 0 0 0 4px;
 }
-/* line 317, sass/_map.scss */
+/* line 335, sass/_map.scss */
 #plot-instructions ul li {
   margin: 0;
 }
 
-/* line 323, sass/_map.scss */
+/* line 341, sass/_map.scss */
 .checkbox-group {
   margin-left: 10px;
 }
-/* line 325, sass/_map.scss */
+/* line 343, sass/_map.scss */
 .checkbox-group td {
   text-align: right;
   margin-right: 50px;
 }
 
-/* line 332, sass/_map.scss */
+/* line 350, sass/_map.scss */
 ul.ui-autocomplete {
   width: 60px;
   margin: 0;

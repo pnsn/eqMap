@@ -105,7 +105,9 @@ var methods = {
           $("#map-ui button#reset").click(resetAll);
           
           $("#req-legend-key").addClass(opts.eqMapType);
-          
+          if(opts.points.eq && opts.points.sta){            
+            $("#req-legend-key, #req-legend-key2").addClass("two-key");
+          }
           //x-section handlers
           $('#define-plot-area').click(function(){
             if($('.define-plot-area').text() == "Draw"){ 
@@ -206,6 +208,7 @@ var methods = {
             //iterate through each collection
             var total_count =0;
             $.each(opts.points, function(key, collection){
+              var count=0;
               var ajaxArray = [];
                $.each(collection.urls, function(i, url){ //parse each url
                  //is this a json obj or do we need to parse it? json  obj comes from file or backend template query
@@ -220,8 +223,9 @@ var methods = {
                  }
                  //set map_type
                  qp.map_type =  opts.eqMapType;                 
-                 alert(url);
+                 
                  $.getJSON(url, qp, function(json) { //requests each url
+                   count +=1;
                     $.each(json, function(j, response){
                       $.each(response, function(key, obj){
                         ajaxArray.push(obj);
@@ -230,7 +234,7 @@ var methods = {
                      //set sort order once all urls have been queried
                      //if obj does not respond to #.event_time_utc it will be sorted to beginning of array(bottom of zIndex)
                      //sort, create summary and list table if this is last element in collection
-                    if(url == collection.urls[collection.urls.length -1]){
+                    if(count == collection.urls.length){
                       ajaxArray.sort(function(a,b){
                         return (a.event_time_epoch < b.event_time_epoch) ? 1 : (a.event_time_epoch > b.event_time_epoch) ? -1 : 0;
                       });
@@ -433,7 +437,8 @@ var methods = {
     if (type == "time"){
       if(opts.evid){
         //assumes evid is numeric
-        if(parseInt(opts.evid, 0) < parseInt(obj.evid, 0)){
+        
+        if(parseInt(opts.evid, 0) > parseInt(obj.evid, 0)){
           //before event
           yIndex = 2;
         }else{
@@ -648,7 +653,6 @@ var methods = {
    }
     
     
-    
     function km2Miles(km){
       return (parseFloat(km) * 0.62).toFixed(1);
     }
@@ -674,10 +678,8 @@ var methods = {
        }else{
          $(this).parent().show();
        }
-     });
-     
+     });  
    }
-   
    
    function resetAll(){
      $('#map-ui .slider-control .slider').slider("value", opts.magMin);
@@ -688,6 +690,9 @@ var methods = {
      });
      $('#from, #to').val("");
      resetPlotUi();
+     resetOverlays();
+   }
+   function resetOverlays(){
      if($('#map-ui #icon-toggle :radio:checked').val()=="Depth"){
        $.each(overlays.eq.markers, function(i, val){
            val.marker.setIcon(val.timeIcon);
@@ -696,7 +701,10 @@ var methods = {
        $('#map-ui #icon-toggle :radio[value=Time]').attr("checked", true);
      }
      $('#map-ui .checkbox :checkbox').attr("checked", false);
-     //overlays.authPoly.setMap(null);
+     $.each(opts.polygons, function(key,obj){
+       $("#map-ui #" + key + " :checkbox").attr("checked", obj.displayOnLoad);
+       overlays[key].setMap(obj.displayOnLoad ? eqMap : null); 
+     });
    }
    
    function resetPlotUi(){
