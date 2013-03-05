@@ -220,8 +220,8 @@ var methods = {
                  }
                  //set map_type
                  qp.map_type =  opts.eqMapType;                 
-                 
-                 $.getJSON(url+ "?callback=?", qp, function(json) { //requests each url
+                 alert(url);
+                 $.getJSON(url, qp, function(json) { //requests each url
                     $.each(json, function(j, response){
                       $.each(response, function(key, obj){
                         ajaxArray.push(obj);
