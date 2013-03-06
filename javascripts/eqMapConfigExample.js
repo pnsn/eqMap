@@ -102,11 +102,12 @@ $.fn.eqMap.standardDefaults = {
      {
       eq:{
         displayOnLoad: true,
-        urls: [ "http://localhost:3000/events/recent_events", "http://localhost:3000/non_net_events/recent_events"],
+        // urls: [ "http://www.pnsn.org/events.json?callback=?"],
+        urls: [ "http://www.pnsn.org/events.json?callback=?", "http://www.pnsn.org/non_net_events.json?callback=?"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: $.fn.eqMap.eqBubbleHtml,
         listHtml: $.fn.eqMap.eqListHtml,
-        temporalSteps: [86400, 604800],
+        temporalSteps:  [3600*2, 2*86400],
         cluster: null
     }
     
@@ -204,11 +205,11 @@ $.fn.eqMap.thumbDefaults = {
      {
       eq:{
         displayOnLoad: true,
-        urls: [ "/events/recent_events", "/non_net_events/recent_events"],
+        urls: [ "http://www.pnsn.org/events.json?callback=?", "http://www.pnsn.org/non_net_events.json?callback=?"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: null,
         listHtml: null,
-        temporalSteps: [86400, 604800]
+        temporalSteps:  [3600*2, 2*86400]
     }
    }
 };
@@ -219,7 +220,7 @@ $.fn.eqMap.notableDefaults ={
       eq:{
         displayOnLoad: true,
         displayDepthOnly: true,
-        urls: [ "http://localhost:3000/events/notable_events.json"],
+        urls: [ "http://www.pnsn.org/events.json?callback=?"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: $.fn.eqMap.eqBubbleHtml,
         listHtml: $.fn.eqMap.eqListHtml
@@ -234,7 +235,7 @@ $.fn.eqMap.historicDefaults = {
      {
       eq:{
         displayOnLoad: true,
-        urls: [ "http://localhost:3000/events/historic_event.json"],
+        urls: [ "http://www.pnsn.org/events.json?callback=?"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: $.fn.eqMap.eqBubbleHtml,
         listHtml: $.fn.eqMap.eqListHtml
@@ -255,18 +256,18 @@ $.fn.eqMap.volcanoDefaults = {
      {
      sta:{
        displayOnLoad: true,
-       urls: [ "http://localhost:3000/station_type_groups.json"],
+       urls: [ "http://www.pnsn.org/station_type_groups.json?callback=?"],
        icon: $.fn.eqMap.staIcon,    
        bubbleHtml: $.fn.eqMap.staBubbleHtml,
        listHtml: null//$.fn.eqMap.staListHtml
      },
       eq:{
         displayOnLoad: true,
-        urls: [ "http://localhost:3000/events.json"],
+        urls: [ "http://www.pnsn.org/events.json?callback=?"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: $.fn.eqMap.eqBubbleHtml,
         listHtml: $.fn.eqMap.eqListHtml,
-        temporalSteps: [86400, 604800]
+        temporalSteps: [86400, 7*86400]
       }
 
     },
@@ -280,7 +281,7 @@ $.fn.eqMap.customDefaults = {
      {
       eq:{
         displayOnLoad: true,
-        urls: [ "/events.json"],
+        urls: [ "http:www.pnsn.org/events.json?callback=?"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: $.fn.eqMap.eqBubbleHtml,
         listHtml: $.fn.eqMap.eqListHtml,
@@ -295,7 +296,7 @@ $.fn.eqMap.customDefaults = {
     points: {
       sta:{
         displayOnLoad: true,
-        urls: [ "http://localhost:3000/station_type_groups"],
+        urls: [ "http://www.pnsn.org/station_type_groups.json?callback=?"],
         icon: $.fn.eqMap.staIcon,    
         bubbleHtml: $.fn.eqMap.staBubbleHtml,
         listHtml: $.fn.eqMap.staListHtml,

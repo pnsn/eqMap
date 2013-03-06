@@ -1,12 +1,15 @@
 #eqMap
-EqMap is a jQuery plugin for plotting earthquakes, stations and polygons on a Google Map. The plugin uses Google Maps API V3 (API V2 is deprecated and will stop working on 5/19/2013). The plugin expects a JSONP objects for the earthquakes and stations, and KML files for all polygons. The JSONP objects can can from a file or a web service; the KML files must be hosted on a public facing web server.  
+EqMap is a generic mapping utility for plotting, earthquakes, monitoring stations,  and polygons on a Google Map. The plugin uses Google Maps API V3 (API V2 is deprecated and will stop working on 5/19/2013). The plugin expects a JSON objects for the earthquakes and stations, and KML files for all polygons. The JSON objects need to served via web service; the KML files must be hosted on a public facing web server.  
 
 ##Usage 
-1. Get an API key at https://developers.google.com/maps/documentation/javascript/tutorial#api_key
-2. Copy javascripts/eqMapConfigExample.js to javascripts/eqMapConfig.js (This file is gitignored)
-3. Point browser to one of the example html files. 
+1. Copy javascripts/eqMapConfigExample.js to javascripts/eqMapConfig.js (This file is gitignored)
+2. Point browser to one of the example html files* 
+3. Get an API key at https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+4. Once you create your own templates add your API Key
 
-By default the example files use PNSN event and station webservice, a PNSN boundary KML file and a S. California fault KML file.
+<code> &lt;script src="https://www.google.com/jsapi?key=YOUR_KEY_HERE.js" type="text/javascript"&gt; </script></code>
+
+*By default the example files use PNSN event and station data, a PNSN boundary KML file and a S. California fault KML file.
 
 
 The plugin is called by:
@@ -16,17 +19,15 @@ The plugin is called by:
 
 For example to create a volcano map on a div with id ="map":
 <pre><code>
-  $("#map").eqMap({
-    map_type: "volcano"
-  })
+  $("#map").eqMap({map_type: "volcano"})
 </code></pre>
 ##Configuration
 
 The Configuration has the following hierarchy.
 
-1. In eqMapConfig.js all standardDefaults are loaded for every map. These are defaults shared by all maps. The recent eq map only uses the standardDefaults.
-2. The individual map types in eqMapConfig.js override the standardDefaults. If you map_type is named 'blar', the plugin will expect a config object of $fn.eqMap.blarDefaults
-3. The arguements in the plugin call overide the defaults in eqMapConfig.js. See example files.
+1. In eqMapConfig.js standardDefaults($.fn.eqMap.standardDefaults) are loaded for every map. These are defaults shared by all maps. The recent eq map uses the standardDefaults exclusively.
+2. The individual map types in eqMapConfig.js override the standardDefaults. If your map_type is named 'blar', the plugin will expect a config object of $fn.eqMap.blarDefaults
+3. The arguments in the plugin call override the defaults in eqMapConfig.js. See example files.
 
 
 ##Data Types
@@ -64,6 +65,7 @@ Stations need to be a JSON object with the following attributes. Example object 
 </code></pre>
 
 ###Polygons
-Polygons are served via a public facing KML file. You can add as many polygon files as you wish. Each must have a unique name. See eqMapConfig.js for examples.
+Polygons are served via a public facing KML file. You can add as many polygon files as you wish. Each must have a unique name. See eqMapConfigExample.js for examples.
 
-
+##Request types
+This plugin expects a JSON object served via a web service or public facing flat file. If the web service is on a different host than the web server you must create a [JSONP request](http://en.wikipedia.org/wiki/JSONP), which allows for cross site scripting. This can be done by appending "?callback=?" to the end of the url. The default URLs in the eqMapConfigExample.js file use JSONP since they are calling the PNSN web services.
