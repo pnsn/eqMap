@@ -1,8 +1,5 @@
-<!--
-Simple php web service that parses json file and serves json as either json or jsonp
--->
 <?php
-$data = file_get_contents("../python/recent_events.json");
+#Simple php web service that parses json file and serves json as either json or jsonp $data = file_get_contents("../python/recent_events.json");
 //JSONP if callback param exists
 if(array_key_exists('callback', $_GET)){
     
