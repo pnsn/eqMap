@@ -923,13 +923,18 @@ button:hover {
   height: 600px;
   margin-bottom: 20px;
 }
+/* line 5, sass/_map.scss */
+#map.mobile-area {
+  width: 100%;
+  height: 600px;
+}
 
-/* line 8, sass/_map.scss */
+/* line 12, sass/_map.scss */
 #tier-content-col-left.map {
   min-height: 50px;
 }
 
-/* line 13, sass/_map.scss */
+/* line 17, sass/_map.scss */
 #map-col-left {
   padding-top: 0;
   float: left;
@@ -937,87 +942,87 @@ button:hover {
   margin-right: 20px;
 }
 
-/* line 20, sass/_map.scss */
+/* line 24, sass/_map.scss */
 #map-col-right {
   float: left;
   width: 302px;
 }
 
-/* line 25, sass/_map.scss */
+/* line 29, sass/_map.scss */
 #map-thumb-container {
   width: 245px;
   height: 275px;
   overflow: hidden;
 }
 
-/* line 30, sass/_map.scss */
+/* line 34, sass/_map.scss */
 #map-thumb {
   width: 245px;
   height: 300px;
 }
 
-/* line 35, sass/_map.scss */
+/* line 39, sass/_map.scss */
 #map-historic {
   width: 325px;
   height: 400px;
 }
 
-/* line 40, sass/_map.scss */
+/* line 44, sass/_map.scss */
 #map-volcano {
   width: 500px;
   height: 500px;
 }
 
-/* line 46, sass/_map.scss */
+/* line 50, sass/_map.scss */
 .max-height {
   height: 100%;
   margin: 0;
 }
 
-/* line 51, sass/_map.scss */
+/* line 55, sass/_map.scss */
 .max-area {
   height: 100%;
   width: 100%;
 }
 
-/* line 56, sass/_map.scss */
+/* line 60, sass/_map.scss */
 #cross-section-image {
   display: none;
 }
 
-/* line 60, sass/_map.scss */
+/* line 64, sass/_map.scss */
 .dialog-plot {
   width: 980px;
   height: 400px;
   background-color: white;
 }
-/* line 64, sass/_map.scss */
+/* line 68, sass/_map.scss */
 .dialog-plot .head {
   position: relative;
   height: 80px;
 }
-/* line 67, sass/_map.scss */
+/* line 71, sass/_map.scss */
 .dialog-plot .head.cross {
   height: 70px;
 }
-/* line 70, sass/_map.scss */
+/* line 74, sass/_map.scss */
 .dialog-plot .head h2 {
   text-align: center;
   margin-bottom: 20px;
 }
-/* line 75, sass/_map.scss */
+/* line 79, sass/_map.scss */
 .dialog-plot .head .plot-side-a {
   position: absolute;
   left: 20px;
   top: 65px;
 }
-/* line 81, sass/_map.scss */
+/* line 85, sass/_map.scss */
 .dialog-plot .head .plot-side-b {
   position: absolute;
   right: 10px;
   top: 65px;
 }
-/* line 87, sass/_map.scss */
+/* line 91, sass/_map.scss */
 .dialog-plot .head .y-label {
   position: absolute;
   left: 0px;
@@ -1025,35 +1030,35 @@ button:hover {
   font-size: 10px;
   color: black;
 }
-/* line 93, sass/_map.scss */
+/* line 97, sass/_map.scss */
 .dialog-plot .head .y-label.cross {
   top: 75px;
 }
-/* line 97, sass/_map.scss */
+/* line 101, sass/_map.scss */
 .dialog-plot .head .logo {
   position: absolute;
   top: 0px;
   left: 10px;
 }
-/* line 103, sass/_map.scss */
+/* line 107, sass/_map.scss */
 .dialog-plot .head .plot-legend {
   position: absolute;
   top: 20px;
   right: 10px;
 }
-/* line 108, sass/_map.scss */
+/* line 112, sass/_map.scss */
 .dialog-plot .head .plot-legend-title {
   position: absolute;
   top: 0px;
   right: 165px;
 }
-/* line 114, sass/_map.scss */
+/* line 118, sass/_map.scss */
 .dialog-plot .select-plot {
   width: 980px;
   height: 300px;
 }
 
-/* line 121, sass/_map.scss */
+/* line 125, sass/_map.scss */
 #stations-legend-large {
   float: left;
   height: 120px;
@@ -1062,7 +1067,7 @@ button:hover {
   background-position: 20px 10px;
 }
 
-/* line 130, sass/_map.scss */
+/* line 134, sass/_map.scss */
 #req-legend-scale {
   float: left;
   height: 120px;
@@ -1070,7 +1075,7 @@ button:hover {
   background: url("../images/map/eq-legend-scale.jpg") no-repeat;
 }
 
-/* line 137, sass/_map.scss */
+/* line 141, sass/_map.scss */
 #req-legend-key {
   float: left;
   height: 140px;
@@ -1079,30 +1084,30 @@ button:hover {
   margin-left: 40px;
   background: url("../images/map/eq-legend-key.png") no-repeat;
 }
-/* line 144, sass/_map.scss */
+/* line 148, sass/_map.scss */
 #req-legend-key.depth, #req-legend-key.notable, #req-legend-key.historic.depth, #req-legend-key.volcano.depth, #req-legend-key.custom {
   background-position: 0px -150px;
 }
-/* line 147, sass/_map.scss */
+/* line 151, sass/_map.scss */
 #req-legend-key.historic {
   width: 160px;
   background-position: 0px -315px;
 }
-/* line 151, sass/_map.scss */
+/* line 155, sass/_map.scss */
 #req-legend-key.volcano {
   width: 100px;
   background-position: 0px -460px;
 }
-/* line 155, sass/_map.scss */
+/* line 159, sass/_map.scss */
 #req-legend-key.station {
   background: url("../images/map/stations-legend.png") no-repeat;
 }
-/* line 158, sass/_map.scss */
+/* line 162, sass/_map.scss */
 #req-legend-key.two-key {
   margin-left: 0;
 }
 
-/* line 162, sass/_map.scss */
+/* line 166, sass/_map.scss */
 #req-legend-key2 {
   float: left;
   margin-left: 20px;
@@ -1110,25 +1115,25 @@ button:hover {
   height: 140px;
   width: 100px;
 }
-/* line 168, sass/_map.scss */
+/* line 172, sass/_map.scss */
 #req-legend-key2.two-key {
   background: url("../images/map/stations-legend.png") no-repeat;
   background-position: 0px 20px;
   display: block;
 }
 
-/* line 175, sass/_map.scss */
+/* line 179, sass/_map.scss */
 .loading {
   position: relative;
 }
-/* line 177, sass/_map.scss */
+/* line 181, sass/_map.scss */
 .loading img {
   position: absolute;
   top: 90px;
   right: 60px;
 }
 
-/* line 184, sass/_map.scss */
+/* line 188, sass/_map.scss */
 #map-ui {
   overflow: hidden;
   *zoom: 1;
@@ -1136,104 +1141,104 @@ button:hover {
   margin-top: 10px;
   margin-bottom: 20px;
 }
-/* line 189, sass/_map.scss */
+/* line 193, sass/_map.scss */
 #map-ui .label {
   margin: 5px 5px 0 0;
   font-size: 14px;
 }
-/* line 194, sass/_map.scss */
+/* line 198, sass/_map.scss */
 #map-ui #icon-toggle {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 198, sass/_map.scss */
+/* line 202, sass/_map.scss */
 #map-ui .plot-type .radio-group {
   margin: 0 16px 1px 0;
   float: right;
 }
-/* line 201, sass/_map.scss */
+/* line 205, sass/_map.scss */
 #map-ui .plot-type .radio-group label {
   margin-right: 1px;
 }
-/* line 207, sass/_map.scss */
+/* line 211, sass/_map.scss */
 #map-ui button {
   float: left;
   width: 110px;
   margin-top: 10px;
 }
-/* line 216, sass/_map.scss */
+/* line 220, sass/_map.scss */
 #map-ui .fancy-buttonset .label {
   float: left;
   font-size: 13px;
 }
-/* line 220, sass/_map.scss */
+/* line 224, sass/_map.scss */
 #map-ui .fancy-buttonset .field-group {
   float: left;
 }
-/* line 227, sass/_map.scss */
+/* line 231, sass/_map.scss */
 #map-ui #plot-instructions .steps {
   font-size: 12px;
   /*display:none; */
 }
-/* line 233, sass/_map.scss */
+/* line 237, sass/_map.scss */
 #map-ui .slider-control {
   padding: 0 26px 0 16px;
   margin-bottom: 20px;
   background: url("../images/slider_bg.jpg") no-repeat;
   background-position: 10px 20px;
 }
-/* line 238, sass/_map.scss */
+/* line 242, sass/_map.scss */
 #map-ui .slider-control.mag-range-8 {
   background-position: -25px 20px;
   padding: 0 60px 0 12px;
 }
-/* line 242, sass/_map.scss */
+/* line 246, sass/_map.scss */
 #map-ui .slider-control.mag-range-7 {
   background-position: -52px 20px;
   padding: 0 88px 0 12px;
 }
-/* line 246, sass/_map.scss */
+/* line 250, sass/_map.scss */
 #map-ui .slider-control.mag-range-6 {
   background-position: -82px 20px;
   padding: 0 120px 0 12px;
 }
-/* line 250, sass/_map.scss */
+/* line 254, sass/_map.scss */
 #map-ui .slider-control.mag-range-5 {
   background-position: -112px 20px;
   padding: 0 148px 0 12px;
 }
-/* line 254, sass/_map.scss */
+/* line 258, sass/_map.scss */
 #map-ui .slider-control.mag-range-4 {
   background-position: -139px 20px;
   padding: 0 176px 0 12px;
 }
-/* line 258, sass/_map.scss */
+/* line 262, sass/_map.scss */
 #map-ui .slider-control.mag-range-3 {
   background-position: -168px 20px;
   padding: 0 206px 0 12px;
 }
-/* line 262, sass/_map.scss */
+/* line 266, sass/_map.scss */
 #map-ui .slider-control.mag-range-2 {
   background-position: -196px 20px;
   padding: 0 232px 0 12px;
 }
-/* line 266, sass/_map.scss */
+/* line 270, sass/_map.scss */
 #map-ui .slider-control.mag-range-1 {
   background-position: -226px 20px;
   padding: 0 250px 0 12px;
 }
-/* line 270, sass/_map.scss */
+/* line 274, sass/_map.scss */
 #map-ui .slider-control.mag-range-0 {
   background-position: -256px 20px;
   padding: 0 280px 0 12px;
 }
-/* line 274, sass/_map.scss */
+/* line 278, sass/_map.scss */
 #map-ui .slider-control .slider {
   padding: 0 26px 0 16px;
   position: relative;
   height: 50px;
 }
-/* line 279, sass/_map.scss */
+/* line 283, sass/_map.scss */
 #map-ui .slider-control .slider .ui-slider-handle {
   top: 20px;
   position: absolute;
@@ -1244,17 +1249,17 @@ button:hover {
   background: url("../images/slider_handle.jpg");
 }
 
-/* line 291, sass/_map.scss */
+/* line 295, sass/_map.scss */
 #plot {
   display: none;
 }
 
-/* line 295, sass/_map.scss */
+/* line 299, sass/_map.scss */
 .modal-link h4 {
   margin: 5px;
 }
 
-/* line 299, sass/_map.scss */
+/* line 303, sass/_map.scss */
 #plot-ui {
   position: relative;
   overflow: hidden;
@@ -1262,61 +1267,61 @@ button:hover {
   padding: 10px;
   /*  margin-top:10px;*/
 }
-/* line 304, sass/_map.scss */
+/* line 308, sass/_map.scss */
 #plot-ui.open {
   border: 1px solid #e1e0e0;
 }
-/* line 307, sass/_map.scss */
+/* line 311, sass/_map.scss */
 #plot-ui h4 {
   margin: 0;
   /*    margin-bottom:3px;*/
 }
-/* line 311, sass/_map.scss */
+/* line 315, sass/_map.scss */
 #plot-ui #plot-ui-close {
   position: absolute;
   top: 25px;
   right: 10px;
 }
 
-/* line 319, sass/_map.scss */
+/* line 323, sass/_map.scss */
 .field.draw {
   margin-bottom: 10px;
 }
-/* line 322, sass/_map.scss */
+/* line 326, sass/_map.scss */
 .field.plot {
   margin-top: 10px;
 }
 
-/* line 326, sass/_map.scss */
+/* line 330, sass/_map.scss */
 .slide {
   display: none;
 }
 
-/* line 330, sass/_map.scss */
+/* line 334, sass/_map.scss */
 #plot-instructions {
   height: 70px;
 }
-/* line 332, sass/_map.scss */
+/* line 336, sass/_map.scss */
 #plot-instructions ul {
   margin: 0 0 4px 0;
   padding: 0 0 0 4px;
 }
-/* line 335, sass/_map.scss */
+/* line 339, sass/_map.scss */
 #plot-instructions ul li {
   margin: 0;
 }
 
-/* line 341, sass/_map.scss */
+/* line 345, sass/_map.scss */
 .checkbox-group {
   margin-left: 10px;
 }
-/* line 343, sass/_map.scss */
+/* line 347, sass/_map.scss */
 .checkbox-group td {
   text-align: right;
   margin-right: 50px;
 }
 
-/* line 350, sass/_map.scss */
+/* line 354, sass/_map.scss */
 ul.ui-autocomplete {
   width: 60px;
   margin: 0;
@@ -1360,6 +1365,103 @@ ul.bib li {
 .thumbs .thumb {
   float: left;
   margin: 4px;
+}
+
+/*.list-scale{
+  height:30px;
+  width:100px;
+  background-image:"../images/mag-legend-list.png";
+}
+*/
+/* line 44, sass/_events.scss */
+.title-list {
+  position: relative;
+  margin-bottom: 5px;
+}
+/* line 47, sass/_events.scss */
+.title-list img {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* line 54, sass/_events.scss */
+.eqlist-simple .event {
+  /*    width:100%;*/
+  color: #545854;
+  border-style: solid;
+  height: 60px;
+  border: 1px solid #5dc4d9;
+  background-image: url("../images/eq-list-gradient-dark.png");
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 62, sass/_events.scss */
+.eqlist-simple .event:hover {
+  background-image: url("../images/eq-list-gradient-light.png");
+}
+/* line 67, sass/_events.scss */
+.eqlist-simple .mag {
+  float: left;
+  margin: 7px;
+  width: 46px;
+  height: 46px;
+  font-size: 18px;
+  background-color: white;
+  border: inherit;
+  color: black;
+}
+/* line 76, sass/_events.scss */
+.eqlist-simple .mag.small {
+  background-color: #0C9d6d;
+}
+/* line 79, sass/_events.scss */
+.eqlist-simple .mag.medium {
+  background-color: #F8E34B;
+}
+/* line 82, sass/_events.scss */
+.eqlist-simple .mag.large {
+  background-color: #FA6332;
+}
+/* line 85, sass/_events.scss */
+.eqlist-simple .mag.ohcrap {
+  background-color: #d61738;
+}
+/* line 88, sass/_events.scss */
+.eqlist-simple .mag p {
+  margin: 9px 9px;
+}
+/* line 90, sass/_events.scss */
+.eqlist-simple .mag p.negative {
+  margin: 9px 5px;
+}
+/* line 96, sass/_events.scss */
+.eqlist-simple .event_attributes {
+  float: left;
+  margin-left: 10px;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 100, sass/_events.scss */
+.eqlist-simple .event_attributes .left, .eqlist-simple .event_attributes .middle, .eqlist-simple .event_attributes .right {
+  height: 100%;
+  float: left;
+}
+/* line 104, sass/_events.scss */
+.eqlist-simple .event_attributes .left {
+  width: 450px;
+}
+/* line 107, sass/_events.scss */
+.eqlist-simple .event_attributes .middle {
+  width: 250px;
+}
+/* line 110, sass/_events.scss */
+.eqlist-simple .event_attributes .right {
+  width: 50px;
+}
+/* line 113, sass/_events.scss */
+.eqlist-simple .event_attributes .top, .eqlist-simple .event_attributes .bottom {
+  margin-top: 8px;
 }
 
 /* root element for tabs  */
@@ -2248,4 +2350,158 @@ table.full td {
   /*  background-repeat: no-repeat;*/
   /*  background-position: 250px 20px;*/
   display: none;
+}
+
+/* line 1, sass/_layout_mobile.scss */
+body.mobile {
+  width: 94%;
+  padding: 0;
+  margin: 0 5px;
+}
+/* line 6, sass/_layout_mobile.scss */
+body.mobile #header-mobile {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  *zoom: 1;
+  margin: 0;
+  height: 40px;
+  background-color: #0C9d6d;
+}
+/* line 13, sass/_layout_mobile.scss */
+body.mobile #header-mobile img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+/* line 18, sass/_layout_mobile.scss */
+body.mobile #header-mobile ul {
+  overflow: hidden;
+  *zoom: 1;
+  position: absolute;
+  top: 0px;
+  right: 5px;
+}
+/* line 23, sass/_layout_mobile.scss */
+body.mobile #header-mobile ul li {
+  float: left;
+  margin: 0 5px;
+  color: white;
+}
+/* line 28, sass/_layout_mobile.scss */
+body.mobile #header-mobile ul a {
+  font-size: 15px;
+  color: white;
+}
+/* line 34, sass/_layout_mobile.scss */
+body.mobile .title-list h1 {
+  font-size: 20px;
+}
+/* line 36, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .event {
+  padding: 5px;
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+  color: #545854;
+  border-style: solid;
+  /*      height:60px;*/
+  border: 1px solid #5dc4d9;
+  background-image: url("../images/eq-list-gradient-dark-mobile.png");
+  background-repeat: repeat-x;
+}
+/* line 47, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .event:hover {
+  background-color: white;
+  background-image: none;
+  /*        background-image: url("../images/eq-list-gradient-light.png");*/
+}
+/* line 53, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .top {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 56, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .mag {
+  float: left;
+  margin: 0px;
+  width: 55px;
+  height: 55px;
+  font-size: 22px;
+  background-color: white;
+  border: inherit;
+  color: black;
+}
+/* line 65, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .mag.small {
+  background-color: #0C9d6d;
+}
+/* line 68, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .mag.medium {
+  background-color: #F8E34B;
+}
+/* line 71, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .mag.large {
+  background-color: #FA6332;
+}
+/* line 74, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .mag.ohcrap {
+  background-color: #d61738;
+}
+/* line 77, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .mag p {
+  margin: 14px 12px;
+}
+/* line 79, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .mag p.negative {
+  margin: 14px 7px;
+}
+/* line 85, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .event_attributes {
+  width: 75%;
+  float: left;
+  margin: 0px 0 0 10px;
+}
+/* line 90, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .event_attributes .left {
+  width: 55px;
+}
+/* line 93, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .event_attributes .middle {
+  width: 110px;
+}
+/* line 96, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .event_attributes .right {
+  /*          width:100px;*/
+}
+/* line 100, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .bottom {
+  height: 20px;
+  position: relative;
+  font-size: 14px;
+}
+/* line 104, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .bottom .left {
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0 5px;
+}
+/* line 111, sass/_layout_mobile.scss */
+body.mobile .eqlist-simple .bottom .right {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  margin: 0 10px;
+}
+/* line 120, sass/_layout_mobile.scss */
+body.mobile #legend-modal-link {
+  color: #0C9d6d;
+  font-size: 16px;
+}
+/* line 125, sass/_layout_mobile.scss */
+body.mobile #legend.mobile #req-legend-scale {
+  background-position: -30px 0;
+  margin: 0;
 }

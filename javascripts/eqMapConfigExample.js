@@ -78,6 +78,7 @@ $.fn.eqMap.standardDefaults = {
 	authNetworks: ['uw','cc','uo'],
 	//Throw warning(alert) when this many events are requested.;
 	list_limit: 1000,
+	plot_relative_to_evid: false,
 	
 	//define collections for points(eqs and stations)
   params:{eq: {}, sta: {}}, //these are top level since they may need overwriting on dynamic templates
@@ -244,7 +245,8 @@ $.fn.eqMap.historicDefaults = {
   polygons: null,
   zoomToFit: true,
   magMin: 2,
-  magMax: 9
+  magMax: 9,
+  plot_relative_to_evid: false
 };
 
 //and the volcanoes

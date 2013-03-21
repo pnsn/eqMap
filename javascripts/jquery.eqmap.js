@@ -435,9 +435,9 @@ var methods = {
     
     //find coordinates along the sprite y-axis
     if (type == "time"){
-      if(opts.evid){
+      //plot by before/after
+      if(opts.evid && opts.plot_relative_to_evid){
         //assumes evid is numeric
-        
         if(parseInt(opts.evid, 0) > parseInt(obj.evid, 0)){
           //before event
           yIndex = 2;
