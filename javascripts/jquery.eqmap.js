@@ -203,7 +203,13 @@ var methods = {
           //lets make us a map
           eqMap = new google.maps.Map(this, mapOptions);
           eqMap.infoWindow = new google.maps.InfoWindow();
-        	
+          //add logo to map
+          if(opts.logo){
+          	var logoControlDiv = document.createElement('DIV');
+            var logoControl = netLogoControl(logoControlDiv);
+            logoControlDiv.index = 0; // used for ordering
+            eqMap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(logoControlDiv);
+          }
 
             //iterate through each collection
             var total_count =0;
@@ -323,8 +329,23 @@ var methods = {
         
 //private methods
 
+//Add network logo to map
+function netLogoControl(div) {
+    div.style.padding = '0 5px';
+    var logo = document.createElement('IMG');
+    logo.src = opts.logo.logoSrc;
+    logo.style.cursor = 'pointer';
+    logo.style.width = opts.logo.logoWidth;
+    div.appendChild(logo);
+    google.maps.event.addDomListener(logo, 'click', function() {
+        window.location = opts.logo.logoHref; 
+    });
+}
 
- function plotMarker(obj, zIndex, collection, key){
+
+
+
+function plotMarker(obj, zIndex, collection, key){
    var latLng = new google.maps.LatLng(obj.lat, obj.lng);
    var marker = new google.maps.Marker({     
      position: latLng,

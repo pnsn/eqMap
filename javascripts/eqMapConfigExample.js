@@ -98,6 +98,13 @@ $.fn.eqMap.standardDefaults = {
   //event_time_epoch      float
   //events.etype"         string ('re', 'le', 'ex', 'px') regional, local, explosion, probable explosion
   
+  //add network logo to right corner of map
+  logo: null,
+  // logo: {
+  //   logoHref: "/",
+  //   logoWidth: "75px",
+  //   logoSrc: "/images/pnsn_logo_rev_no_wave.png"
+  // },
   
   points:
      {
