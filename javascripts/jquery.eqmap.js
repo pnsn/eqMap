@@ -1175,7 +1175,7 @@ function plotMarker(obj, zIndex, collection, key){
               data: plotEqs3,
               label: "3",
               points: {
-                radius: 12,
+                radius: 8,
                 symbol: 'circle',
                 show: true
               }
