@@ -968,11 +968,14 @@ function plotMarker(obj, zIndex, collection, key){
    var plotEqs5 = [];
    if(overlays.xPoly){
      var count = 0;
-     var newEqArray = $.merge([], overlays.eq.markers); //clone array so we can reverse with changing original array
-      $.each(newEqArray.reverse(), function(i, markerObj){
+     var newEqArray = $.merge([], overlays.eq.markers); //clone array so we can sort it without altering original array
+      newEqArray.sort(function(a,b){
+        return a.epoch - b.epoch;
+      });
+      $.each(newEqArray, function(i, markerObj){
         var mag = parseInt(markerObj.mag, 0);
         if (polyContainsPoint(overlays.xPoly, markerObj.marker.getPosition()) && 
-        mag >= parseInt($( ".slider-mag-value" ).html(), 0)){
+          mag >= parseInt($( ".slider-mag-value" ).html(), 0)){
         // mag >= parseInt($( ".slider-mag-value" ).html(), 0) && (!maxDepth || markerObj.depthKm >= maxDepth*-1)){
           count +=1;
           line.push([markerObj.epoch*1000, count]);
@@ -982,6 +985,7 @@ function plotMarker(obj, zIndex, collection, key){
         }
       });
     }
+    
     // $('a#cumulative-count-link').trigger("click");
     $('#cumulative-count.dialog-plot').dialog("open");
     $('#cumulative-count.dialog-plot').dialog( "option", "title", 'Cumulative Count');
