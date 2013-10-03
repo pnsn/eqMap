@@ -78,7 +78,7 @@ var methods = {
           
           $.each(['eq', 'sta'], function(i,key){
             $("#map-ui #cluster-display-" + key + " :checkbox").click(function(){
-              if ($(this).attr('checked')){
+              if ($(this).is(':checked')){
                 overlays[key].cluster.mc = new MarkerClusterer(eqMap, overlays[key].cluster.markers, {gridSize: 50, maxZoom: 7});
             
               }else{
@@ -233,9 +233,7 @@ var methods = {
                  $.getJSON(url, qp, function(json) { //requests each url
                    count +=1;
                     $.each(json, function(j, response){
-                      $.each(response, function(key, obj){
-                        ajaxArray.push(obj);
-                      });
+                      ajaxArray.push(response);                      
                     });
                      //set sort order once all urls have been queried
                      //if obj does not respond to #.event_time_utc it will be sorted to beginning of array(bottom of zIndex)
@@ -258,7 +256,7 @@ var methods = {
                         $(opts.summaryHtmlEq(overlays.eq.markers)).appendTo($('#map-summary'));
                       }
                       $("#map-summary ul li a").click(function(){
-                        $(".map-list tr[rev='" + $(this).attr('rel') +  "']" ).trigger('click');
+                        //$(".map-list tr[rev='" + $(this).attr('rel') +  "']" ).trigger('click');
                         return false;
                       });
                       
@@ -305,7 +303,7 @@ var methods = {
                    overlays[key] = p;
                  
                  $("#map-ui #" + key + " :checkbox").click(function(){
-                   if ($(this).attr('checked')){
+                   if ($(this).is(':checked')){
                      overlays[key].setMap(eqMap);
 
                    }else{
@@ -602,7 +600,6 @@ function plotMarker(obj, zIndex, collection, key){
    var zoom = eqMap.getZoom();
    $.each(overlays.eq.markers, function(i,val){
      if(val.marker.region){
-        // alert(val.marker.region);
         if(zoom >= opts.regions_zoom){
           val.marker.setMap(eqMap);
         }else { 
@@ -719,11 +716,11 @@ function plotMarker(obj, zIndex, collection, key){
            val.marker.setIcon(val.timeIcon);
            $('#req-legend-key').removeClass("depth");
          });
-       $('#map-ui #icon-toggle :radio[value=Time]').attr("checked", true);
+       $('#map-ui #icon-toggle :radio[value=Time]').prop("checked", true);
      }
-     $('#map-ui .checkbox :checkbox').attr("checked", false);
+     $('#map-ui .checkbox :checkbox').prop("checked", false);
      $.each(opts.polygons, function(key,obj){
-       $("#map-ui #" + key + " :checkbox").attr("checked", obj.displayOnLoad);
+       $("#map-ui #" + key + " :checkbox").prop("checked", obj.displayOnLoad);
        overlays[key].setMap(obj.displayOnLoad ? eqMap : null); 
      });
    }
@@ -736,9 +733,9 @@ function plotMarker(obj, zIndex, collection, key){
      }
      $('.define-plot-area').removeClass('ui-state-active');
      $('.define-plot-area span').text('Draw');
-     $('#define-plot-area').attr('checked', false);
+     $('#define-plot-area').prop('checked', false);
      $('.plot-type label').removeClass('ui-state-active');
-     $('.plot-type input[value=x-section]').attr("checked", true);
+     $('.plot-type input[value=x-section]').prop("checked", true);
      $('.plot-type label[for=select-x-section-plot]').addClass("ui-state-active");
      $("#plot").hide();
    }
@@ -968,14 +965,11 @@ function plotMarker(obj, zIndex, collection, key){
    var plotEqs5 = [];
    if(overlays.xPoly){
      var count = 0;
-     var newEqArray = $.merge([], overlays.eq.markers); //clone array so we can sort it without altering original array
-      newEqArray.sort(function(a,b){
-        return a.epoch - b.epoch;
-      });
-      $.each(newEqArray, function(i, markerObj){
+     var newEqArray = $.merge([], overlays.eq.markers); //clone array so we can reverse with changing original array
+      $.each(newEqArray.reverse(), function(i, markerObj){
         var mag = parseInt(markerObj.mag, 0);
         if (polyContainsPoint(overlays.xPoly, markerObj.marker.getPosition()) && 
-          mag >= parseInt($( ".slider-mag-value" ).html(), 0)){
+        mag >= parseInt($( ".slider-mag-value" ).html(), 0)){
         // mag >= parseInt($( ".slider-mag-value" ).html(), 0) && (!maxDepth || markerObj.depthKm >= maxDepth*-1)){
           count +=1;
           line.push([markerObj.epoch*1000, count]);
@@ -985,7 +979,6 @@ function plotMarker(obj, zIndex, collection, key){
         }
       });
     }
-    
     // $('a#cumulative-count-link').trigger("click");
     $('#cumulative-count.dialog-plot').dialog("open");
     $('#cumulative-count.dialog-plot').dialog( "option", "title", 'Cumulative Count');
@@ -1179,7 +1172,7 @@ function plotMarker(obj, zIndex, collection, key){
               data: plotEqs3,
               label: "3",
               points: {
-                radius: 8,
+                radius: 12,
                 symbol: 'circle',
                 show: true
               }
@@ -1244,7 +1237,7 @@ function plotMarker(obj, zIndex, collection, key){
 
  
    function drawXSection(e){
-     if(!$('#define-plot-area').attr('checked') || overlays.xSectMarkers.length > 3){
+     if(!$('#define-plot-area:checked') || overlays.xSectMarkers.length > 3){
        return;
      }else{
        createPolyMarker(e.latLng);
