@@ -69,3 +69,5 @@ Polygons are served via a public facing KML file. You can add as many polygon fi
 
 ##Request types
 This plugin expects a JSON object served via a web service or public facing flat file. If the web service is on a different host than the web server(server that is hosting eqMap) you must create a [JSONP request](http://en.wikipedia.org/wiki/JSONP), which allows for cross site scripting. This can be done by appending "?callback=?" to the end of the webservice url. A simple php web service is included. See the  URLs in the eqMapConfigExample.js file for examples. If the JSON file is on the web server, JSONP is not required but the file must be served via http. You must use the web service for testing on local i.e. http://localhost/your/path/eqMap/php/json_service.php
+
+A python script is included to generate a json file from the 1 week usgs all feed

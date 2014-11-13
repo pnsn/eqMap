@@ -80,7 +80,7 @@ for event in json_data['features']:
     if lat <= MAX_LAT and lat >= MIN_LAT and lng <= MAX_LNG and lng >= MIN_LNG and any(net in s for s in AUTH_NETS):
       epoch = float(event['properties']['time'])/1000
       collection.append(
-      {'event': {   
+      {   
       'lat': lat,                     
       'lng': lng,                    
       'auth': net,                    
@@ -93,7 +93,7 @@ for event in json_data['features']:
       'version' : 'n/a',  #can't ge version from feed
       'magnitude': round(event['properties']['mag'],1), 
       'etype': 'le' #can't get etype from feed 
-      }})
+      })
 
 with open('../json/recent_events.json', 'w') as outfile:
   json.dump(collection, outfile)
