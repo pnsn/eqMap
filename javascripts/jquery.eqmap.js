@@ -1000,7 +1000,6 @@ function plotMarker(obj, zIndex, collection, key){
         }
       });
     }
-    
     // $('a#cumulative-count-link').trigger("click");
     $('#cumulative-count.dialog-plot').dialog("open");
     $('#cumulative-count.dialog-plot').dialog( "option", "title", 'Cumulative Count');
@@ -1194,7 +1193,7 @@ function plotMarker(obj, zIndex, collection, key){
               data: plotEqs3,
               label: "3",
               points: {
-                radius: 8,
+                radius: 12,
                 symbol: 'circle',
                 show: true
               }
