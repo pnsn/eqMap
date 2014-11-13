@@ -1,0 +1,18 @@
+[
+{
+"auth": "VTSO",
+"depth_km": "2.8",
+"depth_mi": "1.7",
+"etype": "px",
+"event_time_epoch": "1415714940.00",
+"event_time_local": "2014/11/11 09:09:00 EST",
+"event_time_utc": "2014/11/11 14:09:00",
+"evid": 1,
+"lat": 36.758,
+"lng": "-97.550",
+"magnitude": "3",
+"place": "17km (11mi) ESE of Medford, Oklahoma",
+"rss_utc": "Tues, 11 November 14:09:00",
+"version": 4
+}
+]

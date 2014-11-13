@@ -64,7 +64,7 @@ var methods = {
           scaleControl: opts.scaleControl,
           draggable: opts.draggable,
     			disableDefaultUI: opts.disableDefaultUI,
-    			disableDoubleClickZoom: opts.diableDoubleClickZoom,
+    			disableDoubleClickZoom: opts.disableDoubleClickZoom,
     			scrollwheel: opts.scrollwheel,
           navigationControlOptions: {
           style: google.maps.NavigationControlStyle.SMALL
@@ -78,7 +78,7 @@ var methods = {
           
           $.each(['eq', 'sta'], function(i,key){
             $("#map-ui #cluster-display-" + key + " :checkbox").click(function(){
-              if ($(this).attr('checked')){
+              if ($(this).is(':checked')){
                 overlays[key].cluster.mc = new MarkerClusterer(eqMap, overlays[key].cluster.markers, {gridSize: 50, maxZoom: 7});
             
               }else{
@@ -172,15 +172,14 @@ var methods = {
                         add(arr);
                       },
                       select: function(e, ui){
-                        var tr =  $(".map-list tr:contains('" + ui.item.value + "')");
+                        var tr = $(".map-list tr").filter(function(){                        
+                          return ui.item.value == $('td:first-child', this).text();
+                        });
                         tr.trigger("click");
                         $(".dataTables_scrollBody").scrollTop(0);
                         $(".dataTables_scrollBody").scrollTop(tr.position().top -20);
                       }
               });
-            
-
-          
           
           //extend Latlng for distanceFrom method returns distance in meters
            google.maps.LatLng.prototype.distanceFrom = function(newLatLng) { 
@@ -233,9 +232,7 @@ var methods = {
                  $.getJSON(url, qp, function(json) { //requests each url
                    count +=1;
                     $.each(json, function(j, response){
-                      $.each(response, function(key, obj){
-                        ajaxArray.push(obj);
-                      });
+                      ajaxArray.push(response);                      
                     });
                      //set sort order once all urls have been queried
                      //if obj does not respond to #.event_time_utc it will be sorted to beginning of array(bottom of zIndex)
@@ -268,6 +265,7 @@ var methods = {
                          overlays[key].cluster.mc = new MarkerClusterer(eqMap, overlays[key].cluster.markers, {gridSize: opts.points[key].cluster.gridSize, maxZoom: opts.points[key].cluster.gridSize});
                       }
                       
+                      $("span.numEvents").html($(".eq-list tbody tr").length);
                       
                       //create list
                       //we don't want to render the list for large queries
@@ -291,21 +289,38 @@ var methods = {
                }); //collections
                 
              }); //end  $.each(opts.points, function(key, collection){
+              
+            //look for google map objects
+            if(opts.polyObjects){
+               $.each(opts.polyObjects, function(key, val){
+                 if(key=="circle"){
+                   var circle= new google.maps.Circle(opts.polyObjects[key].objOptions);
+                   circle.setRadius(parseInt(opts.radius, 0));
+                   //check to see if center is set by options
+                   if(!circle.getCenter()){
+                     circle.setCenter(new google.maps.LatLng(opts.lat, opts.lng));
+                   }
+                   if(opts.polyObjects[key].displayOnLoad){
+                     circle.setMap(eqMap);
+                   }                 
+                   
+                 }
+               });
+            }
              
              //iterate through polygons and create display events
              if(opts.polygons){
                $.each(opts.polygons, function(key, val){
                  var p = new google.maps.KmlLayer(
-                    opts.polygons[key].url,
+                      opts.polygons[key].url,
                     {
                       map: opts.polygons[key].displayOnLoad ? eqMap : null, 
                       preserveViewport: true
                      }
                    );
-                   overlays[key] = p;
-                 
+                  overlays[key] = p;
                  $("#map-ui #" + key + " :checkbox").click(function(){
-                   if ($(this).attr('checked')){
+                   if ($(this).is(':checked')){
                      overlays[key].setMap(eqMap);
 
                    }else{
@@ -313,6 +328,7 @@ var methods = {
                    }
                  });
                });
+               
              }
             
           init_helper_container();
@@ -515,7 +531,7 @@ function plotMarker(obj, zIndex, collection, key){
     
   
     //plot star when event is queried historical event
-    if(opts.evid && opts.evid == obj.evid){
+    if(opts.eqMapType && opts.evid && opts.evid == obj.evid){
       yIndex = 14;
       xIndex += 1; //make star a bit bigger
     }
@@ -602,7 +618,6 @@ function plotMarker(obj, zIndex, collection, key){
    var zoom = eqMap.getZoom();
    $.each(overlays.eq.markers, function(i,val){
      if(val.marker.region){
-        // alert(val.marker.region);
         if(zoom >= opts.regions_zoom){
           val.marker.setMap(eqMap);
         }else { 
@@ -719,11 +734,11 @@ function plotMarker(obj, zIndex, collection, key){
            val.marker.setIcon(val.timeIcon);
            $('#req-legend-key').removeClass("depth");
          });
-       $('#map-ui #icon-toggle :radio[value=Time]').attr("checked", true);
+       $('#map-ui #icon-toggle :radio[value=Time]').prop("checked", true);
      }
-     $('#map-ui .checkbox :checkbox').attr("checked", false);
+     $('#map-ui .checkbox :checkbox').prop("checked", false);
      $.each(opts.polygons, function(key,obj){
-       $("#map-ui #" + key + " :checkbox").attr("checked", obj.displayOnLoad);
+       $("#map-ui #" + key + " :checkbox").prop("checked", obj.displayOnLoad);
        overlays[key].setMap(obj.displayOnLoad ? eqMap : null); 
      });
    }
@@ -736,9 +751,9 @@ function plotMarker(obj, zIndex, collection, key){
      }
      $('.define-plot-area').removeClass('ui-state-active');
      $('.define-plot-area span').text('Draw');
-     $('#define-plot-area').attr('checked', false);
+     $('#define-plot-area').prop('checked', false);
      $('.plot-type label').removeClass('ui-state-active');
-     $('.plot-type input[value=x-section]').attr("checked", true);
+     $('.plot-type input[value=x-section]').prop("checked", true);
      $('.plot-type label[for=select-x-section-plot]').addClass("ui-state-active");
      $("#plot").hide();
    }
@@ -1244,7 +1259,8 @@ function plotMarker(obj, zIndex, collection, key){
 
  
    function drawXSection(e){
-     if(!$('#define-plot-area').attr('checked') || overlays.xSectMarkers.length > 3){
+     
+     if(!$('#define-plot-area').prop("checked") || overlays.xSectMarkers.length > 3){
        return;
      }else{
        createPolyMarker(e.latLng);

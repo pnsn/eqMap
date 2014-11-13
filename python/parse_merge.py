@@ -95,7 +95,7 @@ for event in json_data['features']:
       'etype': 'le' #can't get etype from feed 
       }})
 
-with open('recent_events.json', 'w') as outfile:
+with open('../json/recent_events.json', 'w') as outfile:
   json.dump(collection, outfile)
       
       

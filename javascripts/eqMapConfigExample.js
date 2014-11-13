@@ -1,3 +1,5 @@
+
+
 //Use this file to config different map types
 
 //common objects userd by map configs
@@ -16,9 +18,9 @@ $.fn.eqMap.staIcon = {
 	spritePath: "../images/map/station-icons.png"
   
 };
-//marker is passed in for testing
+
 $.fn.eqMap.eqBubbleHtml = function(eq, marker){
-    if(eq.auth == "nc" || eq.auth == "us" || eq.auth =="mb"){
+    if(eq.auth == "nc" || eq.auth == "us" || eq.auth =="mb" || eq.auth == "nn"){
       a = "<a href=http://earthquake.usgs.gov/earthquakes/eventpage/" + eq.auth + eq.evid + "> View Event Page </a>";
     }else{
       a = "<a href='/event/" +  eq.evid + "#overview'> View Event Page </a>";
@@ -56,6 +58,11 @@ $.fn.eqMap.staBubbleHtml = function(sta, marker){
         sta.auth + "</td><td>" +
         sta.sta_code + "</td></tr>";
   };
+  
+  
+$.fn.eqMap.polyObjectHtml = function(obj){
+  return "ehllo";
+};
   
 
 //map configs.
@@ -98,24 +105,16 @@ $.fn.eqMap.standardDefaults = {
   //event_time_epoch      float
   //events.etype"         string ('re', 'le', 'ex', 'px') regional, local, explosion, probable explosion
   
-  //add network logo to right corner of map
-  logo: null,
-  // logo: {
-  //   logoHref: "/",
-  //   logoWidth: "75px",
-  //   logoSrc: "/images/pnsn_logo_rev_no_wave.png"
-  // },
   
   points:
      {
       eq:{
         displayOnLoad: true,
-        // urls: [ "http://www.pnsn.org/events.json?callback=?"],
-        urls: [ "http://www.pnsn.org/events.json?callback=?", "http://www.pnsn.org/non_net_events.json?callback=?"],
+        urls: [ "/events/recent_events.json", "/non_net_events/recent_events.json"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: $.fn.eqMap.eqBubbleHtml,
         listHtml: $.fn.eqMap.eqListHtml,
-        temporalSteps:  [3600*2, 2*86400],
+        temporalSteps: [3600*2, 2*86400],
         cluster: null
     }
     
@@ -147,17 +146,23 @@ $.fn.eqMap.standardDefaults = {
   
   polygons: {
     boundaries:{
-      url: "http://webfe2.ess.washington.edu/assets/kml/pnsn_boundaries.kml",
+      url: "http://assets.pnsn.org/kml/pnsn_boundaries.kml",
       displayOnLoad: true
     },
     faults: {
-       url: "http://www.data.scec.org/recent/req2/kml/wgcep_f2.1.kml",
-       displayOnLoad: true
+       url: "http://assets.pnsn.org/kml/pnsn_faults.kml",
+       displayOnLoad: false
      }
     
   },
  bubbleHtmlSta: $.fn.eqMap.staBubbleHtml,
  listHtmlSta: $.fn.eqMap.staListHtml,
+ //add logo to map
+ logo: {
+   logoHref: "/",
+   logoWidth: "75px",
+   logoSrc: "../images/pnsn_logo_rev_no_wave.png"
+ },
  // map summary html, i.e. Total, Largest, Smallest, Latest, Earliest
  summaryHtmlEq: function(eqs){
    var minMag = eqs[0];
@@ -209,15 +214,16 @@ $.fn.eqMap.thumbDefaults = {
 	disableDefaultUI: true,
 	disableDoubleClickZoom: true,
 	scrollwheel: false,
+	logo: null,
 	points:
      {
       eq:{
         displayOnLoad: true,
-        urls: [ "http://www.pnsn.org/events.json?callback=?", "http://www.pnsn.org/non_net_events.json?callback=?"],
+        urls: [ "/events/recent_events.json", "/non_net_events/recent_events.json"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: null,
         listHtml: null,
-        temporalSteps:  [3600*2, 2*86400]
+        temporalSteps: [2*3600, 2*86400]
     }
    }
 };
@@ -228,7 +234,7 @@ $.fn.eqMap.notableDefaults ={
       eq:{
         displayOnLoad: true,
         displayDepthOnly: true,
-        urls: [ "http://www.pnsn.org/events.json?callback=?"],
+        urls: [ "/events/notable_events.json"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: $.fn.eqMap.eqBubbleHtml,
         listHtml: $.fn.eqMap.eqListHtml
@@ -243,17 +249,17 @@ $.fn.eqMap.historicDefaults = {
      {
       eq:{
         displayOnLoad: true,
-        urls: [ "http://www.pnsn.org/events.json?callback=?"],
+        // urls: [ "/events/historic_event.json"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: $.fn.eqMap.eqBubbleHtml,
         listHtml: $.fn.eqMap.eqListHtml
       }
    },
+  plot_relative_to_evid: true,
   polygons: null,
   zoomToFit: true,
   magMin: 2,
-  magMax: 9,
-  plot_relative_to_evid: false
+  magMax: 9
 };
 
 //and the volcanoes
@@ -265,22 +271,35 @@ $.fn.eqMap.volcanoDefaults = {
      {
      sta:{
        displayOnLoad: true,
-       urls: [ "http://www.pnsn.org/station_type_groups.json?callback=?"],
+       urls: [ "/station_type_groups.json"],
        icon: $.fn.eqMap.staIcon,    
        bubbleHtml: $.fn.eqMap.staBubbleHtml,
        listHtml: null//$.fn.eqMap.staListHtml
-     },
+     }, 
+       
       eq:{
         displayOnLoad: true,
-        urls: [ "http://www.pnsn.org/events.json?callback=?"],
+        urls: [ "/events.json"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: $.fn.eqMap.eqBubbleHtml,
         listHtml: $.fn.eqMap.eqListHtml,
-        temporalSteps: [86400, 7*86400]
+        temporalSteps: [86400, 604800]
       }
-
     },
-    polygons: null
+    polygons: null,
+    polyObjects:{
+       circle:{
+          bubbleHtml: $.fn.eqMap.polyObjectHtml,
+          displayOnLoad: true,
+          objOptions: {
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillOpacity:0
+          }
+        }
+    }
+    
 };
 
 //and custom
@@ -290,7 +309,7 @@ $.fn.eqMap.customDefaults = {
      {
       eq:{
         displayOnLoad: true,
-        urls: [ "http:www.pnsn.org/events.json?callback=?"],
+        urls: [ "/events.json"],
         icon: $.fn.eqMap.eqIcon,    
         bubbleHtml: $.fn.eqMap.eqBubbleHtml,
         listHtml: $.fn.eqMap.eqListHtml,
@@ -301,11 +320,11 @@ $.fn.eqMap.customDefaults = {
 
 
 
- $.fn.eqMap.stationDefaults = {
+$.fn.eqMap.stationDefaults = {
     points: {
       sta:{
         displayOnLoad: true,
-        urls: [ "http://www.pnsn.org/station_type_groups.json?callback=?"],
+        urls: [ "/station_type_groups.json"],
         icon: $.fn.eqMap.staIcon,    
         bubbleHtml: $.fn.eqMap.staBubbleHtml,
         listHtml: $.fn.eqMap.staListHtml,
@@ -322,9 +341,64 @@ $.fn.eqMap.customDefaults = {
  };
  
  $.fn.eqMap.mobileDefaults = {
-   lng: -119.1,
- 	 lat: 44.6,
- 	 zoom: 6,
+   lng: -121,
+ 	 lat: 45,
+ 	 zoom: 5,
    disableDoubleClickZoom: true,
-	 scrollwheel: false
- };
+	 scrollwheel: false,
+   disableDefaultUI: true
+};
+
+
+$.fn.eqMap.spectrogramDefaults = { 
+ zoom: 6,
+ points: {
+   sta:{
+     displayOnLoad: true,
+     urls: [ "/stations.json?spectrogram_subregions=all"],
+     icon: $.fn.eqMap.staIcon,    
+     bubbleHtml: $.fn.eqMap.staBubbleHtml
+     // listHtml: $.fn.eqMap.staListHtml,
+     //displayDepthOnly: true
+     // cluster:{
+       // gridSize: 50,
+       // maxZoom: 7
+     // }
+   }    
+ },
+ polygons: {
+    spectrogram_ets: {
+      url: "http://assets.pnsn.org/kml/spectrogram_ets.kml",
+      displayOnLoad: true        
+    },
+    spectrogram_tectonic: {
+       url: "http://assets.pnsn.org/kml/spectrogram_tectonic.kml",
+       displayOnLoad: true
+    },
+    spectrogram_volcanic: {
+      url: "http://assets.pnsn.org/kml/spectrogram_volcanic.kml",
+      displayOnLoad: true
+    }    
+  }
+};
+
+ $.fn.eqMap.oklahomaDefaults = {
+   lng: -98,
+ 	 lat: 36,
+ 	 zoom: 6,
+ 	 points:
+      {
+       eq:{
+         displayOnLoad: true,
+          urls: ["/eqMap/json/test.json"],
+         icon: $.fn.eqMap.eqIcon,    
+         bubbleHtml: $.fn.eqMap.eqBubbleHtml,
+         listHtml: $.fn.eqMap.eqListHtml,
+         temporalSteps: [3600*2, 2*86400],
+         cluster: null
+     }
+
+     //sta: {}
+    }
+};
+ 

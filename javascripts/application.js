@@ -72,19 +72,19 @@ $(function(){
   $("ul.tabs").tabs(".panes > .pane", { history: true });
   
   //tooltips
-  $('.tip a').poshytip({
-    content: function(){ return $(".tooltip[rev=" + $(this).attr('rel') + "]").html();},
-    className: 'tooltip-open',
-    alignX: 'left',
-    alignY: 'top'
-  });
+  // $('.tip a').poshytip({
+  //   content: function(){ return $(".tooltip[rev=" + $(this).attr('rel') + "]").html();},
+  //   className: 'tooltip-open',
+  //   alignX: 'left',
+  //   alignY: 'top'
+  // });
   
-  $('.tip a').click(function(){return false;});
-  
-  //disable default behavior of links
-  $('table td.label a').click(function(){
-    return false;
-  });
+  // $('.tip a').click(function(){return false;});
+  // 
+  // //disable default behavior of links
+  // $('table td.label a').click(function(){
+  //   return false;
+  // });
   
   $('.fancy-button').button();
   $('.fancy-buttonset').buttonset();
