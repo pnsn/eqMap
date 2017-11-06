@@ -1,147 +1,61 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+//The following is common js
 $(function(){
-		//add "+" to all li.open classes
-		// $("ul li.open > a").each(function(){
-		// 	$(this).html($(this).html() + "  +");
-	//});
-	
-	// flash-messages
-	//keep the iframes poachers out!
-	if(location != top.location){ 
-	  $.ajax({
-      type: 'POST',
-      url: "/iframe_users",
-      data: {url: top.location}
-    });
-	  var url="http://www.pnsn.org"; 
-    var redirect=confirm("A Message from the PNSN: \nIt appears that somebody is embeding our site without our permission. Please notify the webmaster of this site at: \n" + top.location + 
-	   "\nClick OK to go directly to "  + url); 
-    if(redirect) { 
-    window.location=url; 
-    }
-	   
-	}
-  //dialog for plots
-  $(".dialog-plot").dialog({ 
-        autoOpen: false,
-        width: 1010,
-        closeText: "X",
-        open: function(){
-          $('.loading img').hide();
-        }
-         });
-	
+ // flash-messages
+ //keep the iframes poachers out!
+ // if(location != top.location){
+ //   $.ajax({
+ //      type: 'POST',
+ //      url: "/iframe_users",
+ //      data: {url: top.location}
+ //    });
+ //   var url="http://www.pnsn.org";
+ //    var redirect=confirm("A Message from the PNSN: \nIt appears that somebody is embeding our site without our permission. Please notify the webmaster of this site at: \n" + top.location +
+ //    "\nClick OK to go directly to "  + url);
+ //    if(redirect) {
+ //    window.location=url;
+ //    }
+ //
+ // }
+
   $('#flash-messages').delay(15000).fadeOut(2000);
   $('#flash-messages a.close').click( function(){
     $('#flash-messages').stop().fadeOut();
     return false;
   });
-	
-	
-  $('#welcome.accent-block').delay(5000).slideUp(600);
+ 
+ 
+  $('#welcome').delay(5000).slideUp(600);
   // $("table.zebra tr:even").addClass("even");
-	$('#search :text').focus(function(){
-		if($(this).val() == "Search"){
-			$(this).val("");
-		}
-	});
-	
-  // $('.comment-link a').click(function(){
-  //   $('#comments').slideToggle();
-  //   return false;
-  // });
-	
-	$(".closed .quick-links .arrow, #plot-ui").removeClass("open");
-	$("a.slide-toggle").click(function(){
-	  $(".slide[rev=" + $(this).attr("rel") + "]").slideToggle();
-    $(this).children('.arrow').toggleClass("open");
-	  return false;
-	});
-	
-
-
-	
-	
-	$('.secondary-nav ul.depth-1 > li a:not(.no-slide), .secondary-nav ul.depth-2 > li a:not(.no-slide)').click( function(){
+ $('#search :text').focus(function(){
+   if($(this).val() == "Search"){
+     $(this).val("");
+   }
+ });
+ 
+  
+  
+  //add cdn.pnsn.org to all cms uploaded images
+ //only change src where src begins with "/"
+ // we don't want to change srce where full path is 
+ //specified
+ // $('.cms img').each(function(){
+ //   var src = $(this).attr('src');
+ //   if(src.search('^\/')===0)
+ //     $(this).attr('src', "https://cdn.pnsn.org" + src);
+ // });
+ 
+ $('.secondary-nav ul.depth-1 > li a:not(.no-slide), .secondary-nav ul.depth-2 > li a:not(.no-slide)').click( function(){
     $(this).parent().children('ul').slideToggle();
     return false;
   });
   
-  //tabs stuff
-  $("ul.tabs").tabs(".panes > .pane", { history: true });
   
-  //tooltips
-  // $('.tip a').poshytip({
-  //   content: function(){ return $(".tooltip[rev=" + $(this).attr('rel') + "]").html();},
-  //   className: 'tooltip-open',
-  //   alignX: 'left',
-  //   alignY: 'top'
-  // });
+  $('.tip a').click(function(){return false;});
   
-  // $('.tip a').click(function(){return false;});
-  // 
-  // //disable default behavior of links
-  // $('table td.label a').click(function(){
-  //   return false;
-  // });
-  
-  $('.fancy-button').button();
-  $('.fancy-buttonset').buttonset();
-  
-  // refresh any div with #auto-refresh every 2-min
-  // $(".auto-refresh").each(function(){
-  //   window.setInterval(function(){
-  //     window.location = window.location;
-  //   },120000);
-  // });
-  
-  ///forms
-  $('.select-all :checkbox').change(function(){
-    $this = $(this);
-    var fg = $this.parent(".select-all").parent(".label-header").next(".field-group");
-    
-    if($this.attr("checked")){
-      fg.find(":input").each(function(){
-        if($(this).attr('type') == "checkbox"){
-          $(this).attr("checked", true);
-        }else if($(this).attr('type') == "text"){
-          $(this).val("");
-        }else if($this.parent(".select-all").hasClass("magnitudes")){
-          $('#mag_min').val(-2);
-          $('#mag_max').val(9);
-        }else{
-          $('#depth_min').val(0);
-          $('#depth_max').val(1000);
-        }
-     });
-     fg.slideUp();
-   }else{
-     fg.slideDown();
-     
-   }
-    
+  //disable default behavior of links
+  $('table td.label a').click(function(){
+    return false;
   });
-  
-  $('.select-all :checkbox').each(function(){
-    $this = $(this);
-    var fg = $this.parent(".select-all").parent(".label-header").next(".field-group");
-    var cb = fg.find(":checkbox").length;
-    var cbChecked = fg.find(":checked").length;
-    var tb = fg.find(':text').length;
-    var tbEmpty = tb > 0;
-      fg.find(":text").each(function(){
-        tbEmpty =  $(this).val().length === 0;
-      });
-    if(cb > 0 && cb == cbChecked || tbEmpty ||
-        $this.parent(".select-all").hasClass("magnitudes") && $('#mag_min').val() == -2 && $('#mag_max').val() == 9 ||
-        $this.parent(".select-all").hasClass("depths") && $('#depth_min').val() == 0 && $('#depth_max').val() == 1000 ){
-      $this.attr("checked",true);
-      fg.slideUp();  
-    }
-        
-  });
-
 
  $("#hist1-event-ui select").change(function() {
       window.location = "/events/historic/1793-1929?decade=" + $(this).val();
@@ -151,6 +65,184 @@ $(function(){
       window.location = "/events/historic/1928-1970?decade=" + $(this).val();
   });
   
+  // The following sets the heights of certain elements (map, quickshake, homepage)
+  // that require a fixed height. 
   
+  // TODO: find a better way
+    $("#map-container, #quickshake").css({
+      height:Math.round(.8*$(window).height())
+    });
+
+    // Sets the heights of the home page panels
+    $("#twitter-widget").css({
+      height:$("#map-container").height()-$("#observations-block").height()-67
+    });
+    
+    $("#recent").css({
+      height:$("#map-container").height()-$("#volcano").height()-77
+    });
+  
+
+  // Replace home with home icon in the breadcrumbs
+  $(".home>a").html(' <i class="fa fa-home"></>');
+
+  $(".toggler").click(function(){
+    var target = $(this).attr("toggle");
+    if($(target).hasClass("toggleable")){
+        $(target).toggleClass("off");
+    }
+  });
+
+  
+  //Make a tooltip with: %a.tooltip-icon{rel:'whatever the rel is'}
+  //I'm calling it a tooltip, buts its really a popover shhh
+  $('.tooltip-icon').addClass("fa fa-info-circle").attr('data-toggle', 'popover');
+  
+  $('.tooltip-icon[data-toggle="popover"]').popover({
+    html: true,
+    trigger:'click',
+    title: function(){ return $(".tooltip[rev=" + $(this).attr('rel') + "] .title").html()},
+    content:function(){ return $(".tooltip[rev=" + $(this).attr('rel') + "] .content").html()}, 
+    placement:"auto"
+  });
+  
+  //Make tool tips disappear when clicking away from them
+  $('body, .modal').on('click', function (e) {
+      $('[data-toggle="popover"]').each(function () {
+          //the 'is' for buttons that trigger popups
+          //the 'has' for icons within a button that triggers a popup
+          if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+              $(this).popover('hide');
+          }
+      });
+  });
+  
+  // Add loading gif to instances of .loading
+  $(".loading").addClass("center-block").append('<i class="fa fa-spinner fa-pulse fa-3x">');  
+  
+  $(".loading.sm i").replaceWith('<i class="fa fa-spinner fa-pulse fa-2x">');
+  // set tab panel ids into url
+    var hash = window.location.hash;
+    hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+    $('.nav-tabs a').click(function (e) {
+      $(this).tab('show');
+      var scrollmem = $('body').scrollTop();
+      window.location.hash = this.hash;
+      $('html,body').scrollTop(scrollmem);
+    });
+    
+    
+    // Show/hide appropriate boxes
+    $('.select-all').each(function(){
+      var body = $(this).parent(".panel-heading").next(".panel-body");
+      var checkbox = $(this).find("input[type=checkbox]");
+      
+      if (!body.hasClass("in")){
+        var isDefault = true;
+        body.find(":text, select").each(function(){
+          var $this = $(this);
+          var value = $this.attr("default") ? $this.attr("default"): "";
+          isDefault = isDefault? ($(this).val() == value) : isDefault
+        });
+        checkbox.prop("checked", isDefault);
+        body.toggleClass("select-all-hide", isDefault);
+      }
+    });
+    
+    $('.select-all').change(function(){
+      var body = $(this).parent(".panel-heading").next(".panel-body");
+      var checkbox = $(this).find("input[type=checkbox]");
+      var checked = checkbox.is(":checked");
+  
+      body.find("input, select").each(function(){
+        var $this = $(this);
+        if (checked){
+          if ($this.prop("type")=="checkbox"){
+            $(this).attr("checked", "checked");
+          } else {
+            var value = $this.attr("default") ? $this.attr("default"): "";
+            $(this).val(value);
+          }
+        }
+      });
+
+      body.toggleClass("select-all-hide");
+    });
+    
+    //Forcing the tremors map to be centered
+    $(".cms>iframe[src='https://tunk.ess.washington.edu/map_display/']").addClass("center-block");
+
+  //returns param value (from stack overflow)
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+           return null;
+        }
+        else{
+           return results[1] || 0;
+        }
+    };
+    
+    //Returns passed in url with the given param removed
+    $.removeParam = function(param, url){
+      var loc = location.href.split("?");
+      var href = "";
+      if(loc.length > 1){
+        loc = $.grep(loc[1].split("&"), function(p, i){
+          return p.split("=")[0] != param;
+        });
+      
+        $.each(loc, function(i, param){
+          if(i == 0){ href += "?"}
+          if(i == loc.length - 1){
+            href += param;
+          }else{
+            href += param + "&";
+          }
+        });
+      }
+      return href;
+    };
+    if($.urlParam('auto_refresh')){
+      window.setInterval(function(){
+        window.location = window.location;
+      },300000);
+    }
+    
+    //Tour stuff//
+    
+    $('body').scrollspy({
+        target: '.bs-docs-sidebar',
+        offset: 40
+    });
+    
+    var offset = $(window).innerHeight() - $("#navbar").height() - $("#stage-warning").height() - 130;
+    $("#tour-jumbotron").height(offset);
+    $("#tour-sidebar .div-affix").attr({'data-offset-top': $(window).innerHeight()});
+    
+    $("a.tour-next-step").each(function(){
+      var next = $(this).parent().parent().next()[0];
+      if(next){
+        $(this).hide();
+      } else {
+         $(this).attr("href", "#tour-body");
+      }
+    });
+    $("a.tour-previous-step").each(function(e){
+      console.log("step")
+      var previous = $(this).parent().parent()[0];
+      if(previous){
+        $(this).attr("href", "#" + previous.id);
+      } else {
+        $(this).hide();
+      }
+    });
+    
+    //remove paragraph tags and newlines around annotations
+    $.each($(".annotations .annot a"), function(i, val){
+      var str = $(this).children("p").text();
+      str = str.split("\n");
+      $(this).html(str[1]);
+    });
+
 });
-	
