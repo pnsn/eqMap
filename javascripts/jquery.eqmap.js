@@ -226,6 +226,7 @@ var methods = {
 
             $.getJSON(url, qp, function(json) { //requests each url
               count += 1;
+              
               $.each(json, function(j, response) {
                 if(response.hasOwnProperty('event')){
                   response = response['event'];
@@ -245,11 +246,12 @@ var methods = {
                 //plot
                 total_count += ajaxArray.length + 1;
                 var zIndex = total_count;
+                console.log(ajaxArray)
                 $.each(ajaxArray, function(k, obj) {
                   zIndex -= 1;
                   plotMarker(obj, zIndex, collection, key);
                 });
-
+                
                 //summary at top of map
                 if (overlays.eq.markers.length > 0 && key == 'eq') {
                   $(opts.summaryHtmlEq(overlays.eq.markers)).appendTo($('#map-summary'));

@@ -32,18 +32,6 @@ $(function(){
    }
  });
  
-  
-  
-  //add cdn.pnsn.org to all cms uploaded images
- //only change src where src begins with "/"
- // we don't want to change srce where full path is 
- //specified
- // $('.cms img').each(function(){
- //   var src = $(this).attr('src');
- //   if(src.search('^\/')===0)
- //     $(this).attr('src', "https://cdn.pnsn.org" + src);
- // });
- 
  $('.secondary-nav ul.depth-1 > li a:not(.no-slide), .secondary-nav ul.depth-2 > li a:not(.no-slide)').click( function(){
     $(this).parent().children('ul').slideToggle();
     return false;

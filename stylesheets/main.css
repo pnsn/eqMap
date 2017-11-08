@@ -1,3 +1,321 @@
+
+#page {
+  position: relative;
+  min-height: 580px;
+}
+
+
+.tooltip {
+  display: none;
+}
+
+
+div.navbar-nav ul {
+  list-style-type: none;
+}
+
+
+div.navbar-nav ul:first-child:not(.navbar-nav) {
+  display: none;
+}
+
+
+#footer {
+  background-color: #b3b3b3;
+  text-align: center;
+  overflow: hidden;
+}
+
+#footer li {
+  text-align: left;
+}
+
+#footer ul {
+  display: inline-block;
+}
+
+
+h2 {
+  font-size:18px;
+  text-overflow: ellipsis;
+  background-color: #107a10;
+  color: white;
+  margin-bottom: 0;
+  margin-top: 0;
+  height: 36px;
+  padding: 9px 10px;
+}
+
+h2.gray {
+  background-color: #555555;
+}
+
+h2 > a, h2 a {
+  text-decoration: none;
+  color: white;
+}
+
+h2 > a:hover, h2 a:hover {
+  text-decoration: none;
+}
+
+
+.loading {
+  width: 60px;
+}
+
+
+
+.list-inline li {
+  display: inline;
+}
+
+.recent-events-list .mag, #list-key .mag {
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+
+
+#list-key {
+  margin-top: 5px;
+}
+
+#list-key .mag {
+  display: inline-block;
+  margin: 0 3px;
+}
+
+#define-plot-area {
+  display: block;
+}
+
+
+#map-ui.panel-group .panel.no-padding {
+  border: none;
+}
+
+
+.no-padding {
+  padding: 0px;
+}
+
+.no-padding > .panel-heading, .no-padding > .panel-body {
+  padding: 0px;
+}
+
+
+.toggle-links a {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+
+.annotation-controls {
+  display: none;
+}
+
+.annotation-controls .annot-control {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+
+.annotations {
+  display: block;
+}
+
+.annotations .annot {
+  position: absolute;
+  padding-left: 5px;
+}
+
+.annotations .annot a, .annotations .annot span {
+  background-color: #107a10;
+  color: white;
+  padding-right: 5px;
+  padding-left: 5px;
+  margin: -3px;
+}
+
+.annotations .annot .arrow-right {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #107a10;
+}
+
+.annotations .annot a, .annotations .annot .arrow-right {
+  opacity: 0.9;
+}
+
+
+.waveviewer {
+  position: relative;
+  min-height: 250px;
+  width: auto;
+  height: auto;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position-x: -103px;
+}
+
+
+#blog-side .depth-2 {
+  display: none;
+}
+
+
+#mosaic {
+  width: 1024px;
+}
+
+#mosaic .thumb {
+  float: left;
+  width: 151px !important;
+}
+
+#mosaic .thumb img {
+  padding: 0;
+  border: 1px solid white;
+}
+
+#mosaic .thumb img:hover {
+  border: 1px solid red;
+}
+
+
+.line {
+  display: block;
+  overflow: hidden;
+}
+
+
+.timestamp {
+  margin: 98px 5px 0 5px;
+  float: left;
+}
+
+
+a.toggler.depth {
+  width: 110px;
+  text-align: right;
+}
+
+
+#event-summary-table td, #event-summary-table tr {
+  border: none;
+}
+
+
+.highlight-list {
+  background-color: #16a716 !important;
+}
+
+
+.popover-content {
+  
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  
+  word-break: break-all;
+  
+  word-break: break-word;
+  
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+
+.cms.tooltip-container {
+  display: none;
+}
+
+
+.blog {
+  display: inline-block;
+}
+
+.blog .panel h3 {
+  margin-top: 5px;
+  font-weight: 200px;
+}
+
+
+.modal-title {
+  display: inline-block;
+}
+
+
+map .popover {
+  max-width: none;
+  left: 50%;
+  top: 0px !important;
+}
+
+map .popover td:empty {
+  display: none;
+}
+
+
+ul.no-decoration {
+  list-style-type: none;
+  padding: 0px;
+}
+
+
+.divider {
+  height: 1px;
+  margin: 3px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+
+
+.secondary-nav ul.depth-2, .secondary-nav ul.depth-3 {
+  display: none;
+  padding-left: 25px;
+}
+
+.secondary-nav span.badge {
+  margin-left: 10px;
+}
+
+.secondary-nav li {
+  margin-bottom: 3px;
+}
+
+
+.blog-nav {
+  margin-bottom: 3px;
+  margin-left: 3px;
+}
+
+
+#blog-nav .panel {
+  border-color: #eeeeee;
+}
+
+#blog-nav .panel .panel-body {
+  padding-bottom: 0;
+}
+
+
+#failover-events td.right, #failover-events th.right {
+  display: none;
+}
+
+.toggleable.off {
+  display: none !important;
+}
+
+
 #map-thumb-container {
   height: 100%;
   overflow: hidden;
@@ -10,6 +328,8 @@
   overflow: hidden;
 }
 #map-container #map {
+  width:100%;
+  height:100%;
   position: absolute;
   top: 36px;
   left: 10px;
