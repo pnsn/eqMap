@@ -196,41 +196,6 @@ $(function(){
         window.location = window.location;
       },300000);
     }
-    
-    //Tour stuff//
-    
-    $('body').scrollspy({
-        target: '.bs-docs-sidebar',
-        offset: 40
-    });
-    
-    var offset = $(window).innerHeight() - $("#navbar").height() - $("#stage-warning").height() - 130;
-    $("#tour-jumbotron").height(offset);
-    $("#tour-sidebar .div-affix").attr({'data-offset-top': $(window).innerHeight()});
-    
-    $("a.tour-next-step").each(function(){
-      var next = $(this).parent().parent().next()[0];
-      if(next){
-        $(this).hide();
-      } else {
-         $(this).attr("href", "#tour-body");
-      }
-    });
-    $("a.tour-previous-step").each(function(e){
-      console.log("step")
-      var previous = $(this).parent().parent()[0];
-      if(previous){
-        $(this).attr("href", "#" + previous.id);
-      } else {
-        $(this).hide();
-      }
-    });
-    
-    //remove paragraph tags and newlines around annotations
-    $.each($(".annotations .annot a"), function(i, val){
-      var str = $(this).children("p").text();
-      str = str.split("\n");
-      $(this).html(str[1]);
-    });
+
 
 });

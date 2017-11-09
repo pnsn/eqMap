@@ -64,8 +64,6 @@ h2 > a:hover, h2 a:hover {
   width: 60px;
 }
 
-
-
 .list-inline li {
   display: inline;
 }
@@ -96,12 +94,7 @@ h2 > a:hover, h2 a:hover {
   border: none;
 }
 
-
-.no-padding {
-  padding: 0px;
-}
-
-.no-padding > .panel-heading, .no-padding > .panel-body {
+.no-padding, .no-padding > .panel-heading, .no-padding > .panel-body {
   padding: 0px;
 }
 
@@ -110,83 +103,6 @@ h2 > a:hover, h2 a:hover {
   display: inline-block;
   margin-right: 10px;
 }
-
-
-.annotation-controls {
-  display: none;
-}
-
-.annotation-controls .annot-control {
-  display: inline-block;
-  margin-left: 5px;
-}
-
-
-.annotations {
-  display: block;
-}
-
-.annotations .annot {
-  position: absolute;
-  padding-left: 5px;
-}
-
-.annotations .annot a, .annotations .annot span {
-  background-color: #107a10;
-  color: white;
-  padding-right: 5px;
-  padding-left: 5px;
-  margin: -3px;
-}
-
-.annotations .annot .arrow-right {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 5px solid #107a10;
-}
-
-.annotations .annot a, .annotations .annot .arrow-right {
-  opacity: 0.9;
-}
-
-
-.waveviewer {
-  position: relative;
-  min-height: 250px;
-  width: auto;
-  height: auto;
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position-x: -103px;
-}
-
-
-#blog-side .depth-2 {
-  display: none;
-}
-
-
-#mosaic {
-  width: 1024px;
-}
-
-#mosaic .thumb {
-  float: left;
-  width: 151px !important;
-}
-
-#mosaic .thumb img {
-  padding: 0;
-  border: 1px solid white;
-}
-
-#mosaic .thumb img:hover {
-  border: 1px solid red;
-}
-
 
 .line {
   display: block;
@@ -739,4 +655,9 @@ ul.ui-autocomplete li a {
 
 .show-month {
   display: none;
+}
+
+
+table.map-list {
+/*  width: 320px !important;*/
 }
