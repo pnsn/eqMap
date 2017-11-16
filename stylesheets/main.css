@@ -655,6 +655,9 @@ ul.ui-autocomplete li a {
   display: none;
 }
 
+.dataTables_wrapper {
+  margin: 0px 15px;
+}
 
 table.map-list {
   margin-bottom: 0px;

@@ -1248,6 +1248,7 @@ var methods = {
       .css('display', 'block')
       .draggable({scroll: false, containment:"#container" });
 
+console.log("hi")
       $("#" + type + " ." + type).show();
       $(".loading").hide();
       var title;
