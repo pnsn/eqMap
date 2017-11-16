@@ -1246,7 +1246,7 @@ var methods = {
     function initializeViewer(type){
       $("#"+type+" .cross-section-viewer")
       .css('display', 'block')
-      .draggable('enable');
+      .draggable();
 
       $("#" + type + " ." + type).show();
       $(".loading").hide();
