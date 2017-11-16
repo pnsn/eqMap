@@ -997,9 +997,7 @@ var methods = {
 
       // $('a#cumulative-count-link').trigger("click");
       initializeViewer("cumulative-count");
-      
-      //console.log($(".select-plot").height());
-      
+
       $.plot($("#cumulative-count .select-plot"), [{
             data: plotEqs5,
             label: ">5",
@@ -1103,18 +1101,13 @@ var methods = {
     function plotCrossSection() {
       var aPix = overlays.xSectMarkers[0].pixelPoint;
       var bPix = overlays.xSectMarkers[3].pixelPoint;
-      console.log(overlays.xSectMarkers[0].marker.getPosition().lat(), overlays.xSectMarkers[0].marker.getPosition().lng());
-      console.log(overlays.xSectMarkers[3].marker.getPosition().lat(), overlays.xSectMarkers[3].marker.getPosition().lng());
-      var a = new google.maps.LatLng({lat: overlays.xSectMarkers[0].marker.getPosition().lat(), lng: overlays.xSectMarkers[0].marker.getPosition().lng()});
-      var b = new google.maps.LatLng({lat: overlays.xSectMarkers[3].marker.getPosition().lat(), lng: overlays.xSectMarkers[3].marker.getPosition().lng()});
+      var a = new google.maps.LatLng(overlays.xSectMarkers[0].marker.getPosition().lat(), overlays.xSectMarkers[0].marker.getPosition().lng());
+      var b = new google.maps.LatLng(overlays.xSectMarkers[3].marker.getPosition().lat(), overlays.xSectMarkers[3].marker.getPosition().lng());
       var elevator = new google.maps.ElevationService();
-      var path = [{lat: overlays.xSectMarkers[0].marker.getPosition().lat(), lng: overlays.xSectMarkers[0].marker.getPosition().lng()}, {lat: overlays.xSectMarkers[3].marker.getPosition().lat(), lng: overlays.xSectMarkers[3].marker.getPosition().lng()}];
-      console.log(path)
+      var path = [a, b];
       var xSectLength = a.distanceFrom(b); //meters
-      console.log(xSectLength)
       var xSectLengthPixels = Math.sqrt(Math.pow(aPix.x - bPix.x, 2) + Math.pow(aPix.y - bPix.y, 2)); //distance formula 
       var metersPerPixel = xSectLength / xSectLengthPixels;
-      console.log(path)
       var pathRequest = {
         'path': path,
         'samples': 100
@@ -1141,9 +1134,7 @@ var methods = {
         });
       }
       var sampleDistance = (xSectLength / pathRequest.samples - 1); //(meters) end points inclusive
-                console.log(pathRequest)
       elevator.getElevationAlongPath(pathRequest, function(results, status) {
-        console.log(results, status)
         if (status == google.maps.ElevationStatus.OK) {
           $.each(results, function(i, elevation) {
             elevationProfileArray.push([i * sampleDistance, -1 * elevation.elevation * verticalExag / 1000]);
@@ -1271,9 +1262,7 @@ var methods = {
     }
     
     function drawXSection(e) {
-      //console.log("draw xsection");
       if (!$('#define-plot-area').hasClass("focus") && !$('#define-plot-area').hasClass("active") || overlays.xSectMarkers.length > 3) {
-        console.log("drawXSection faile")
         return;
       } else {
         createPolyMarker(e.latLng);
