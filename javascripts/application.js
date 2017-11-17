@@ -1,78 +1,23 @@
 //The following is common js
 $(function(){
- // flash-messages
- //keep the iframes poachers out!
- // if(location != top.location){
- //   $.ajax({
- //      type: 'POST',
- //      url: "/iframe_users",
- //      data: {url: top.location}
- //    });
- //   var url="http://www.pnsn.org";
- //    var redirect=confirm("A Message from the PNSN: \nIt appears that somebody is embeding our site without our permission. Please notify the webmaster of this site at: \n" + top.location +
- //    "\nClick OK to go directly to "  + url);
- //    if(redirect) {
- //    window.location=url;
- //    }
- //
- // }
-
-  $('#flash-messages').delay(15000).fadeOut(2000);
-  $('#flash-messages a.close').click( function(){
-    $('#flash-messages').stop().fadeOut();
-    return false;
-  });
- 
- 
-  $('#welcome').delay(5000).slideUp(600);
-  // $("table.zebra tr:even").addClass("even");
  $('#search :text').focus(function(){
    if($(this).val() == "Search"){
      $(this).val("");
    }
  });
  
- $('.secondary-nav ul.depth-1 > li a:not(.no-slide), .secondary-nav ul.depth-2 > li a:not(.no-slide)').click( function(){
-    $(this).parent().children('ul').slideToggle();
-    return false;
-  });
-  
-  
   $('.tip a').click(function(){return false;});
   
   //disable default behavior of links
   $('table td.label a').click(function(){
     return false;
   });
-
- $("#hist1-event-ui select").change(function() {
-      window.location = "/events/historic/1793-1929?decade=" + $(this).val();
-  });
-
- $("#hist2-event-ui select").change(function() {
-      window.location = "/events/historic/1928-1970?decade=" + $(this).val();
-  });
   
   // The following sets the heights of certain elements (map, quickshake, homepage)
   // that require a fixed height. 
-  
-  // TODO: find a better way
     $("#map-container, #quickshake").css({
       height:Math.round(.8*$(window).height())
     });
-
-    // Sets the heights of the home page panels
-    $("#twitter-widget").css({
-      height:$("#map-container").height()-$("#observations-block").height()-67
-    });
-    
-    $("#recent").css({
-      height:$("#map-container").height()-$("#volcano").height()-77
-    });
-  
-
-  // Replace home with home icon in the breadcrumbs
-  $(".home>a").html(' <i class="fa fa-home"></>');
 
   $(".toggler").click(function(){
     var target = $(this).attr("toggle");
@@ -119,46 +64,6 @@ $(function(){
       $('html,body').scrollTop(scrollmem);
     });
     
-    
-    // Show/hide appropriate boxes
-    $('.select-all').each(function(){
-      var body = $(this).parent(".panel-heading").next(".panel-body");
-      var checkbox = $(this).find("input[type=checkbox]");
-      
-      if (!body.hasClass("in")){
-        var isDefault = true;
-        body.find(":text, select").each(function(){
-          var $this = $(this);
-          var value = $this.attr("default") ? $this.attr("default"): "";
-          isDefault = isDefault? ($(this).val() == value) : isDefault
-        });
-        checkbox.prop("checked", isDefault);
-        body.toggleClass("select-all-hide", isDefault);
-      }
-    });
-    
-    $('.select-all').change(function(){
-      var body = $(this).parent(".panel-heading").next(".panel-body");
-      var checkbox = $(this).find("input[type=checkbox]");
-      var checked = checkbox.is(":checked");
-  
-      body.find("input, select").each(function(){
-        var $this = $(this);
-        if (checked){
-          if ($this.prop("type")=="checkbox"){
-            $(this).attr("checked", "checked");
-          } else {
-            var value = $this.attr("default") ? $this.attr("default"): "";
-            $(this).val(value);
-          }
-        }
-      });
-
-      body.toggleClass("select-all-hide");
-    });
-    
-    //Forcing the tremors map to be centered
-    $(".cms>iframe[src='https://tunk.ess.washington.edu/map_display/']").addClass("center-block");
 
   //returns param value (from stack overflow)
     $.urlParam = function(name){

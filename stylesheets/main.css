@@ -4,36 +4,9 @@
   min-height: 580px;
 }
 
-
 .tooltip {
   display: none;
 }
-
-
-div.navbar-nav ul {
-  list-style-type: none;
-}
-
-
-div.navbar-nav ul:first-child:not(.navbar-nav) {
-  display: none;
-}
-
-
-#footer {
-  background-color: #b3b3b3;
-  text-align: center;
-  overflow: hidden;
-}
-
-#footer li {
-  text-align: left;
-}
-
-#footer ul {
-  display: inline-block;
-}
-
 
 h2 {
   font-size:18px;
@@ -59,7 +32,6 @@ h2 > a:hover, h2 a:hover {
   text-decoration: none;
 }
 
-
 .loading {
   width: 60px;
 }
@@ -68,27 +40,9 @@ h2 > a:hover, h2 a:hover {
   display: inline;
 }
 
-.recent-events-list .mag, #list-key .mag {
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-}
-
-
-#list-key {
-  margin-top: 5px;
-}
-
-#list-key .mag {
-  display: inline-block;
-  margin: 0 3px;
-}
-
 #define-plot-area {
   display: block;
 }
-
 
 #map-ui.panel-group .panel.no-padding {
   border: none;
@@ -152,22 +106,6 @@ a.toggler.depth {
   display: none;
 }
 
-
-.blog {
-  display: inline-block;
-}
-
-.blog .panel h3 {
-  margin-top: 5px;
-  font-weight: 200px;
-}
-
-
-.modal-title {
-  display: inline-block;
-}
-
-
 map .popover {
   max-width: none;
   left: 50%;
@@ -190,40 +128,6 @@ ul.no-decoration {
   margin: 3px 0;
   overflow: hidden;
   background-color: #e5e5e5;
-}
-
-
-.secondary-nav ul.depth-2, .secondary-nav ul.depth-3 {
-  display: none;
-  padding-left: 25px;
-}
-
-.secondary-nav span.badge {
-  margin-left: 10px;
-}
-
-.secondary-nav li {
-  margin-bottom: 3px;
-}
-
-
-.blog-nav {
-  margin-bottom: 3px;
-  margin-left: 3px;
-}
-
-
-#blog-nav .panel {
-  border-color: #eeeeee;
-}
-
-#blog-nav .panel .panel-body {
-  padding-bottom: 0;
-}
-
-
-#failover-events td.right, #failover-events th.right {
-  display: none;
 }
 
 .toggleable.off {
