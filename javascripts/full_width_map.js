@@ -1,3 +1,4 @@
+//Full screen map JS
 $(function(){  
   var offset = "10px";
   var height = $(window).height();
@@ -23,7 +24,7 @@ $(function(){
     height:$("#map-container").height()-$("#map-summary").height()
   });
   
-  //Toggle fullscreen, updates url & now it even preserves the other params!
+  //Toggle fullscreen
   $(".full-screen").click(function(e){
     var href = $.removeParam("full_screen", location.href);
     if($(this).attr('id') == 'expand'){
@@ -86,7 +87,8 @@ $(function(){
   $('#legend-close').click(function(){
     resetLegend(true);
     $('#display-legend').prop('checked', false);
-  })
+  });
+  
   //make the legend draggable
   $("#map-legend").draggable({ containment: "#map-container", scroll: false });
 });

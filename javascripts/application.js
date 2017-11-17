@@ -1,24 +1,14 @@
-//The following is common js
+//General application JS
 $(function(){
- $('#search :text').focus(function(){
-   if($(this).val() == "Search"){
-     $(this).val("");
-   }
- });
- 
-  $('.tip a').click(function(){return false;});
-  
-  //disable default behavior of links
-  $('table td.label a').click(function(){
-    return false;
-  });
-  
-  // The following sets the heights of certain elements (map, quickshake, homepage)
+
+  // The following sets the heights of certain elements
   // that require a fixed height. 
-    $("#map-container, #quickshake").css({
+    $("#map-container).css({"
       height:Math.round(.8*$(window).height())
     });
 
+
+  //Toggles an element when another element is clicked
   $(".toggler").click(function(){
     var target = $(this).attr("toggle");
     if($(target).hasClass("toggleable")){
@@ -50,7 +40,7 @@ $(function(){
       });
   });
   
-  // Add loading gif to instances of .loading
+  // Add loading spinner icon to instances of .loading
   $(".loading").addClass("center-block").append('<i class="fa fa-spinner fa-pulse fa-3x">');  
   
   $(".loading.sm i").replaceWith('<i class="fa fa-spinner fa-pulse fa-2x">');
@@ -101,6 +91,4 @@ $(function(){
         window.location = window.location;
       },300000);
     }
-
-
 });
