@@ -1262,7 +1262,7 @@ var methods = {
     }
     
     function drawXSection(e) {
-      if (!$('#define-plot-area').hasClass("focus") && !$('#define-plot-area').hasClass("active") || overlays.xSectMarkers.length > 3) {
+      if (!$('#define-plot-area').hasClass("active") || overlays.xSectMarkers.length > 3) {
         return;
       } else {
         createPolyMarker(e.latLng);

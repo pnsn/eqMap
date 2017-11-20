@@ -4,6 +4,12 @@ $(function(){
   var height = $(window).height();
   var width = $(window).width();
   var fullScreen = $.urlParam('full_screen');
+  
+  // The following sets the heights of certain elements
+  // that require a fixed height. 
+  $("#map-container").css({
+    height: Math.round(.8 * $(window).height())
+  });
 
   //update width&height in case of resizing
   $(window).resize(function() {
