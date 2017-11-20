@@ -1265,7 +1265,6 @@ var methods = {
       if ($('.define-plot-area').text() == "Draw" || overlays.xSectMarkers.length > 3) {
         return;
       } else {
-        console.log("drawwww")
         createPolyMarker(e.latLng);
       }
     }
