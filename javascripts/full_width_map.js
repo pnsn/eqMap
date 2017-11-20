@@ -1,4 +1,4 @@
-//Full screen map JS
+// Mapping JS for full screen and legend function
 $(function(){  
   var offset = "10px";
   var height = $(window).height();
