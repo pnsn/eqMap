@@ -115,7 +115,7 @@ $.fn.eqMap.standardDefaults = {
   points: {
     eq: {
       displayOnLoad: true,
-      urls: ["http://localdocker:3000/events/recent_events.json?callback=?"],// , "http://localdocker:3000/non_net_events/recent_events.json?callback=?"],
+      urls: ["https://pnsn.org/events/recent_events.json?callback=?", "https://pnsn.org/non_net_events/recent_events.json?callback=?"],
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: $.fn.eqMap.eqBubbleHtml,
       listHtml: $.fn.eqMap.eqListHtml,

@@ -75,7 +75,6 @@
                      <a data-toggle='collapse' href='#map-ui'>
                         <h2 class='gray'>
                            Tools
-                           <!-- %i.plot-chevron-down.fa.fa-chevron-down.pull-right -->
                            <div class='pull-right'>
                               <i class='fa fa-cogs'></i>
                            </div>
@@ -91,9 +90,6 @@
                               </h2>
                            </a>
                            <div class='collapse panel-body' id='control-panel'>
-                              <div class='cms'>
-                                 <!-- =container :control_panel_description -->
-                              </div>
                               <div id='legend-toggle'>
                                  <div class='checkbox'>
                                     <label>
@@ -128,8 +124,6 @@
                                     <label>
                                     <input checked id='bounds' name='boundaries' type='checkbox' value='#'>Display Boundaries</input>
                                     </label>
-                                    <!-- =check_box_tag "boundaries", "#", true, id:"bounds" -->
-                                    <!-- %label{for:"bounds"} Display boundaries -->
                                     <a class='tooltip-icon' rel='map-boundaries'></a>
                                  </div>
                               </div>
@@ -138,7 +132,7 @@
                                     <label>
                                     <input name='faults' type='checkbox' value='#'>Display Faults</input>
                                     </label>
-                                    <a class='tooltip-icon' rel='map-faults'></a>
+                                    <a class='tooltip-icon' rel='display-faults'></a>
                                  </div>
                               </div>
                            </div>
@@ -152,9 +146,7 @@
                               </h2>
                            </a>
                            <div class='collapse panel-body' id='plot-ui'>
-                              <!-- .arrow.open -->
                               <a class='tooltip-icon pull-right' rel='cross-section'></a>
-                              <!-- .loading -->
                               <div id='slide-plot-ui'>
                                  <strong>Instructions:</strong>
                                  <a href="#" id="plot-ui-close">Close</a>
@@ -396,18 +388,13 @@
                         <p>&nbsp;Create a custom cross-section or depth-time plot. Click on &quot;Custom Plot&quot; to start.</p>
                      </div>
                   </div>
-                  <div class='tooltip wrap-text' rev='map-boundaries'>
-                     <div class='title'>Map boundaries</div>
+                  <div class='tooltip wrap-text' rev='display-faults'>
+                     <div class='title'>Display Faults</div>
                      <div class='content'>
-                        <p>&nbsp;The red polygon is the reporting region for &nbsp;this map; the black polygon is the authoritative region of the PNSN. Events inside the authoritative network are rendered as cirlces; events outside the&nbsp;authoritative&nbsp;region but inside the reporting region are rendered as squares. Explosions are always rendered as stars. &nbsp;<a href="/blog/2012/08/23/setting-boundaries">More</a></p>
+                        <p>Show known faults in the PNW region.</p>
                      </div>
                   </div>
-                  <div class='tooltip wrap-text' rev='cross-section'>
-                     <div class='title'>Cross Section</div>
-                     <div class='content'>
-                        <p>&nbsp;Create a custom cross-section or depth-time plot. Click on &quot;Custom Plot&quot; to start.</p>
-                     </div>
-                  </div>
+
                </div>
             </div>
          </div>
