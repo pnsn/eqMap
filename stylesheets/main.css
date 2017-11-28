@@ -3,18 +3,22 @@
   
 /*Main color*/
   --brand-primary: #107a10; // green
+  
 /*Some accent colors*/
   --gray-darker: #222;
   --gray-dark: #333;
   --gray: #555;
   --gray-light: #bfbfbf;
   --gray-lighter: #eee;
-
 } 
 
-#page {
-  position: relative;
-  min-height: 580px;
+/*Set size of map container manually -- automatically set in map_sizing.js*/
+#map-container {
+/*height: px*/
+/*width: px*/
+  position:relative;
+  min-height: 300px;
+  overflow: hidden;
 }
 
 .tooltip {
@@ -119,13 +123,13 @@ a.toggler.depth {
   display: none;
 }
 
-map .popover {
+#map .popover {
   max-width: none;
   left: 50%;
   top: 0px !important;
 }
 
-map .popover td:empty {
+#map .popover td:empty {
   display: none;
 }
 
@@ -138,7 +142,6 @@ ul.no-decoration {
   list-style-type: none;
   padding: 0px;
 }
-
 
 .divider {
   height: 1px;
@@ -157,17 +160,10 @@ ul.no-decoration {
   overflow: hidden;
 }
 
-#map-container {
-  height: 100%;
-  min-height: 300px;
-  position: relative;
-  overflow: hidden;
-}
 #map-container #map {
   width:100%;
   height:100%;
-  position: absolute;
-  top: 36px;
+  position: absolute; 
 }
 
 #map-thumb,

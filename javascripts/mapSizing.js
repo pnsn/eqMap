@@ -13,9 +13,14 @@ $(function(){
 
   //update width&height in case of resizing
   $(window).resize(function() {
-    height = $(window).height();
-    width = $(window).width();
-    $("#map-container").height(height);
+    console.log("test")
+    if (fullScreen){
+    
+      height = $(window).height();
+      width = $(window).width();
+      $("#map-container").height(height);
+    }
+
     if($("#map").is(":visible")){
       recenterMap();
     }

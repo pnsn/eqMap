@@ -208,6 +208,7 @@ var methods = {
         //iterate through each collection
         var total_count = 0;
         $.each(opts.points, function(key, collection) {
+          
           var count = 0;
           var ajaxArray = [];
           $.each(collection.urls, function(i, url) { //parse each url
@@ -223,8 +224,8 @@ var methods = {
             }
             //set map_type
             qp.map_type = opts.eqMapType;
+            $.getJSON(url, qp).done( function(json) { //requests each url
 
-            $.getJSON(url, qp, function(json) { //requests each url
               count += 1;
               $.each(json, function(j, response) {
                 if(response.hasOwnProperty('event')){
@@ -285,8 +286,11 @@ var methods = {
 
               $(".loading").hide();
 
-            }); //json call
-          }); //collections
+            }).fail(function( jqxhr, textStatus, error ) {
+                var err = textStatus + ", " + error;
+                console.log( "Request Failed: " + err );
+              }); //json call
+            }); //collections
 
         }); //end  $.each(opts.points, function(key, collection){
 
@@ -1262,7 +1266,7 @@ var methods = {
     }
     
     function drawXSection(e) {
-      if ($('.define-plot-area').text() == "Draw" || overlays.xSectMarkers.length > 3) {
+      if ($('.define-plot-area').length == 0 || $('.define-plot-area').text() == "Draw" || overlays.xSectMarkers.length > 3) {
         return;
       } else {
         createPolyMarker(e.latLng);

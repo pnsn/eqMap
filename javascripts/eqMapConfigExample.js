@@ -1,6 +1,6 @@
 ///Use this file to config different map types
-//common objects userd by map configs
-//sprites are used to cut down on # of requests.
+//common objects used by map configs
+//Sprites are used to cut down on # of requests.
 $.fn.eqMap.eqIcon = {
   xSpriteOffset: [0, 11, 26, 44, 67, 95, 130],
   ySpriteOffset: [2, 47, 89, 132, 176, 220, 260, 304, 347, 388, 430, 472, 511, 551, 599, 645, 685, 725],
@@ -65,10 +65,11 @@ $.fn.eqMap.polyObjectHtml = function(obj) {
 };
 
 
-//map configs.
+// Standard map configs.
 $.fn.eqMap.standardDefaults = {
-  evid: null, //used only for historic map
-  //These are are all standard GM V3 methods, please refer to the API
+  evid: null, //Evid used only for historic map
+  
+  //These are are all standard Google Maps V3 methods, please refer to the API
   lat: 45.07,
   lng: -120.95,
   zoom: 6,
@@ -82,10 +83,12 @@ $.fn.eqMap.standardDefaults = {
   streetViewControl:false,
   scrollWheel: true,
   zoomToFit: false,
-  //End gmap API calls
+  //End Google Maps API calls
+  
   magMin: -2,
   magMax: 7,
   authNetworks: ['uw', 'cc', 'uo'],
+  
   //Throw warning(alert) when this many events are requested.;
   list_limit: 1000,
   plot_relative_to_evid: false,
@@ -111,19 +114,17 @@ $.fn.eqMap.standardDefaults = {
   //event_time_epoch      float
   //events.etype"         string ('re', 'le', 'ex', 'px') regional, local, explosion, probable explosion
 
-
   points: {
     eq: {
       displayOnLoad: true,
-      urls: ["https://pnsn.org/events/recent_events.json?callback=?", "https://pnsn.org/non_net_events/recent_events.json?callback=?"],
+      urls: ["http://localdocker:3000/events/recent_events.json?callback=?", "http://localdocker:3000/non_net_events/recent_events.json?callback=?"],
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: $.fn.eqMap.eqBubbleHtml,
       listHtml: $.fn.eqMap.eqListHtml,
       temporalSteps: [3600 * 2, 2 * 86400],
       cluster: null
     }
-
-    //sta: {}
+    //,sta: {}
   },
 
   staIcon: $.fn.eqMap.staIcon,
@@ -133,11 +134,11 @@ $.fn.eqMap.standardDefaults = {
   xSectionIconDrag: "../images/map/polyEditSquare.png",
   xSectionIconTrans: "../images/map/transparent.png",
 
-  //you may add polygons by hosting a kml file on a webserver. 
-  //gmaps caches the kml file. Use the following format for testing or if you have a dynamically generated kml file.
+  //Add polygons by hosting a kml file on a webserver. 
+  //Google maps caches the kml file. Use the following format for testing or if you have a dynamically generated kml file.
   //url: "http://webserver/path/to/file.kml?dummy=" + (new Date()).getTime()
 
-  // you can validate your kml at http://googlemapsapi.blogspot.com/2007/06/validate-your-kml-online-or-offline.html
+  //You can validate your kml online.
   //A checkbox event is added to display each polygon file.  Using a checkbox is optional.
   //This Example assumes polygon is called 'boundaries' and displayOnDefault is set to true
 
@@ -162,13 +163,15 @@ $.fn.eqMap.standardDefaults = {
   },
   bubbleHtmlSta: $.fn.eqMap.staBubbleHtml,
   listHtmlSta: $.fn.eqMap.staListHtml,
-  //add logo to map
+  
+  //Add logo to map
   logo: {
     logoHref: "/",
     logoWidth: "75px",
     logoSrc: "../images/pnsn_logo_rev_no_wave.png"
   },
-  // map summary html, i.e. Total, Largest, Smallest, Latest, Earliest
+  
+  // Map summary html, i.e. Total, Largest, Smallest, Latest, Earliest
   summaryHtmlEq: function(eqs) {
     var minMag = eqs[0];
     var maxMag = eqs[0];
@@ -208,9 +211,7 @@ $.fn.eqMap.standardDefaults = {
   }
 };
 
-
-
-//clickable thumbnail all gmap events disabled
+//Clickable thumbnail all map interaction events disabled
 $.fn.eqMap.thumbDefaults = {
   polygons: null,
   zoom: 6,
@@ -225,7 +226,7 @@ $.fn.eqMap.thumbDefaults = {
   points: {
     eq: {
       displayOnLoad: true,
-      urls: ["/events/recent_events.json", "/non_net_events/recent_events.json"],
+      urls: ["http://localdocker:3000/events/recent_events.json?callback=?", "http://localdocker:3000/non_net_events/recent_events.json?callback=?"],
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: null,
       listHtml: null,
@@ -239,6 +240,7 @@ $.fn.eqMap.thumbDefaults = {
     }
   }
 };
+
 
 $.fn.eqMap.notableDefaults = {
   points: {
@@ -389,12 +391,6 @@ $.fn.eqMap.spectrogramDefaults = {
       urls: ["/stations.json?spectrogram_subregions=all"],
       icon: $.fn.eqMap.staIcon,
       bubbleHtml: $.fn.eqMap.staBubbleHtml
-        // listHtml: $.fn.eqMap.staListHtml,
-        //displayDepthOnly: true
-        // cluster:{
-        // gridSize: 50,
-        // maxZoom: 7
-        // }
     }
   },
   polygons: {
