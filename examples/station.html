@@ -1,3 +1,4 @@
+<!--Map of PNSN Seismic Stations -->
 <!DOCTYPE html>
 <html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
   <head>
@@ -59,7 +60,7 @@
       <div id='map'></div>
       <div class='panel no-padding' id='map-legend'>
         <div class='panel-heading'>
-          <h2>
+          <h2 class="map-pane-head">
             Legend
             <div class='pull-right'>
               <i class='fa fa-times' id='legend-close'></i>
@@ -74,9 +75,9 @@
         </div>
       </div>
       <div class='col-sm-4 col-md-3 pull-right hidden-xs no-padding'>
-        <div id='map-control'>
+        <div id='map-tools'>
           <a data-toggle='collapse' href='#map-ui'>
-            <h2 class='gray'>
+            <h2 class='map-pane-head gray'>
               Tools
               <div class='pull-right'>
                 <i class='fa fa-cogs'></i>
@@ -86,7 +87,7 @@
           <div class='panel-group collapse in' id='map-ui'>
             <div class='panel no-padding'>
               <a class='panel-heading map-settings-panel' data-parent='#map-ui' data-toggle='collapse' href='#control-panel' id='control-panel-toggle'>
-                <h2>
+                <h2 class="map-pane-head">
                   Control Panel
                   <i class='plot-chevron-down fa fa-chevron-down pull-right'></i>
                   <i class='plot-chevron-up fa fa-chevron-up pull-right'></i>
@@ -210,7 +211,7 @@
             </div>
             <div class='panel no-padding'>
               <a class='panel-heading map-settings-panel list-header' data-parent='#map-ui' data-toggle='collapse' href='#station-list-simple' id='station-list-toggle'>
-                <h2>
+                <h2 class="map-pane-head">
                   Station List
                   <i class='plot-chevron-down fa fa-chevron-down pull-right'></i>
                   <i class='plot-chevron-up fa fa-chevron-up pull-right'></i>

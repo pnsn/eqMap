@@ -52,18 +52,15 @@ $.fn.eqMap.eqListHtml = function(eq) {
   +" km</td></tr>";
 };
 
-
 $.fn.eqMap.staListHtml = function(sta) {
   return "<tr> <td>" + sta.sta + "</td><td>" +
     sta.auth + "</td><td>" +
     sta.sta_code + "</td></tr>";
 };
 
-
 $.fn.eqMap.polyObjectHtml = function(obj) {
   return "ehllo";
 };
-
 
 // Standard map configs.
 $.fn.eqMap.standardDefaults = {
@@ -265,30 +262,6 @@ $.fn.eqMap.historicDefaults = {
   magMax: 9
 };
 
-$.fn.eqMap.customThumbDefaults = {
-  points: {
-    eq: {
-      displayOnLoad: true,
-      icon: $.fn.eqMap.eqIcon,
-      bubbleHtml: $.fn.eqMap.eqBubbleHtml,
-      listHtml: $.fn.eqMap.eqListHtml
-    }
-  },
-  plot_relative_to_evid: true,
-  polygons: null,
-  zoomToFit: true,
-  magMin: 2,
-  magMax: 9,
-  navigationControl: false,
-  draggable: false,
-  clickable: true,
-  disableDefaultUI: true,
-  disableDoubleClickZoom: true,
-  scrollwheel: false,
-  logo: null
-};
-
-
 //and the volcanoes
 $.fn.eqMap.volcanoDefaults = {
   magMin: -2,
@@ -363,16 +336,6 @@ $.fn.eqMap.stationDefaults = {
   regions_zoom: 10,
   polygons: null
 };
-
-$.fn.eqMap.mobileDefaults = {
-  lng: -121,
-  lat: 45,
-  zoom: 5,
-  disableDoubleClickZoom: true,
-  scrollwheel: false,
-  disableDefaultUI: true
-};
-
 
 $.fn.eqMap.spectrogramDefaults = {
   zoom: 6,
