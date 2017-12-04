@@ -83,6 +83,7 @@ $.fn.eqMap.standardDefaults = {
   streetViewControl:false,
   scrollWheel: true,
   zoomToFit: false,
+  gestureHandling: 'greedy', //Change to'cooperative' to prevent zooming on scrollable pages
   //End Google Maps API calls
   
   magMin: -2,
@@ -117,7 +118,7 @@ $.fn.eqMap.standardDefaults = {
   points: {
     eq: {
       displayOnLoad: true,
-      urls: ["http://localdocker:3000/events/recent_events.json?callback=?", "http://localdocker:3000/non_net_events/recent_events.json?callback=?"],
+      urls: ["http://192.168.99.100:3000/events/recent_events.json?callback=?", "http://192.168.99.100:3000/non_net_events/recent_events.json?callback=?"],
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: $.fn.eqMap.eqBubbleHtml,
       listHtml: $.fn.eqMap.eqListHtml,
@@ -222,17 +223,7 @@ $.fn.eqMap.thumbDefaults = {
   disableDoubleClickZoom: true,
   mapTypeControl: false,
   scrollwheel: false,
-  logo: null,
-  points: {
-    eq: {
-      displayOnLoad: true,
-      urls: ["http://localdocker:3000/events/recent_events.json?callback=?", "http://localdocker:3000/non_net_events/recent_events.json?callback=?"],
-      icon: $.fn.eqMap.eqIcon,
-      bubbleHtml: null,
-      listHtml: null,
-      temporalSteps: [2 * 3600, 2 * 86400]
-    }
-  },
+  logo: null, 
   polygons: {
     boundaries: {
       url: "https://assets.pnsn.org/kml/pnsn_boundaries.kml",

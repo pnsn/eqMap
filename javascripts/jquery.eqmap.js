@@ -53,6 +53,7 @@ var methods = {
         disableDefaultUI: opts.disableDefaultUI,
         disableDoubleClickZoom: opts.disableDoubleClickZoom,
         scrollwheel: opts.scrollwheel,
+        gestureHandling: opts.gestureHandling,
         navigationControlOptions: {
           style: google.maps.NavigationControlStyle.SMALL
         },
@@ -225,9 +226,9 @@ var methods = {
             //set map_type
             qp.map_type = opts.eqMapType;
             $.getJSON(url, qp).done( function(json) { //requests each url
-
               count += 1;
               $.each(json, function(j, response) {
+                console.log(url, response)
                 if(response.hasOwnProperty('event')){
                   response = response['event'];
                 }else if(response.hasOwnProperty('non_net_event')){

@@ -7,7 +7,7 @@ $(function(){
   
   // The following sets the heights of certain elements
   // that require a fixed height. 
-  $("#map-container").css({
+  $("#map-container.auto-height").css({
     height: Math.round(.8 * $(window).height())
   });
 
