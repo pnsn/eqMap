@@ -1,0 +1,166 @@
+
+/*Map Icons*/
+.event, .nn-event, .queried {
+  stroke: black;
+  stroke-width: 5px;
+}
+.event svg, .nn-event svg, .queried svg {
+  display: block;
+}
+
+.explosion {
+  stroke: black;
+  stroke-width: 10px;
+}
+.explosion svg {
+  display: block;
+}
+
+.station, .nn-station {
+  stroke: black;
+  stroke-width: 5;
+  width: 16px;
+  height: 16px;
+  left: -8px;
+  top: -8px;
+}
+.station svg, .nn-station svg {
+  display: block;
+}
+
+.mag-0 {
+  width: 7px;
+  height: 7px;
+  left: -3.5px;
+  top: -3.5px;
+}
+
+.mag-1 {
+  width: 9px;
+  height: 9px;
+  left: -4.5px;
+  top: -4.5px;
+}
+
+.mag-2 {
+  width: 12px;
+  height: 12px;
+  left: -6px;
+  top: -6px;
+}
+
+.mag-3 {
+  width: 16px;
+  height: 16px;
+  left: -8px;
+  top: -8px;
+}
+
+.mag-4 {
+  width: 21px;
+  height: 21px;
+  left: -10.5px;
+  top: -10.5px;
+}
+
+.mag-5 {
+  width: 27px;
+  height: 27px;
+  left: -13.5px;
+  top: -13.5px;
+}
+
+.mag-6 {
+  width: 34px;
+  height: 34px;
+  left: -17px;
+  top: -17px;
+}
+
+.mag-7 {
+  width: 42px;
+  height: 42px;
+  left: -21px;
+  top: -21px;
+}
+
+.mag-8 {
+  width: 51px;
+  height: 51px;
+  left: -25.5px;
+  top: -25.5px;
+}
+
+.mag-9 {
+  width: 61px;
+  height: 61px;
+  left: -30.5px;
+  top: -30.5px;
+}
+
+.age-step-0 {
+  fill: #DA002F;
+}
+
+.age-step-1 {
+  fill: #EC8E00;
+}
+
+.age-step-2 {
+  fill: #F2EA00;
+}
+
+.show-depth.depth-1 {
+  fill: #DA002F;
+}
+.show-depth.depth-5 {
+  fill: #EC8E00;
+}
+.show-depth.depth-11 {
+  fill: #F2EA00;
+}
+.show-depth.depth-21 {
+  fill: #3D7CCE;
+}
+.show-depth.depth-36 {
+  fill: #A901D3;
+}
+.show-depth.depth-65 {
+  fill: #555555;
+}
+.show-depth.depth- {
+  fill: white;
+}
+
+.sta-1sp {
+  fill: #DA002F;
+}
+
+.sta-3bb3sm {
+  fill: #EC8E00;
+}
+
+.sta-3bb {
+  fill: #F2EA00;
+}
+
+.sta-3sp {
+  fill: #555555;
+}
+
+.sta-3sm {
+  fill: #3D7CCE;
+}
+
+.sta-3sm1sp {
+  fill: #3DB200;
+}
+
+.cross-section-point {
+  color: black;
+  font-size: 20px;
+  display: block;
+  top: -5px;
+  left: -5px;
+  z-index: 100;
+}

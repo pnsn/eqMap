@@ -13,14 +13,9 @@ $(function(){
 
   //update width&height in case of resizing
   $(window).resize(function() {
-    console.log("test")
-    if (fullScreen){
-    
-      height = $(window).height();
-      width = $(window).width();
-      $("#map-container").height(height);
-    }
-
+    height = $(window).height();
+    width = $(window).width();
+    $("#map-container").height(height);
     if($("#map").is(":visible")){
       recenterMap();
     }
@@ -74,8 +69,9 @@ $(function(){
       height:$("#map-container").height()-$("#map-summary").height()
     }).delay(800);
     var center = eqMap.getCenter();
-    google.maps.event.trigger(eqMap, 'resize');
-    eqMap.setCenter(center);
+    var zoom = eqMap.getZoom();
+    eqMap.invalidateSize();
+    eqMap.setView(center, zoom);
     resetLegend(false);
   }
 
@@ -101,5 +97,5 @@ $(function(){
   });
   
   //make the legend draggable
-  $("#map-legend").draggable({ containment: "#map-container", scroll: false });
+  // $("#map-legend").draggable({ containment: "#map-container", scroll: false });
 });

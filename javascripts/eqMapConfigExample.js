@@ -1,25 +1,21 @@
 ///Use this file to config different map types
-//common objects used by map configs
-//Sprites are used to cut down on # of requests.
-$.fn.eqMap.eqIcon = {
-  xSpriteOffset: [0, 11, 26, 44, 67, 95, 130],
-  ySpriteOffset: [2, 47, 89, 132, 176, 220, 260, 304, 347, 388, 430, 472, 511, 551, 599, 645, 685, 725],
-  spriteMask: [10, 15, 19, 23, 28, 37, 41], //size of the icon
-  spritePath: "../images/map/eq-icons.png"
-};
+//common objects userd by map configs
 
-$.fn.eqMap.staIcon = {
-  xSpriteOffset: [0, 20, 40, 60, 80, 99],
-  ySpriteOffset: [0, 14],
-  spriteMask: [15], //size of the icon
-  spritePath: "../images/map/station-icons.png"
+//Defines shapes of icons
+$.fn.eqMap.icons = {
+  event : '<svg width="100%" height="100%" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg>',
+  nnEvent : '<svg width="100%" height="100%" viewBox="0 0 50 50"><rect x="1" y="1" width="48" height="48"/></svg>',
+  explosion : '<svg width="100%" height="100%" viewBox="-250 -250 500 500"><polygon points="249,1 40,40 1,249 -40,40 -249,1 -40,-40 1,-249 40,-40"/></svg>',
+  queried: '<svg width="100%" height="100%" viewBox="-125 0 250 235"><polygon points="0,0 35,82 125,90 55,155 75,235 0,190 -75,235 -55,155 -125,90 -35,82" /></svg>',
+  nnStation : '<svg width="100%" height="100%" viewBox="-125 0 250 235"><polygon points="0,0 125,90 75,235 -75,235 -125,90" /></svg>',
+  station : '<svg width="100%" height="100%" viewBox="-125 0 250 235"><polygon points="0,0 125,217 -125,217" /></svg>', //triangle
+  // station : '<svg width="100%" height="100%" viewBox="-125 0 250 235"><polygon points="0,0 30,115 125,217 0,175 -125,217 -30,120" /></svg>', //dented triangle
+}
 
-};
-
-$.fn.eqMap.eqBubbleHtml = function(eq, marker) {
+$.fn.eqMap.eqBubbleHtml = function(eq) {
   if (eq.auth == "nc" || eq.auth == "us" || eq.auth == "mb" || eq.auth == "nn") {
     a = "<a href=https://earthquake.usgs.gov/earthquakes/eventpage/" + eq.auth + eq.evid + "> View Event Page </a>";
-  } else {
+  } else { 
     a = "<a href='/event/" + eq.evid + "#overview'> View Event Page </a>";
   }
   return a +
@@ -27,7 +23,7 @@ $.fn.eqMap.eqBubbleHtml = function(eq, marker) {
     "<tr> <td class ='label'> Magnitude: </td><td class = 'content'>" + parseFloat(eq.magnitude).toFixed(1) + "</td> " + "</tr>" +
     "<tr> <td class ='label'> Time(UTC): </td><td class = 'content'>" + eq.event_time_utc + "</td> " + "</tr>" +
     "<tr> <td class ='label'> Time(Local): </td><td class = 'content'>" + eq.event_time_local + "</td> " + "</tr>" +
-    "<tr> <td class ='label'> Depth: </td><td class = 'content'>" + parseFloat(eq.depth_km).toFixed(1) + "Km (" + parseFloat(eq.depth_mi).toFixed(1) + "miles)</td> " + "</tr>" +
+    "<tr> <td class ='label'> Depth: </td><td class = 'content'>" + parseFloat(eq.depth_km).toFixed(1) + " km (" + parseFloat(eq.depth_mi).toFixed(1) + " miles)</td> " + "</tr>" +
     "<tr> <td class ='label'> Event Id: </td><td class = 'content'>" + eq.evid + "</td> " + "</tr>" +
     "<tr> <td class ='label'> Network: </td><td class = 'content'>" + eq.auth + "</td> " + "</tr>" +
     "</table>";
@@ -52,41 +48,41 @@ $.fn.eqMap.eqListHtml = function(eq) {
   +" km</td></tr>";
 };
 
+
 $.fn.eqMap.staListHtml = function(sta) {
   return "<tr> <td>" + sta.sta + "</td><td>" +
     sta.auth + "</td><td>" +
     sta.sta_code + "</td></tr>";
 };
 
+
 $.fn.eqMap.polyObjectHtml = function(obj) {
   return "ehllo";
 };
 
-// Standard map configs.
+
+//map configs.
 $.fn.eqMap.standardDefaults = {
-  evid: null, //Evid used only for historic map
+  evid: null, //used only for historic map
   
-  //These are are all standard Google Maps V3 methods, please refer to the API
-  lat: 45.07,
-  lng: -120.95,
+  lat: 45.07, //starting center
+  lng: -120.95, //starting center
+  
   zoom: 6,
-  fullscreenControl:false,
-  navigationControl: true,
-  scaleControl: true,
-  draggable: true,
-  disableDefaultUI: false,
-  disableDoubleClickZoom: false,
-  mapTypeControl: true,
-  streetViewControl:false,
-  scrollWheel: true,
-  zoomToFit: false,
-  gestureHandling: 'greedy', //Change to'cooperative' to prevent zooming on scrollable pages
-  //End Google Maps API calls
+  attributionControl:true,
+  zoomControl: true, 
+  closePopupOnClick: true,
+  dragging: true,
   
+  scrollWheelZoom: true,
+
+  zoomToFit: false,
+  
+  drawControl: true,
+  //End gmap API calls
   magMin: -2,
   magMax: 7,
-  authNetworks: ['uw', 'cc', 'uo'],
-  
+  authNetworks: ['uw', 'cc', 'uo', 'np'],
   //Throw warning(alert) when this many events are requested.;
   list_limit: 1000,
   plot_relative_to_evid: false,
@@ -112,31 +108,35 @@ $.fn.eqMap.standardDefaults = {
   //event_time_epoch      float
   //events.etype"         string ('re', 'le', 'ex', 'px') regional, local, explosion, probable explosion
 
+
   points: {
     eq: {
       displayOnLoad: true,
-      urls: ["http://192.168.99.100:3000/events/recent_events.json?callback=?", "http://192.168.99.100:3000/non_net_events/recent_events.json?callback=?"],
+      urls: ["/events/recent_events.json", "/non_net_events/recent_events.json"],
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: $.fn.eqMap.eqBubbleHtml,
       listHtml: $.fn.eqMap.eqListHtml,
       temporalSteps: [3600 * 2, 2 * 86400],
       cluster: null
     }
-    //,sta: {}
+
+    //sta: {}
   },
 
   staIcon: $.fn.eqMap.staIcon,
   //x-section icons
-  xSectionIconA: "../images/map/x-section-a.png",
-  xSectionIconB: "../images/map/x-section-b.png",
-  xSectionIconDrag: "../images/map/polyEditSquare.png",
-  xSectionIconTrans: "../images/map/transparent.png",
+  xSectionIconA: "A", //or really whatever HTML you want
+  xSectionIconB: "B",
+  xSectionIconDrag: "<div id='x-section-drag-handle'><div>",
+  xSectionIconTrans: "",
 
-  //Add polygons by hosting a kml file on a webserver. 
-  //Google maps caches the kml file. Use the following format for testing or if you have a dynamically generated kml file.
+
+  //TODO: change this text to make it geojson
+  //you may add polygons by hosting a kml file on a webserver. 
+  //gmaps caches the kml file. Use the following format for testing or if you have a dynamically generated kml file.
   //url: "http://webserver/path/to/file.kml?dummy=" + (new Date()).getTime()
 
-  //You can validate your kml online.
+  // you can validate your kml at http://googlemapsapi.blogspot.com/2007/06/validate-your-kml-online-or-offline.html
   //A checkbox event is added to display each polygon file.  Using a checkbox is optional.
   //This Example assumes polygon is called 'boundaries' and displayOnDefault is set to true
 
@@ -149,27 +149,24 @@ $.fn.eqMap.standardDefaults = {
 
   polygons: {
     boundaries: {
-      url: "https://assets.pnsn.org/kml/pnsn_boundaries.kml",
+      url: "/assets/json/pnsn_boundaries.geojson",
       displayOnLoad: true
     },
     faults: {
-      url: "https://assets.pnsn.org/kml/pnsn_faults2.kml",
-      // url: "http://assets.pnsn.org/kml/pnsn_faults.kml?Time=" + Date.now(),
+      url: "/assets/json/pnsn_faults.geojson",
       displayOnLoad: false
     }
 
   },
   bubbleHtmlSta: $.fn.eqMap.staBubbleHtml,
   listHtmlSta: $.fn.eqMap.staListHtml,
-  
-  //Add logo to map
-  logo: {
-    logoHref: "/",
-    logoWidth: "75px",
-    logoSrc: "../images/pnsn_logo_rev_no_wave.png"
-  },
-  
-  // Map summary html, i.e. Total, Largest, Smallest, Latest, Earliest
+  //add logo to map
+  // logo: {
+  //   logoHref: "/",
+  //   logoWidth: "75px",
+  //   logoSrc: "/assets/pnsn_logo_rev_no_wave_outline.png"
+  // },
+  // map summary html, i.e. Total, Largest, Smallest, Latest, Earliest
   summaryHtmlEq: function(eqs) {
     var minMag = eqs[0];
     var maxMag = eqs[0];
@@ -206,29 +203,38 @@ $.fn.eqMap.standardDefaults = {
       "<li class='label'><a href='#'  rel='" + minDate.evid + "'>Earliest:</a></li>" +
       "<li>" + minDateObj.getUTCFullYear() + "/" + (minDateObj.getUTCMonth() + 1) + "/" + minDateObj.getUTCDate() + "</li>" +
       "</ul>";
-  }
+  },
+  icons: $.fn.eqMap.icons
 };
 
-//Clickable thumbnail all map interaction events disabled
+//clickable thumbnail all gmap events disabled
 $.fn.eqMap.thumbDefaults = {
-  polygons: null,
   zoom: 6,
+  zoomToFit:true,
   clickable:false,
-  navigationControl: true,
-  draggable: false,
-  disableDefaultUI: true,
-  disableDoubleClickZoom: true,
-  mapTypeControl: false,
-  scrollwheel: false,
-  logo: null, 
+  attributionControl: false,
+  zoomControl: false, 
+  closePopupOnClick: false,
+  dragging: false,
+  scrollWheelZoom: false,
+  logo: null,
+  points: {
+    eq: {
+      displayOnLoad: true,
+      urls: ["/events/recent_events.json", "/non_net_events/recent_events.json"],
+      icon: $.fn.eqMap.eqIcon,
+      bubbleHtml: null,
+      listHtml: null,
+      temporalSteps: [2 * 3600, 2 * 86400]
+    }
+  },
   polygons: {
     boundaries: {
-      url: "https://assets.pnsn.org/kml/pnsn_boundaries.kml",
+      url: "/assets/json/pnsn_boundaries.geojson",
       displayOnLoad: true
     }
   }
 };
-
 
 $.fn.eqMap.notableDefaults = {
   points: {
@@ -241,6 +247,7 @@ $.fn.eqMap.notableDefaults = {
       listHtml: $.fn.eqMap.eqListHtml
     }
   },
+  show_depths_only:true,
   polygons: null
 };
 
@@ -261,6 +268,29 @@ $.fn.eqMap.historicDefaults = {
   magMin: 2,
   magMax: 9
 };
+
+$.fn.eqMap.customThumbDefaults = {
+  points: {
+    eq: {
+      displayOnLoad: true,
+      icon: $.fn.eqMap.eqIcon,
+      bubbleHtml: $.fn.eqMap.eqBubbleHtml,
+      listHtml: $.fn.eqMap.eqListHtml
+    }
+  },
+  plot_relative_to_evid: true,
+  polygons: null,
+  zoomToFit: true,
+  magMin: 2,
+  magMax: 9,
+  clickable:false,
+  attributionControl: false,
+  zoomControl: false, 
+  closePopupOnClick: false,
+  dragging: false,
+  logo: null
+};
+
 
 //and the volcanoes
 $.fn.eqMap.volcanoDefaults = {
@@ -337,27 +367,43 @@ $.fn.eqMap.stationDefaults = {
   polygons: null
 };
 
+$.fn.eqMap.mobileDefaults = {
+  lng: -121,
+  lat: 45,
+  zoom: 5,
+  disableDoubleClickZoom: true,
+  scrollwheel: false,
+  disableDefaultUI: true
+};
+
+
 $.fn.eqMap.spectrogramDefaults = {
   zoom: 6,
   points: {
-    sta: {
-      displayOnLoad: true,
-      urls: ["/stations.json?spectrogram_subregions=all"],
-      icon: $.fn.eqMap.staIcon,
-      bubbleHtml: $.fn.eqMap.staBubbleHtml
-    }
+  //   sta: {
+  //     displayOnLoad: true,
+  //     urls: ["/stations.json?spectrogram_subregions=all"],
+  //     icon: $.fn.eqMap.staIcon,
+  //     bubbleHtml: $.fn.eqMap.staBubbleHtml
+  //       // listHtml: $.fn.eqMap.staListHtml,
+  //       //displayDepthOnly: true
+  //       // cluster:{
+  //       // gridSize: 50,
+  //       // maxZoom: 7
+  //       // }
+  //   }
   },
   polygons: {
     spectrogram_ets: {
-      url: "https://assets.pnsn.org/kml/spectrogram_ets.kml",
+      url: "/assets/json/spectrogram_ets.geojson",
       displayOnLoad: true
     },
     spectrogram_tectonic: {
-      url: "https://assets.pnsn.org/kml/spectrogram_tectonic.kml",
+      url: "/assets/json/spectrogram_tectonic.geojson",
       displayOnLoad: true
     },
     spectrogram_volcanic: {
-      url: "https://assets.pnsn.org/kml/spectrogram_volcanic.kml",
+      url: "/assets/json/spectrogram_volcanic.geojson",
       displayOnLoad: true
     }
   }

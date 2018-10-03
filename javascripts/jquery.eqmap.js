@@ -44,23 +44,20 @@ var methods = {
       var opts = $.fn.eqMap.standardDefaults;
       opts = $.extend({}, opts, eval("$.fn.eqMap." + options.eqMapType + "Defaults")); //overwrite  as needed
       opts = $.extend({}, opts, options); //overwrite from plugin call
+
       var mapOptions = {
         zoom: opts.zoom,
-        center: new google.maps.LatLng(opts.lat, opts.lng),
-        mapTypeId: google.maps.MapTypeId.TERRAIN,
-        scaleControl: opts.scaleControl,
-        draggable: opts.draggable,
-        disableDefaultUI: opts.disableDefaultUI,
-        disableDoubleClickZoom: opts.disableDoubleClickZoom,
-        scrollwheel: opts.scrollwheel,
-        gestureHandling: opts.gestureHandling,
-        navigationControlOptions: {
-          style: google.maps.NavigationControlStyle.SMALL
-        },
-        mapTypeControl: opts.mapTypeControl,
-        streetViewControl: opts.streetViewControl
+        center: [opts.lat, opts.lng],
+        attributionControl: opts.attributionControl,
+        zoomControl: opts.zoomControl,
+        closePopupOnClick: opts.closePopupOnClick,
+        dragging: opts.dragging,
+        scrollWheelZoom: opts.scrollWheelZoom,
+        zoomToFit: opts.zoomToFit,
       };
-      overlays.bounds = new google.maps.LatLngBounds();
+       
+      overlays.bounds = new L.latLngBounds();
+
       return this.each(function() {
         //ready handlers           
 
@@ -89,7 +86,7 @@ var methods = {
             plotSteps(2);
           } else {
             $('.define-plot-area').text('Draw');
-            
+
             clearCrossSection();
             plotSteps(1);
           }
@@ -98,7 +95,6 @@ var methods = {
         $('#plot').click(function() {
           $('.loading').show();
           var plotType = $('.active>input[name=select-plot]').val();
-          
           switch (plotType) {
             case 'x-section':
               plotCrossSection();
@@ -116,20 +112,8 @@ var methods = {
         });
 
         $("a.plot-ui-toggle").click(function() {
-          // $(".slide[rev=" + $(this).attr("rel") + "]").slideToggle();
-          // $("#plot-ui").toggleClass("open");
-        
           plotSteps(1);
-          if ($('#define-plot-area:hidden').length > 0) {
-
-          }
-          // return false;
         });
-        //
-        // $("a.slide-toggle-filter-ui").click(function() {
-        //   $(".slide[rev=" + $(this).attr("rel") + "]").slideToggle();
-        //   return false;
-        // });
 
         $("#plot-ui-close").click(function() {
           resetPlotUi();
@@ -152,21 +136,22 @@ var methods = {
               return ui.item.value == $('td:first-child', this).text();
             });
             tr.trigger("click");
-            
+
             //TODO: temporary fix --> need to make top scroll to include height of control panel
             $(".dataTables_scrollBody").scrollTop(0);
-            
+
             $(".dataTables_scrollBody").scrollTop(tr.position().top);
           }
         });
 
-        //extend Latlng for distanceFrom method returns distance in meters
-        google.maps.LatLng.prototype.distanceFrom = function(newLatLng) {
-          var R = 6371000; // meters 
-          var lat1 = this.lat();
-          var lon1 = this.lng();
-          var lat2 = newLatLng.lat();
-          var lon2 = newLatLng.lng();
+        // extend Latlng for distanceFrom method returns distance in meters
+        L.LatLng.prototype.distanceFrom = function(newLatLng) {
+
+          var R = 6371000; // meters
+          var lat1 = this.lat;
+          var lon1 = this.lng;
+          var lat2 = newLatLng.lat;
+          var lon2 = newLatLng.lng;
           var dLat = (lat2 - lat1) * Math.PI / 180;
           var dLon = (lon2 - lon1) * Math.PI / 180;
           var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -176,40 +161,67 @@ var methods = {
           return R * c;
         };
 
-
         //lets make us a map
-        eqMap = new google.maps.Map(this, mapOptions);
+        eqMap = new L.Map(this, mapOptions);
         
-        if(opts.zoomToFit){
-          
-          google.maps.event.addListener(eqMap, 'zoom_changed', function() {
-              zoomChangeBoundsListener = 
-                  google.maps.event.addListener(eqMap, 'bounds_changed', function(event) {
-                      if (this.getZoom() > 12 && this.initialZoom == true) {
-                          // Change max/min zoom here
-                          this.setZoom(12);
-                          this.initialZoom = false;
-                      }
-                  google.maps.event.removeListener(zoomChangeBoundsListener);
-              });
+        L.esri.basemapLayer("Topographic").addTo(eqMap);
+        
+        L.control.scale().addTo(eqMap);
+        
+        // osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //   attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+        // });
+        //
+        // //TODO: add options for multiple map title layers
+        // eqMap.addLayer(osm);
+
+        if (opts.zoomToFit) {
+          eqMap.on('zoomend', function(e) {
+            //
+            // eqMap.on('moveend', function(e){
+            //   if (this.getZoom() > 12 && this.initialZoom == true) {
+            //       // Change max/min zoom here
+            //       this.setZoom(12);
+            //       this.initialZoom = false;
+            //   }
+            //
+            // });
+            //
+            // eqMap.off('moveend');
           });
-          
+
           eqMap.initialZoom = true;
         }
-        
-        eqMap.infoWindow = new google.maps.InfoWindow();
+
+        // eqMap.infoWindow = new google.maps.InfoWindow();
+
         //add logo to map
         if (opts.logo) {
-          var logoControlDiv = document.createElement('DIV');
-          var logoControl = netLogoControl(logoControlDiv);
-          logoControlDiv.index = 0; // used for ordering
-          eqMap.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(logoControlDiv);
+          L.Control.Watermark = L.Control.extend({
+              onAdd: function(map) {
+                  var img = L.DomUtil.create('img');
+                  img.src = opts.logo.logoSrc;
+                  img.id = "map-logo";
+                  return img;
+              },
+
+              onRemove: function(map) {
+                  // Nothing to do here
+              }
+          });
+          $("#map-logo").on('click', function(){
+            window.location = opts.logo.logoHref;
+          })
+          L.control.watermark = function(opts) {
+              return new L.Control.Watermark(opts);
+          }
+
+          L.control.watermark({ position: 'bottomright' }).addTo(eqMap);
         }
         
         //iterate through each collection
         var total_count = 0;
         $.each(opts.points, function(key, collection) {
-          
           var count = 0;
           var ajaxArray = [];
           $.each(collection.urls, function(i, url) { //parse each url
@@ -225,13 +237,13 @@ var methods = {
             }
             //set map_type
             qp.map_type = opts.eqMapType;
-            $.getJSON(url, qp).done( function(json) { //requests each url
+
+            $.getJSON(url, qp, function(json) { //requests each url
               count += 1;
               $.each(json, function(j, response) {
-                console.log(url, response)
-                if(response.hasOwnProperty('event')){
+                if (response.hasOwnProperty('event')) {
                   response = response['event'];
-                }else if(response.hasOwnProperty('non_net_event')){
+                } else if (response.hasOwnProperty('non_net_event')) {
                   response = response['non_net_event'];
                 }
                 ajaxArray.push(response);
@@ -251,6 +263,7 @@ var methods = {
                   zIndex -= 1;
                   plotMarker(obj, zIndex, collection, key);
                 });
+                
 
                 //summary at top of map
                 if (overlays.eq.markers.length > 0 && key == 'eq') {
@@ -287,26 +300,26 @@ var methods = {
 
               $(".loading").hide();
 
-            }).fail(function( jqxhr, textStatus, error ) {
-                var err = textStatus + ", " + error;
-                console.log( "Request Failed: " + err );
-              }); //json call
-            }); //collections
+            }); //json call
+          }); //collections
 
         }); //end  $.each(opts.points, function(key, collection){
 
-        //look for google map objects
+        //look for polygon map objects
         if (opts.polyObjects) {
           $.each(opts.polyObjects, function(key, val) {
             if (key == "circle") {
-              var circle = new google.maps.Circle(opts.polyObjects[key].objOptions);
-              circle.setRadius(parseInt(opts.radius, 0));
+              var circle = L.circle([opts.lat, opts.lng], {
+                radius: parseInt(opts.radius, 0),
+                color: val.objOptions.strokeColor,
+                opacity: val.objOptions.strokeOpacity,
+                weight: val.objOptions.strokeWeight,
+                fillOpacity: val.objOptions.fillOpacity
+              });
               //check to see if center is set by options
-              if (!circle.getCenter()) {
-                circle.setCenter(new google.maps.LatLng(opts.lat, opts.lng));
-              }
+
               if (opts.polyObjects[key].displayOnLoad) {
-                circle.setMap(eqMap);
+                circle.addTo(eqMap);
               }
 
             }
@@ -315,41 +328,63 @@ var methods = {
 
         //iterate through polygons and create display events
         if (opts.polygons) {
+
           $.each(opts.polygons, function(key, val) {
-            var p = new google.maps.KmlLayer(
-              opts.polygons[key].url, {
-                map: opts.polygons[key].displayOnLoad ? eqMap : null,
-                preserveViewport: true
+            $.ajax({
+            dataType: "json",
+            url: val.url
+            }).success(function(response){
+              var features = [];
+              
+              $.each(response.features, function(i, feature){
+                features.push(new L.geoJSON(feature, {
+                  style: function( ) {
+                    return {
+                      color: feature.properties["stroke"],
+                      weight: feature.properties["stroke-width"],
+                      opacity: feature.properties["stroke-opacity"],
+                      fill: feature.properties["fill"],
+                      "fill-opacity": feature.properties["fill-opacity"]
+                    };
+                  },
+                  onEachFeature: function(f, layer) {
+                    layer.bindPopup("<h4>"+feature.properties["name"] +"</h4><div>"+feature.properties["description"]+"<div>");
+                  }
+                  //properties[name]
+                  //properties[description]
+                }));
+            
+              });
+              
+              overlays[key] = L.layerGroup(features);
+
+              if (opts.polygons[key].displayOnLoad) {
+                overlays[key].addTo(eqMap);
               }
-            );
-            overlays[key] = p;
-            $("#map-ui #" + key + " :checkbox").click(function() {
-              if ($(this).is(':checked') && eqMap.getZoom() < 12) {
-                overlays[key].setMap(eqMap);
-                if (key == "faults"){
-                  eqMap.addListener('zoom_changed', function(){
-                    zoomDisable(overlays[key]);
-                  });
+
+              $("#map-ui #" + key + " :checkbox").click(function() {
+                var checkbox = $(this);
+
+                if (checkbox.is(':checked') && eqMap.getZoom() < 12) {
+                  eqMap.addLayer(overlays[key]);
+                } else {
+                  eqMap.removeLayer(overlays[key]);
                 }
-              } else {
-                overlays[key].setMap(null);
-                google.maps.event.clearListeners(eqMap, 'zoom_changed');
-              }
+              
+              });
+
+            }).fail(function(response){
+              console.log("failed: ", response)
             });
 
-          });
+            // overlays[key] = p;
 
-          function zoomDisable(faults){
-            if(eqMap.getZoom() > 11){ //about 6 zoom clicks in
-              faults.setMap(null);
-            }else {
-              faults.setMap(eqMap);
-            }
-          }
+          });
         }
 
         init_helper_container();
-        google.maps.event.addListener(eqMap, 'click', function(e) {
+
+        eqMap.on('click', function(e) {
           closeInfoWindow();
           drawXSection(e);
         });
@@ -361,38 +396,150 @@ var methods = {
     } //end of is/else
 
     //private methods
+    
+    
+    // Builds the legend for the maps. Could use some fixin'
+    function buildLegend(type){
+      var legend = $("#legend-body");
+      var topRow = $("#top-row").length > 0 ? $("#top-row") : $("<div id='top-row'></div>");
+      var bottomRow = $("#bottom-row").length > 0 ? $("#bottom-row") : $("<div id='bottom-row'></div>");
+      legend.append(topRow);
+      legend.append(bottomRow);
+      if (legend.find("." + type).length == 0){
 
-    //Add network logo to map
-    function netLogoControl(div) {
-      div.style.padding = '0 5px';
-      var logo = document.createElement('IMG');
-      logo.src = opts.logo.logoSrc;
-      logo.style.cursor = 'pointer';
-      logo.style.width = opts.logo.logoWidth;
-      div.appendChild(logo);
-      google.maps.event.addDomListener(logo, 'click', function() {
-        window.location = opts.logo.logoHref;
-      });
+        if (type == "station" || type == "nn-station") {
+          var stationTypes = $("<div id='stations'> </div>");
+          stationTypes.append("<h4>Stations</h4>");
+
+          $.each(["1sp", "3bb3sm", "3bb", "3sp", "3sm", "3sm1sp"], function(key, value){
+            var parentDiv = $("<div class=''></div>");
+            var icon = $("<div class='station mag-2 sta-"+ value + "' </div>" );
+            icon.append(opts.icons.station);
+            parentDiv.append(icon);
+            parentDiv.append("<span class='legend-event'> " + value + "<span>");
+            stationTypes.append(parentDiv);
+          });
+
+          var parentDiv = $("<div class=''></div>");
+          var icon = $("<div class='nn-station mag-2' </div>" );
+          icon.append(opts.icons.nnStation);
+          parentDiv.append(icon);
+          parentDiv.append("<span class='legend-event'>Non Network<span>");
+
+
+          stationTypes.append(parentDiv);
+
+          topRow.append(stationTypes);
+        } else { //its an eq
+          if ( type == "event" || type == "nn-event") {
+            var eqSizes = $("<div id='eq-sizes'</div>");
+            eqSizes.append("<h4>Magnitude</h4>");
+            for (var i = 0; i < 10; i++){
+              var icon = $("<div class='event mag-"+i + " " + (i > 7 ? "large-mag" : "")+ "' </div>" );
+              icon.append(opts.icons.event);
+              icon.append("<span class='legend-event'>" + i + "<span>");
+              eqSizes.append(icon);
+            }
+
+            var nnEvents = $("<div id='nn-events'></div>");
+            var parentDiv = $("<div class=''></div>");
+            var nnIcon = $("<div class='nn-event mag-4' </div>" );
+            nnIcon.append(opts.icons.nnEvent);
+            parentDiv.append(nnIcon)
+            parentDiv.append("<span class='legend-event'> Non-network event <span>");
+            nnEvents.append(parentDiv);
+
+            var explosions = $("<div id='explosions'></div>");
+            var parentDiv = $("<div class=''></div>");
+            var explosionIcon = $("<div class='explosion mag-4' </div>" );
+            explosionIcon.append(opts.icons.explosion);
+            parentDiv.append(explosionIcon);
+            parentDiv.append("<span class='legend-event'> Explosion <span>");
+            explosions.append(parentDiv);
+          
+
+            topRow.append(eqSizes);
+            bottomRow.append(nnEvents);
+            bottomRow.append(explosions);
+          } 
+          
+          //DEPTH ICONS
+          //TODO: >65 km depth issue
+          var eqDepths = $("<div id='depths'> </div>");
+          eqDepths.append("<h4>Depth (km)</h4>");
+          var depths = ["1", "5", "11", "21", "36", "65", ">65"];
+          $.each(depths, function(key, value){
+            var parentDiv = $("<div class=''></div>");
+            var icon = $("<div class='event mag-2 show-depth depth-"+ value + "' </div>" );
+            icon.append(opts.icons.event);
+            parentDiv.append(icon);
+            parentDiv.append("<span class='legend-event'> " +value + "<span>");
+            eqDepths.append(parentDiv);
+          });
+          
+          topRow.append(eqDepths);
+          
+          if (!opts.show_depth_only){
+            var eqAges = $("<div id='eq-ages'</div>");
+            if (type == "queried") {
+              var eqAges = $("#eq-ages");
+              eqAges.html("<h4>Age</h4>");
+              //before/after/queried
+              $.each(["After", "Queried", "Before"], function(i, event){
+               var parentDiv = $("<div class='queried'></div>");
+               var icon = $("<div class='event mag-4 age-step-" + i + "' </div>" );
+               if (event == "Queried") {
+                 icon.append(opts.icons.queried);
+               } else {
+                 icon.append(opts.icons.event);
+               }
+               parentDiv.append(icon);
+               parentDiv.append("<span class='legend-event'> " + event + "<span>");
+               eqAges.append(parentDiv);
+              });
+
+
+            } else if (eqAges.children(".queried").length == 0){
+              //TODO: age steps vary
+              eqAges.append("<h4>Age</h4>");
+              //AGE ICONS
+              $.each(["hours", "days", "weeks"], function(i, age){
+                var parentDiv = $("<div class='not-queried'></div>");
+                var icon = $("<div class='event mag-4 age-step-" + i + "' </div>" );
+                icon.append(opts.icons.event);
+                parentDiv.append(icon);
+                parentDiv.append("<span class='legend-event'> Last 2 "+ age+ "<span>");
+                eqAges.append(parentDiv);
+              });
+
+            }
+            topRow.append(eqAges);
+            $("#legend-body #depths").hide();
+            if (eqAges.children(".queried")){
+              $("#eq-ages not-queried").hide();
+            }
+          }
+        }
+      } else {
+        return false;
+      }
+
     }
 
-
-
-
     function plotMarker(obj, zIndex, collection, key) {
-      var latLng = new google.maps.LatLng(obj.lat, obj.lng);
-      var marker = new google.maps.Marker({
-        position: latLng,
-        map: collection.displayOnLoad ? eqMap : null
-      });
+      var latLng = [obj.lat, obj.lng];
 
+      var markerObj = createMarkerArrays(obj, zIndex, collection, key);
+      var marker = markerObj.marker;
+      if (collection.displayOnLoad) {
+        marker.addTo(eqMap);
+      }
 
       if (opts.zoomToFit) {
         overlays.bounds.extend(latLng);
         eqMap.fitBounds(overlays.bounds);
       }
 
-
-      createMarkerArrays(marker, obj, zIndex, collection, key);
       if ((collection.bubbleHtml)) {
         var html = collection.bubbleHtml(obj, marker);
       }
@@ -407,221 +554,191 @@ var methods = {
       }
 
       if (collection.bubbleHtml) {
-        if (opts.evid && opts.evid == obj.evid) {
-          openInfoWindow(marker, key, tr, html, true);
-        } else {
-          google.maps.event.addListener(marker, 'click', function() {
-            openInfoWindow(marker, key, tr, html, true);
-          });
-        }
+          if (opts.evid && opts.evid == obj.evid) {
+              openInfoWindow(marker, key, tr, html, true);
+          } else {
+            marker.on('click', function(){
+              openInfoWindow(marker, key, tr, html, true);
+            });
+          }
       }
-    }
+      
+      // if(!legendMarkers[marker._icon.html]) {
+      //   legendMarkers[marker._icon.html] = true;
+      // }
 
+    }
 
     //a place for every marker and every marker in its place
-    function createMarkerArrays(marker, obj, zIndex, collection, key) {
-      if (obj.evid) { //is it an eq or station? 
-        var depthIcon = createEqIcon('depth', obj, collection);
-        if (!collection.displayDepthOnly) {
-          var timeIcon = createEqIcon('time', obj, collection);
-          var defaultIcon = timeIcon;
-        } else {
-          var defaultIcon = depthIcon;
-        }
-        // }
-        markerObj = {
-          marker: marker,
-          mag: parseFloat(obj.magnitude).toFixed(1),
-          depthKm: obj.depth_km,
-          depthMi: obj.depth_mi,
-          epoch: obj.event_time_epoch,
-          //event_time_utc:  obj.event_time_utc,
-          timeIcon: timeIcon,
-          depthIcon: depthIcon,
-          evid: obj.evid,
-          region: obj.region
-        };
-        marker.setIcon(defaultIcon);
-        if (opts.evid && opts.evid == obj.evid) {
-          zIndex = 10000;
-        }
+    function createMarkerArrays(obj, zIndex, collection, key) {
+
+      var markerObj;
+
+      if (obj.evid) {
+        
+        //show markers
+
+        markerObj = createEventMarker(obj, collection, zIndex);
+        
       } else { //station
-        var staIcon = createStaIcon(obj, collection);
-        markerObj = {
-          marker: marker,
-          name: obj.sta
-        };
-        marker.setIcon(staIcon);
+        
+        //show stations
+        markerObj = createStationMarker(obj, collection, zIndex);
+
         overlays.sta.markers.push(markerObj);
-
       }
-      marker.setZIndex(zIndex);
-      overlays[key].markers.push(markerObj);
 
+      overlays[key].markers.push(markerObj);
+      return markerObj;
     }
 
+    function createStationMarker(obj, collection, zIndex) {
+      var marker, markerObj;
+      var iconClass = "station",
+        iconColor = "sta-" + obj.sta_code,
+        iconShape = opts.icons.station;
+        
+      var authNet = obj.auth ? obj.auth : obj.net;
+      var lng = obj.lng ? obj.lng : obj.lon;
+      
+      if ($.inArray(authNet.toLowerCase(), opts.authNetworks) < 0) {
+        iconClass = "nn-station";
+        iconShape = opts.icons.nnStation;
+      }
+      
 
-    // // icons are all part of one image(sprite)
-    // //use arrays to determine sprite image offsets and size
-    function createEqIcon(type, obj, collection) {
-      var xSpriteOffset = collection.icon.xSpriteOffset;
-      var ySpriteOffset = collection.icon.ySpriteOffset;
-      var spriteMask = collection.icon.spriteMask;
+
+      marker = L.marker([obj.lat, lng], {
+        icon: L.divIcon({
+          className: iconClass + " " + iconColor,
+          iconSize: null,
+          html: iconShape,
+          zIndexOffset: zIndex
+        }),
+        title: "Add a title" //TODO: add title
+      });
+
+      if (collection.bubbleHtml) {
+        marker.bindPopup(collection.bubbleHtml(obj));
+      }
+
+      buildLegend(iconClass)
+
+      return markerObj = {
+        name: obj.sta,
+        marker: marker
+      };
+    }
+
+    function createEventMarker(obj, collection, zIndex) {
+      var markerObj, marker;
+      var iconClass = "event",
+        iconShape = opts.icons.event,
+        iconSize = "mag-" + ( obj.magnitude > 0 ? Math.floor(obj.magnitude) : 0)
+        iconAge = "age-step-",
+        iconDepth = "depth-";
       var d = new Date;
       var epochRenderStamp = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds()) / 1000;
-      //xIndex = magnitude
-      var xIndex = Math.max(Math.floor(obj.magnitude) - 1, 0);
-      var yIndex;
-
-      //depth
-      // <1 red
-      // 1-4 orange
-      // 5-10 yellow
-      //11 -20 blue
-      // 21-35 dark blue
-      // 36 -64 black
-      // >65 white
-
-
-
-      //find coordinates along the sprite y-axis
-      if (type == "time") {
-        //plot by before/after
-        if (opts.evid && opts.plot_relative_to_evid) {
-          //assumes evid is numeric
-          if (parseInt(opts.evid, 0) > parseInt(obj.evid, 0)) {
-            //before event
-            yIndex = 2;
-          } else {
-            //after event
-            yIndex = 0;
-          }
-          //plot temporal
+      if (opts.evid && opts.plot_relative_to_evid) {
+        //assumes evid is numeric
+        if (parseInt(opts.evid, 0) > parseInt(obj.evid, 0)) {
+          //before event
+          iconAge += 2;
+        } else if (parseInt(opts.evid, 0) < parseInt(obj.evid, 0)){
+          //after event
+          iconAge += 0;
         } else {
+          iconAge += 1;          
+        }
+        //plot temporal
+      } else {
+        if (collection.temporalSteps){
           if (obj.event_time_epoch > epochRenderStamp - collection.temporalSteps[0]) {
-            yIndex = 0;
+            iconAge += 0;
           } else if (obj.event_time_epoch > epochRenderStamp - collection.temporalSteps[1]) {
-            yIndex = 1;
+            iconAge += 1;
           } else {
-            yIndex = 2;
+            iconAge += 2;
           }
         }
-        if (obj.etype == 'px' || obj.etype == 'ex') {
-          //add two to increase size
-          yIndex < 7 ? yIndex += 15 : 8;
-          xIndex = xIndex += 2;
-        }
-
-      } else { //plot by depth
-        if (obj.etype == 'px' || obj.etype == 'ex') {
-          yIndex = 15;
-          xIndex += 2; //add two to index
-        } else {
-          if (obj.depth_km < 1) {
-            yIndex = 0;
-          } else if (obj.depth_km < 5) {
-            yIndex = 1;
-          } else if (obj.depth_km < 11) {
-            yIndex = 2;
-          } else if (obj.depth_km < 21) {
-            yIndex = 3;
-          } else if (obj.depth_km < 36) {
-            yIndex = 4;
-          } else if (obj.depth_km < 65) {
-            yIndex = 5;
-          } else {
-            yIndex = 6;
-          }
-        }
-        // yIndex = Math.min(parseInt(obj.depth_km/10, 0), 5);
-
-      }
-      //if not in network or not the queried event of a historical map, add 6 to the yIndex
-      if (($.inArray(obj.auth.toLowerCase(), opts.authNetworks) < 0 || obj.etype == "re") && !opts.evid) {
-        yIndex += 7;
-        //add another 7 if its an explosion
       }
 
-      //plot star when event is queried historical event
-      if (opts.eqMapType && opts.evid && opts.evid == obj.evid) {
-        yIndex = 14;
-        xIndex += 1; //make star a bit bigger
-      }
-
-      // if (yIndex == 2){yIndex = 6;}
-      xIndex = Math.min(xIndex, 6);
-      xIndex = Math.max(xIndex, 0);
-      yIndex = Math.min(yIndex, 17);
-      yIndex = Math.max(yIndex, 0);
-      // if(obj.evid == 60403136){
-      // }
-      // 
-
-      ////////////////////temp overides for testing
-      // yIndex = 12;
-
-      ///////////////////////end
-
-      var size = spriteMask[xIndex];
-      var originX = xSpriteOffset[xIndex];
-      var originY = ySpriteOffset[yIndex];
-      return new google.maps.MarkerImage(collection.icon.spritePath,
-        new google.maps.Size(size, size),
-        new google.maps.Point(originX, originY),
-        new google.maps.Point(size / 2, size / 2)
-      );
-    }
-
-
-
-    //create the station icon
-    function createStaIcon(obj, collection) {
-      var xSpriteOffset = collection.icon.xSpriteOffset;
-      var ySpriteOffset = collection.icon.ySpriteOffset;
-      var spriteMask = collection.icon.spriteMask;
-      // var d = new Date;
-      // var epochRenderStamp = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds())/1000;    
-      // //xIndex = magnitude
-      // var xIndex = Math.floor(obj.magnitude);
-      // var yIndex; 
-      //find y cords
-      yIndex = 0;
       if ($.inArray(obj.auth.toLowerCase(), opts.authNetworks) < 0) {
-        yIndex = 1;
-      }
-      //find x cords based on station type
-      switch (obj.sta_code) {
-        case '3bb':
-          xIndex = 0;
-          break;
-        case '3bb3sm':
-          xIndex = 2;
-          break;
-        case '3sm':
-          xIndex = 5;
-          break;
-        case '3sm1sp':
-          xIndex = 4;
-          break;
-        case '3sp':
-          xIndex = 3;
-          break;
-        default:
-          xIndex = 1;
+        iconClass = "nn-event"
+        iconShape = opts.icons.nnEvent;
       }
 
-      //find coordinates along the sprite y-axis
-      // xIndex = 5;
-      // yIndex = 1;
-      var size = spriteMask[0];
-      var originX = xSpriteOffset[xIndex];
-      var originY = ySpriteOffset[yIndex];
-      return new google.maps.MarkerImage(collection.icon.spritePath,
-        new google.maps.Size(size, size),
-        new google.maps.Point(originX, originY),
-        new google.maps.Point(size / 2, size / 2)
-      );
+      //TODO: pass break points in from config
+      if (obj.etype == "ex" || obj.etype == "px") {
+        iconClass = "explosion";
+        iconShape = opts.icons.explosion;
+      }
+
+      //queried event
+      if (opts.eqMapType && opts.evid && opts.evid == obj.evid) {
+
+        iconClass = "queried";
+        iconShape = opts.icons.queried;
+      }
+
+      if (obj.depth_km < 1) {
+        iconDepth += "1"
+      } else if (obj.depth_km < 5) {
+        iconDepth += "5"
+      } else if (obj.depth_km < 11) {
+        iconDepth += "11"
+      } else if (obj.depth_km < 21) {
+        iconDepth += "21"
+      } else if (obj.depth_km < 36) {
+        iconDepth += "36"
+      } else if (obj.depth_km < 65) {
+        iconDepth += "65"
+      } else {
+        iconDepth += "66"
+      }
+      
+      
+      buildLegend(iconClass);
+      
+      if (opts.show_depths_only) {
+        iconClass += " show-depth"
+      }
+      
+      marker = L.marker([obj.lat, obj.lng], {
+        icon: L.divIcon({
+          className: iconClass + " " + iconSize + " " + iconAge + " " + iconDepth,
+          iconSize: null,
+          html: iconShape
+        }),
+        title: "M " + obj.magnitude 
+      });
+
+
+      if (opts.evid && opts.evid == obj.evid) {
+        marker.zIndexOffset = 10000;
+      } else {
+        marker.zIndexOffset = zIndex;
+      }
+
+      if (collection.bubbleHtml) {
+        marker.bindPopup(collection.bubbleHtml(obj));
+      }
+
+      markerObj = {
+        mag: parseFloat(obj.magnitude).toFixed(1),
+        depthKm: obj.depth_km,
+        depthMi: obj.depth_mi,
+        epoch: obj.event_time_epoch,
+        //event_time_utc:  obj.event_time_utc,
+        evid: obj.evid,
+        region: obj.region,
+        marker: marker
+      };
+      
+      
+      return markerObj;
     }
+
 
 
 
@@ -642,28 +759,31 @@ var methods = {
 
     function closeInfoWindow() {
       clearListHighlight();
-      eqMap.infoWindow.close();
+      // eqMap.infoWindow.close();
     }
 
     function openInfoWindow(marker, key, tr, html, scrollList) {
       clearListHighlight();
-      google.maps.event.addListener(eqMap.infoWindow, 'closeclick', function() {
+
+      marker.on('popupclose', function(e) {
         if (tr) {
           tr.removeClass("highlight-list");
         }
       });
-      eqMap.infoWindow.setContent(html);
+      marker.openPopup();
+      
+      
       //FIXME: There should be a way to get the markerImage position.
-      eqMap.infoWindow.setOptions({
-        pixelOffset: new google.maps.Size(0, 6)
-      });
-      eqMap.infoWindow.open(eqMap, marker);
+      // eqMap.infoWindow.setOptions({
+      //   pixelOffset: new google.maps.Size(0, 6)
+      // });
+
       if (tr) {
         tr.addClass("highlight-list");
       }
       if (tr && scrollList) {
         $(".dataTables_scrollBody").scrollTop(0);
-        
+
         $(".dataTables_scrollBody").scrollTop(tr.position().top);
         // $(".dataTables_scrollBody").animate({scrollTop: tr.position().top - 20}, "fast");
       }
@@ -671,10 +791,8 @@ var methods = {
     }
 
     function clearListHighlight() {
-        $('tr.highlight-list').removeClass('highlight-list');
-      }
-
-
+      $('tr.highlight-list').removeClass('highlight-list');
+    }
 
     function km2Miles(km) {
       return (parseFloat(km) * 0.62).toFixed(1);
@@ -684,9 +802,9 @@ var methods = {
       $(".slider-mag-value").html(ui.value);
       $.each(overlays.eq.markers, function(i, val) {
         if (parseFloat(val.mag) < ui.value) {
-          val.marker.setMap(null);
+          val.marker.remove();
         } else {
-          val.marker.setMap(eqMap);
+          val.marker.addTo(eqMap);
         }
 
       });
@@ -703,11 +821,13 @@ var methods = {
         }
       });
     }
-
+    
+    
+    //TODO: deal with depth
     function resetAll() {
       $('#map-ui .slider-control .slider').slider("value", opts.magMin);
       $.each(overlays.eq.markers, function(i, val) {
-        val.marker.setMap(eqMap);
+        val.marker.addTo(eqMap);
         $('span.slider-mag-value').html(opts.magMin);
         setEqList(opts.magMin);
       });
@@ -725,7 +845,7 @@ var methods = {
         $('#map-ui #icon-toggle :radio[value=Time]').prop("checked", true);
       }
       $('#map-ui .checkbox :checkbox').prop("checked", false);
-      if (!$('#map-ui #display-legend').prop("checked")){
+      if (!$('#map-ui #display-legend').prop("checked")) {
         $('#map-ui #display-legend').prop("checked", "checked");
         $("#map-legend").show();
       }
@@ -755,17 +875,28 @@ var methods = {
     function toggleIcon() {
       closeInfoWindow();
       $this = $(this);
+
+      
+      if ($this.val() == 'Time') {
+        $("#legend-body #depths").hide();
+        $("#legend-body #eq-ages").show();
+      }else{
+        $("#legend-body #depths").show();
+        $("#legend-body #eq-ages").hide();
+      }
       $.each(overlays.eq.markers, function(i, val) {
         if ($this.val() == 'Time') {
-          val.marker.setIcon(val.timeIcon);
+
+          $(val.marker._icon).removeClass("show-depth");
           $('#req-legend-key').removeClass("depth");
         } else {
-          val.marker.setIcon(val.depthIcon);
-          $('#req-legend-key').addClass("depth");
 
+          $(val.marker._icon).addClass("show-depth");
+          $('#req-legend-key').addClass("depth");
+          //TODO: change legend to depth
         }
-        if (val.marker.getMap()) {
-          val.marker.setMap(eqMap);
+        if (val.marker._map) {
+          val.marker.addTo(eqMap);
         }
       });
     }
@@ -792,13 +923,13 @@ var methods = {
         plotEqs = [];
         $.each(overlays.eq.markers, function(i, markerObj) {
           var mag = parseInt(markerObj.mag, 0);
-          if (polyContainsPoint(overlays.xPoly, markerObj.marker.getPosition()) && mag >= parseInt($(".slider-mag-value").html(), 0)) {
-            elevationMin = Math.min(elevationMin,  markerObj.depthKm);
-            elevationMax = Math.max(elevationMax,  markerObj.depthKm);
-            
+          if (polyContainsPoint(overlays.xPoly, markerObj.marker.getLatLng()) && mag >= parseInt($(".slider-mag-value").html(), 0)) {
+            elevationMin = Math.min(elevationMin, markerObj.depthKm);
+            elevationMax = Math.max(elevationMax, markerObj.depthKm);
+
             mag = Math.max(0, mag);
             mag = Math.min(5, mag);
-            eval("plotEqs" + mag).push([markerObj.epoch * 1000,  markerObj.depthKm]);
+            eval("plotEqs" + mag).push([markerObj.epoch * 1000, markerObj.depthKm]);
           }
         });
       }
@@ -886,8 +1017,12 @@ var methods = {
           yaxis: {
             min: elevationMin,
             max: elevationMax,
-            transform: function (v) { return -v; },
-            inverseTransform: function (v) { return -v; }
+            transform: function(v) {
+              return -v;
+            },
+            inverseTransform: function(v) {
+              return -v;
+            }
           },
           xaxis: {
             mode: "time",
@@ -915,7 +1050,7 @@ var methods = {
         minMag += .05;
         $.each(overlays.eq.markers, function(i, markerObj) {
           var mag = markerObj.mag;
-          if (polyContainsPoint(overlays.xPoly, markerObj.marker.getPosition()) &&
+          if (polyContainsPoint(overlays.xPoly, markerObj.marker.getLatLng()) &&
             mag >= parseInt($(".slider-mag-value").html(), 0)) {
             // mag >= parseInt($( ".slider-mag-value" ).html(), 0) && (!maxDepth || markerObj.depthKm >= maxDepth*-1)){
             plotEqs.push([markerObj.epoch * 1000, mag, minMag]);
@@ -988,7 +1123,7 @@ var methods = {
         });
         $.each(newEqArray, function(i, markerObj) {
           var mag = parseInt(markerObj.mag, 0);
-          if (polyContainsPoint(overlays.xPoly, markerObj.marker.getPosition()) &&
+          if (polyContainsPoint(overlays.xPoly, markerObj.marker.getLatLng()) &&
             mag >= parseInt($(".slider-mag-value").html(), 0)) {
             // mag >= parseInt($( ".slider-mag-value" ).html(), 0) && (!maxDepth || markerObj.depthKm >= maxDepth*-1)){
             count += 1;
@@ -1086,18 +1221,17 @@ var methods = {
 
     }
 
-    // 
-    // ///////////////////////////////////////////////////////////////// cross section stuff
+    /////////////////////////////////////////////////////////////////// cross section stuff
 
 
     //  //overlay to translate coordinates to pixels
     function init_helper_container() {
-      overlays.container = new google.maps.OverlayView();
-      overlays.container.setMap(eqMap);
+      overlays.container = new L.layerGroup();
+      overlays.container.addTo(eqMap);
       overlays.container.draw = function() {
         if (!this.ready) {
           this.ready = true;
-          google.maps.event.trigger(this, 'ready');
+          eqMap.fire(this, 'ready');
         }
       };
     }
@@ -1106,8 +1240,8 @@ var methods = {
     function plotCrossSection() {
       var aPix = overlays.xSectMarkers[0].pixelPoint;
       var bPix = overlays.xSectMarkers[3].pixelPoint;
-      var a = new google.maps.LatLng(overlays.xSectMarkers[0].marker.getPosition().lat(), overlays.xSectMarkers[0].marker.getPosition().lng());
-      var b = new google.maps.LatLng(overlays.xSectMarkers[3].marker.getPosition().lat(), overlays.xSectMarkers[3].marker.getPosition().lng());
+      var a = new L.latLng(overlays.xSectMarkers[0].marker.getLatLng().lat, overlays.xSectMarkers[0].marker.getLatLng().lng);
+      var b = new L.latLng(overlays.xSectMarkers[3].marker.getLatLng().lat, overlays.xSectMarkers[3].marker.getLatLng().lng);
       var elevator = new google.maps.ElevationService();
       var path = [a, b];
       var xSectLength = a.distanceFrom(b); //meters
@@ -1131,7 +1265,7 @@ var methods = {
       if (overlays.xPoly) {
         $.each(overlays.eq.markers, function(i, markerObj) {
           var mag = parseInt(markerObj.mag, 0);
-          if (polyContainsPoint(overlays.xPoly, markerObj.marker.getPosition()) && mag >= parseInt($(".slider-mag-value").html(), 0)) {
+          if (polyContainsPoint(overlays.xPoly, markerObj.marker.getLatLng()) && mag >= parseInt($(".slider-mag-value").html(), 0)) {
             mag = Math.max(0, mag);
             mag = Math.min(5, mag);
             eval("plotEqs" + mag).push([(projectEq(markerObj.marker)) * metersPerPixel, markerObj.depthKm]);
@@ -1145,7 +1279,8 @@ var methods = {
             elevationProfileArray.push([i * sampleDistance, -1 * elevation.elevation * verticalExag / 1000]);
           });
           var eqColor = 3;
-          initializeViewer("cross-section"); 
+          
+          initializeViewer("cross-section");
           $.plot($("#cross-section .select-plot"), [{
                 data: elevationProfileArray
               },
@@ -1217,8 +1352,12 @@ var methods = {
 
             {
               yaxis: {
-                transform: function (v) { return -v; },
-                inverseTransform: function (v) { return -v; }
+                transform: function(v) {
+                  return -v;
+                },
+                inverseTransform: function(v) {
+                  return -v;
+                }
               },
               xaxis: {
                 position: "bottom",
@@ -1239,10 +1378,13 @@ var methods = {
     }
 
     // Make the modal for each type
-    function initializeViewer(type){
-      $("#"+type+" .cross-section-viewer")
-      .css('display', 'block')
-      .draggable();
+    function initializeViewer(type) {
+      $("#" + type + " .cross-section-viewer")
+        .css('display', 'block')
+        .draggable({
+          scroll: false,
+          containment: "#container"
+        });
 
       $("#" + type + " ." + type).show();
       $(".loading").hide();
@@ -1253,24 +1395,24 @@ var methods = {
           break;
         case 'cumulative-count':
           title = "Cumulative Count"
-          break;          
+          break;
         case 'mag-time':
           title = "Magnitude v. Time"
           break;
         default:
           title = "Magnitude Cross Section"
       }
-      $("#" + type + " .close-viewer").click(function(){
+      $("#" + type + " .close-viewer").click(function() {
         $("#" + type + " .cross-section-viewer").hide();
       });
-      $("#"+type+" .cross-section-title").text(title);
+      $("#" + type + " .cross-section-title").text(title);
     }
-    
+
     function drawXSection(e) {
-      if ($('.define-plot-area').length == 0 || $('.define-plot-area').text() == "Draw" || overlays.xSectMarkers.length > 3) {
+      if (!$('#define-plot-area').hasClass("active") || overlays.xSectMarkers.length > 3) {
         return;
       } else {
-        createPolyMarker(e.latLng);
+        createPolyMarker([e.latlng.lat, e.latlng.lng]);
       }
     }
 
@@ -1283,16 +1425,13 @@ var methods = {
     // where 0 and are the cross-section line
     // and 5 is the drag handle
     function createPolyMarker(latlng) {
-      var marker = new google.maps.Marker({
-        position: latlng,
-        map: eqMap,
-        draggable: false,
-        raiseOnDrag: false
-      });
 
+      var marker = new L.marker(latlng, {
+        draggable: false
+      });
       markerObj = {
         marker: marker,
-        pixelPoint: overlays.container.getProjection().fromLatLngToContainerPixel(latlng),
+        pixelPoint: eqMap.latLngToContainerPoint(latlng),
         distFromXsect: null
       };
       overlays.xSectMarkers.push(markerObj);
@@ -1300,14 +1439,11 @@ var methods = {
       switch (overlays.xSectMarkers.length) {
         //set A marker
         case 1:
-          marker.setIcon(
-            new google.maps.MarkerImage(
-              opts.xSectionIconA,
-              null,
-              null,
-              new google.maps.Point(15, 10)
-            )
-          ); //w
+          marker.setIcon(new L.divIcon({
+            className: "",
+            iconSize: null,
+            html: opts.xSectionIconA
+          }));
           createPolyMarker(latlng); //sw
           plotSteps(3);
           break;
@@ -1315,65 +1451,72 @@ var methods = {
 
 
         case 3:
-          marker.setIcon(opts.xSectionIconTrans); //se
+          marker.setIcon(new L.divIcon({
+            className: "",
+            iconSize: null,
+            html: opts.xSectionIconTrans
+          })); //se
           createPolyMarker(latlng);
           break;
         case 4:
-          marker.setIcon(
-            new google.maps.MarkerImage(
-              opts.xSectionIconB,
-              null,
-              null,
-              new google.maps.Point(-5, 12)
-            )
-          ); //e
+          marker.setIcon(new L.divIcon({
+            className: "",
+            iconSize: null,
+            html: opts.xSectionIconB
+          })); //b
           //create a line between a & b 
           // var path = 
           var paths = [];
           $.each(overlays.xSectMarkers, function(i, val) {
-            paths.push(val.marker.getPosition());
+            paths.push(val.marker.getLatLng());
           });
-          overlays.xSectPolyLine = new google.maps.Polyline({
-            map: eqMap,
-            path: [overlays.xSectMarkers[0].marker.getPosition(), latlng],
-            strokeWeight: 1,
-            stokeOpacity: 1.0,
-            strokeColor: "#FF0000"
 
+          overlays.xSectPolyLine = new L.polyline([overlays.xSectMarkers[0].marker.getLatLng(), latlng], {
+            weight: 1,
+            opacity: 1.0,
+            color: "#FF0000"
           });
+
+          overlays.xSectPolyLine.addTo(eqMap)
           //  overlays.xSectPolyLine.setMap(eqMap);
 
           createPolyMarker(latlng); //ne
 
           //n  drag handle
-          createPolyMarker(overlays.container.getProjection().fromContainerPixelToLatLng(
-            new google.maps.Point(
+          createPolyMarker(eqMap.containerPointToLatLng(
+            new L.point(
               parseInt((overlays.xSectMarkers[0].pixelPoint.x + overlays.xSectMarkers[3].pixelPoint.x) / 2, 0),
               parseInt((overlays.xSectMarkers[0].pixelPoint.y + overlays.xSectMarkers[3].pixelPoint.y) / 2, 0))
           ));
-          createPolyMarker(overlays.xSectMarkers[0].marker.getPosition()); //nw
+          createPolyMarker(overlays.xSectMarkers[0].marker.getLatLng()); //nw
+
+
           $("#plot").fadeIn(500);
           plotSteps(4);
           break;
         case 6:
-          marker.draggable = true;
+          marker.options.draggable = true;
           // marker.setIcon(opts.xSectionIconDrag);
-          marker.setIcon(
-            new google.maps.MarkerImage(
-              opts.xSectionIconDrag,
-              null,
-              null,
-              new google.maps.Point(0, 6)
-            )
-          );
-          google.maps.event.addListener(marker, 'drag', function(e) {
-            createRectangle(e.latLng);
+          marker.setIcon(new L.divIcon({
+            className: "",
+            iconSize: null,
+            html: opts.xSectionIconDrag
+          })); //b
+
+
+          marker.on('drag', function(e) {
+            createRectangle([e.latlng.lat, e.latlng.lng]);
           });
+
           break;
         default: // icon is tansperant 
-          marker.setIcon(opts.xSectionIconTrans);
+          marker.setIcon(new L.divIcon({
+            className: "",
+            iconSize: null,
+            html: opts.xSectionIconTrans
+          })); //b
       }
-      marker.setMap(eqMap);
+      marker.addTo(eqMap);
 
 
       if (overlays.xSectMarkers.length > 1) {
@@ -1385,23 +1528,21 @@ var methods = {
       clearPolygon();
       var paths = [];
       $.each(overlays.xSectMarkers, function(i, val) {
-        paths.push(val.marker.getPosition());
+        paths.push(val.marker.getLatLng());
       });
-      overlays.xPoly = new google.maps.Polygon({
-        map: eqMap,
-        paths: paths
-      });
+      overlays.xPoly = new L.polygon(paths);
+      overlays.xPoly.addTo(eqMap);
     }
 
     function clearCrossSection() {
       $("#plot").hide();
       $('.cross-section-viewer').hide();
       $.each(overlays.xSectMarkers, function(i, val) {
-        val.marker.setMap(null);
+        val.marker.remove();
       });
       clearPolygon();
       if (overlays.xSectPolyLine) {
-        overlays.xSectPolyLine.setMap(null);
+        overlays.xSectPolyLine.remove();
       }
       overlays.xSectPolyLine = null;
       overlays.xSectMarkers = [];
@@ -1409,7 +1550,7 @@ var methods = {
 
     function clearPolygon() {
       if (overlays.xPoly) {
-        overlays.xPoly.setMap(null);
+        overlays.xPoly.remove();
       }
     }
 
@@ -1418,7 +1559,7 @@ var methods = {
     function projectEq(eqMarker) {
       var pointA = overlays.xSectMarkers[0].pixelPoint;
       var pointB = overlays.xSectMarkers[3].pixelPoint;
-      var eq = overlays.container.getProjection().fromLatLngToContainerPixel(eqMarker.getPosition());
+      var eq = eqMap.latLngToContainerPoint(eqMarker.getLatLng());
       var m = (pointB.y - pointA.y) / (pointB.x - pointA.x); //slope of the line
       var b = pointA.y - (m * pointA.x); //y intercept
       var c = eq.x;
@@ -1433,11 +1574,11 @@ var methods = {
     function createRectangle(widthLatlng) {
       //reset incase zoom has changed
       $.each(overlays.xSectMarkers, function(i, val) {
-        val.pixelPoint = overlays.container.getProjection().fromLatLngToContainerPixel(val.marker.getPosition());
+        val.pixelPoint = eqMap.latLngToContainerPoint(val.marker.getLatLng());
       });
       var pointA = overlays.xSectMarkers[0].pixelPoint;
       var pointB = overlays.xSectMarkers[3].pixelPoint;
-      var widthPoint = overlays.container.getProjection().fromLatLngToContainerPixel(widthLatlng);
+      var widthPoint = eqMap.latLngToContainerPoint(widthLatlng);
       //solve distance from line using
       //d = |Am +Bn +C| /(A*A + B*B)^1/2 where (m,n) are x,y of mouse drag event
       var m = (pointB.y - pointA.y) / (pointB.x - pointA.x); //slope of the line
@@ -1450,8 +1591,9 @@ var methods = {
       var phideg = Math.abs(180 / (Math.PI) * phirad);
       var dely = Math.abs(Math.abs(pixelWidth) * Math.sin((Math.PI / 180) * (90 - phideg)));
       var delx = Math.abs(Math.abs(pixelWidth) * Math.cos((Math.PI / 180) * (90 - phideg)));
+
       //which way to we go George?
-      var sign = pixelWidth / Math.abs(pixelWidth);
+      var sign = pixelWidth != 0 ? pixelWidth / Math.abs(pixelWidth) : 0;
 
       if (m == (1 / 0)) { //infinity or 90
         dely = 0;
@@ -1469,23 +1611,24 @@ var methods = {
         delx = 0;
         dely = -1 * widthPoint * sign;
       }
-      var pointSw = new google.maps.Point(pointA.x - delx, pointA.y - dely);
-      var pointSe = new google.maps.Point(pointB.x - delx, pointB.y - dely);
-      var pointNe = new google.maps.Point(pointB.x + delx, pointB.y + dely);
-      var pointNw = new google.maps.Point(pointA.x + delx, pointA.y + dely);
-      var pointN = new google.maps.Point(
+
+      var pointSw = new L.point(pointA.x - delx, pointA.y - dely);
+      var pointSe = new L.point(pointB.x - delx, pointB.y - dely);
+      var pointNe = new L.point(pointB.x + delx, pointB.y + dely);
+      var pointNw = new L.point(pointA.x + delx, pointA.y + dely);
+      var pointN = new L.point(
         parseInt((pointNw.x + pointNe.x) / 2, 0),
         parseInt((pointNw.y + pointNe.y) / 2, 0)
       );
-      overlays.xSectMarkers[1].marker.setPosition(overlays.container.getProjection().fromContainerPixelToLatLng(pointSw));
+      overlays.xSectMarkers[1].marker.setLatLng(eqMap.containerPointToLatLng(pointSw));
       overlays.xSectMarkers[1].pixelPoint = pointSw;
-      overlays.xSectMarkers[2].marker.setPosition(overlays.container.getProjection().fromContainerPixelToLatLng(pointSe));
+      overlays.xSectMarkers[2].marker.setLatLng(eqMap.containerPointToLatLng(pointSe));
       overlays.xSectMarkers[2].pixelPoint = pointSe;
-      overlays.xSectMarkers[4].marker.setPosition(overlays.container.getProjection().fromContainerPixelToLatLng(pointNe));
+      overlays.xSectMarkers[4].marker.setLatLng(eqMap.containerPointToLatLng(pointNe));
       overlays.xSectMarkers[4].pixelPoint = pointNe;
-      overlays.xSectMarkers[6].marker.setPosition(overlays.container.getProjection().fromContainerPixelToLatLng(pointNw));
+      overlays.xSectMarkers[6].marker.setLatLng(eqMap.containerPointToLatLng(pointNw));
       overlays.xSectMarkers[6].pixelPoint = pointNw;
-      overlays.xSectMarkers[5].marker.setPosition(overlays.container.getProjection().fromContainerPixelToLatLng(pointN));
+      overlays.xSectMarkers[5].marker.setLatLng(eqMap.containerPointToLatLng(pointN));
       overlays.xSectMarkers[5].pixelPoint = pointN;
       createPolygon();
       plotSteps(5);
@@ -1493,29 +1636,30 @@ var methods = {
 
     //found at http://www.devcomments.com/Re-Polygon-contains-LatLng-at228409.htm
     function polyContainsPoint(obj, latLng) {
+      var polyLatLngs = obj.getLatLngs()[0];
       var j = 0;
       var oddNodes = false;
-      var x = latLng.lng();
-      var y = latLng.lat();
-      for (var i = 0; i < obj.getPath().getLength(); i++) {
+      var x = latLng.lng;
+      var y = latLng.lat;
+      for (var i = 0; i < polyLatLngs.length; i++) {
         j++;
-        if (j == obj.getPath().getLength()) {
+        if (j == polyLatLngs.length) {
           j = 0;
         }
-        if (((obj.getPath().getAt(i).lat() < y) && (obj.getPath().getAt(j).lat() >= y)) ||
-          ((obj.getPath().getAt(j).lat() < y) && (obj.getPath().getAt(i).lat() >= y))) {
-          if (obj.getPath().getAt(i).lng() + (y - obj.getPath().getAt(i).lat()) /
-            (obj.getPath().getAt(j).lat() - obj.getPath().getAt(i).lat()) *
-            (obj.getPath().getAt(j).lng() - obj.getPath().getAt(i).lng()) < x) {
+        if (((polyLatLngs[i].lat < y) && (polyLatLngs[j].lat >= y)) ||
+          ((polyLatLngs[j].lat < y) && (polyLatLngs[i].lat >= y))) {
+          if (polyLatLngs[i].lng + (y - polyLatLngs[i].lat) /
+            (polyLatLngs[j].lat - polyLatLngs[i].lat) *
+            (polyLatLngs[j].lng - polyLatLngs[i].lng) < x) {
             oddNodes = !oddNodes;
           }
         }
       }
       return oddNodes;
-    };
+    }
 
 
-  };
+  }
   //define some defaults.
 
 })(jQuery);
