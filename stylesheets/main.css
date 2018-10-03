@@ -2,14 +2,14 @@
 :root {
   
  /* Main color */
-  --brand-primary: #107a10; // green
+  --primary: #107a10; // green
   
  /* Some accent colors */
-  --gray-darker: #222;
-  --gray-dark: #333;
-  --gray: #555;
-  --gray-light: #bfbfbf;
-  --gray-lighter: #eee;
+  --accent-darker: #222;
+  --accent-dark: #333;
+  --accent: #555;
+  --accent-light: #bfbfbf;
+  --accent-lighter: #eee;
 } 
 
 /* Map Sizing*/
@@ -39,7 +39,7 @@
 .map-pane-head {
   font-size:18px;
   text-overflow: ellipsis;
-  background-color: var(--brand-primary);
+  background-color: var(--primary);
   color: white;
   margin-bottom: 0;
   margin-top: 0;
@@ -48,7 +48,7 @@
 }
 
 .map-pane-head.gray {
-  background-color: var(--gray);
+  background-color: var(--accent);
 }
 
 .map-pane-head > a, .map-pane-head a {
@@ -74,7 +74,7 @@
 
 /* Map Summary Styling */
 #map-summary li.label, .gm-style-iw td.label{
-  color: var(--gray-darker);
+  color: var(--accent-darker);
   font-size:inherit;
 }
 
@@ -84,7 +84,7 @@ ul.no-decoration {
 }
 
 #map-summary {
-  background-color: var(--gray-light);
+  background-color: var(--accent-light);
   overflow: auto;
   position: relative;
   top: 0px;
@@ -104,10 +104,10 @@ ul.no-decoration {
   margin-right: 15px;
 }
 #map-summary #map-options .settings:hover, #map-summary #map-options .full-screen:hover {
-  color: var(--brand-primary);
+  color: var(--primary);
 }
 #map-summary #map-options .settings.inactive, #map-summary #map-options .full-screen.inactive {
-  color: var(--gray-lighter);;
+  color: var(--accent-lighter);;
 }
 #map-summary #map-options #compress {
   display: none;
@@ -116,7 +116,7 @@ ul.no-decoration {
 
 /* Legend Styling */
 #map-legend {
-  border: 1px solid var(--gray-light);
+  border: 1px solid var(--accent-light);
   background: white;
   overflow: hidden;
   width: auto;
@@ -340,7 +340,7 @@ ul.no-decoration {
 }
 
 #map-tools{
-  border: 1px solid var(--gray-light);
+  border: 1px solid var(--accent-light);
   background: white;
 }
 
@@ -391,7 +391,7 @@ ul.no-decoration {
   left: 10%;
   z-index: 80;
   background-color: white;
-  border: 1px solid var(--gray-light);
+  border: 1px solid var(--accent-light);
   width: 980px;
 }
 .cross-section-viewer .logo img {
@@ -403,7 +403,7 @@ ul.no-decoration {
 .cross-section-viewer .viewer-header {
   color: #333;
   padding: 0px 10px 0px 10px;
-  border-bottom: 1px solid var(--gray-light);
+  border-bottom: 1px solid var(--accent-light);
 }
 .cross-section-viewer .viewer-header .viewer-title .cross-section-title {
   display: inline;
@@ -459,13 +459,13 @@ ul.no-decoration {
 }
 #station-search input {
   width: 45%;
-  border: 1px solid var(--gray-light);
+  border: 1px solid var(--accent-light);
 }
 ul.ui-autocomplete {
   position: absolute;
   z-index: 1000 !important;
   background-color: white;
-  border: 1px solid var(--gray-light);
+  border: 1px solid var(--accent-light);
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -474,7 +474,7 @@ ul.ui-autocomplete li {
   width: 100%;
 }
 ul.ui-autocomplete li:hover {
-  background-color: var(--gray-light);
+  background-color: var(--accent-light);
 }
 ul.ui-autocomplete li a {
   color: #333;
@@ -513,7 +513,7 @@ table.map-list {
 }
 
 .highlight-list {
-  background-color: var(--brand-primary) !important;
+  background-color: var(--primary) !important;
 }
 /* End Map List Styling*/
 
