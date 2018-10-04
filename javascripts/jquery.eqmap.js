@@ -332,8 +332,8 @@ var methods = {
           $.each(opts.polygons, function(key, val) {
             $.ajax({
             dataType: "json",
-            url: val.url
-            }).success(function(response){
+            url: val.url,
+            success: function(response){
               var features = [];
               
               $.each(response.features, function(i, feature){
@@ -373,12 +373,11 @@ var methods = {
               
               });
 
-            }).fail(function(response){
-              console.log("failed: ", response)
+            },
+            fail: function(response){
+              console.log("failed: ", response);
+            }
             });
-
-            // overlays[key] = p;
-
           });
         }
 
@@ -614,8 +613,7 @@ var methods = {
           iconSize: null,
           html: iconShape,
           zIndexOffset: zIndex
-        }),
-        title: "Add a title" //TODO: add title
+        })
       });
 
       if (collection.bubbleHtml) {

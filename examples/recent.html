@@ -61,8 +61,8 @@
       </div>
       <div id='map'></div>
       <div class='panel no-padding' id='map-legend'>
-        <div class='panel-heading'>
-          <h2>
+        <div>
+          <h2 class="map-pane-head">
             Legend
             <div class='pull-right'>
               <i class='fa fa-times' id='legend-close'></i>
@@ -95,7 +95,7 @@
                 <div id='legend-toggle'>
                   <div class='checkbox'>
                     <label>
-                    <input checked='checked' id='display-legend' name='legends' type='checkbox' value='#'>Display Legend</input>
+                    <input checked id='display-legend' name='legends' type='checkbox' value='#'> Display Legend
                     </label>
                   </div>
                 </div>
@@ -111,12 +111,12 @@
                     Display Earthquakes by:
                     <div class='radio'>
                       <label>
-                      <input checked='checked' name='time_depth' type='radio' value='Time'>Time</input>
+                      <input checked='checked' name='time_depth' type='radio' value='Time'>Time
                       </label>
                     </div>
                     <div class='radio'>
                       <label>
-                      <input name='time_depth' type='radio' value='Depth'>Depth</input>
+                      <input name='time_depth' type='radio' value='Depth'>Depth
                       </label>
                     </div>
                   </div>
@@ -124,7 +124,7 @@
                 <div id='boundaries'>
                   <div class='checkbox'>
                     <label>
-                    <input checked id='bounds' name='boundaries' type='checkbox' value='#'>Display Boundaries</input>
+                    <input checked id='bounds' name='boundaries' type='checkbox' value='#'>Display Boundaries
                     </label>
                     <a class='tooltip-icon' rel='map-boundaries'></a>
                   </div>
@@ -132,7 +132,7 @@
                 <div id='faults'>
                   <div class='checkbox'>
                     <label>
-                    <input name='faults' type='checkbox' value='#'>Display Faults</input>
+                    <input name='faults' type='checkbox' value='#'>Display Faults
                     </label>
                     <a class='tooltip-icon' rel='display-faults'></a>
                   </div>
@@ -186,16 +186,16 @@
                     Plot Type:
                     <div class='btn-group' data-toggle='buttons'>
                       <label class='btn btn-default active'>
-                      <input id='select-x-section-plot' name='select-plot' type='radio' value='x-section'>X-Section</input>
+                      <input id='select-x-section-plot' name='select-plot' type='radio' value='x-section'>X-Section
                       </label>
                       <label class='btn btn-default'>
-                      <input id='select-depth-time-plot' name='select-plot' type='radio' value='depth-time'>Depth</input>
+                      <input id='select-depth-time-plot' name='select-plot' type='radio' value='depth-time'>Depth
                       </label>
                       <label class='btn btn-default'>
-                      <input id='select-cumulative-count-plot' name='select-plot' type='radio' value='cumulative-count'>Cumulative #</input>
+                      <input id='select-cumulative-count-plot' name='select-plot' type='radio' value='cumulative-count'>Cumulative #
                       </label>
                       <label class='btn btn-default'>
-                      <input id='select-mag-time-plot' name='select-plot' type='radio' value='mag-time'>Mag-Time</input>
+                      <input id='select-mag-time-plot' name='select-plot' type='radio' value='mag-time'>Mag-Time
                       </label>
                     </div>
                   </div>

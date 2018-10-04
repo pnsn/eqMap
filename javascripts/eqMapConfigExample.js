@@ -112,7 +112,7 @@ $.fn.eqMap.standardDefaults = {
   points: {
     eq: {
       displayOnLoad: true,
-      urls: ["/events/recent_events.json", "/non_net_events/recent_events.json"],
+      urls: ["https://pnsn.org/events/recent_events.json", "https://pnsn.org/non_net_events/recent_events.json"],
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: $.fn.eqMap.eqBubbleHtml,
       listHtml: $.fn.eqMap.eqListHtml,
@@ -129,9 +129,6 @@ $.fn.eqMap.standardDefaults = {
   xSectionIconB: "B",
   xSectionIconDrag: "<div id='x-section-drag-handle'><div>",
   xSectionIconTrans: "",
-
-
-  //TODO: change this text to make it geojson
   //you may add polygons by hosting a kml file on a webserver. 
   //gmaps caches the kml file. Use the following format for testing or if you have a dynamically generated kml file.
   //url: "http://webserver/path/to/file.kml?dummy=" + (new Date()).getTime()
@@ -149,11 +146,11 @@ $.fn.eqMap.standardDefaults = {
 
   polygons: {
     boundaries: {
-      url: "/assets/json/pnsn_boundaries.geojson",
+      url: "https://pnsn.org/assets/json/pnsn_boundaries.geojson",
       displayOnLoad: true
     },
     faults: {
-      url: "/assets/json/pnsn_faults.geojson",
+      url: "https://pnsn.org/assets/json/pnsn_faults.geojson",
       displayOnLoad: false
     }
 
