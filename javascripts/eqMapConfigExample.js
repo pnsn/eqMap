@@ -20,21 +20,21 @@ $.fn.eqMap.eqBubbleHtml = function(eq) {
   }
   return a +
     "<table>" +
-    "<tr> <td class ='label'> Magnitude: </td><td class = 'content'>" + parseFloat(eq.magnitude).toFixed(1) + "</td> " + "</tr>" +
-    "<tr> <td class ='label'> Time(UTC): </td><td class = 'content'>" + eq.event_time_utc + "</td> " + "</tr>" +
-    "<tr> <td class ='label'> Time(Local): </td><td class = 'content'>" + eq.event_time_local + "</td> " + "</tr>" +
-    "<tr> <td class ='label'> Depth: </td><td class = 'content'>" + parseFloat(eq.depth_km).toFixed(1) + " km (" + parseFloat(eq.depth_mi).toFixed(1) + " miles)</td> " + "</tr>" +
-    "<tr> <td class ='label'> Event Id: </td><td class = 'content'>" + eq.evid + "</td> " + "</tr>" +
-    "<tr> <td class ='label'> Network: </td><td class = 'content'>" + eq.auth + "</td> " + "</tr>" +
+    "<tr> <td class ='popup-label'> Magnitude: </td><td class = 'content'>" + parseFloat(eq.magnitude).toFixed(1) + "</td> " + "</tr>" +
+    "<tr> <td class ='popup-label'> Time(UTC): </td><td class = 'content'>" + eq.event_time_utc + "</td> " + "</tr>" +
+    "<tr> <td class ='popup-label'> Time(Local): </td><td class = 'content'>" + eq.event_time_local + "</td> " + "</tr>" +
+    "<tr> <td class ='popup-label'> Depth: </td><td class = 'content'>" + parseFloat(eq.depth_km).toFixed(1) + " km (" + parseFloat(eq.depth_mi).toFixed(1) + " miles)</td> " + "</tr>" +
+    "<tr> <td class ='popup-label'> Event Id: </td><td class = 'content'>" + eq.evid + "</td> " + "</tr>" +
+    "<tr> <td class ='popup-label'> Network: </td><td class = 'content'>" + eq.auth + "</td> " + "</tr>" +
     "</table>";
 };
 
 $.fn.eqMap.staBubbleHtml = function(sta, marker) {
   return "<a href='/seismogram/current/" + sta.sta.toLowerCase() + "'> View Seismogram </a>" +
     "<table>" +
-    "<tr> <td class ='label'> Name: </td><td class = 'content'>" + sta.sta + "</td> " + "</tr>" +
-    "<tr> <td class ='label'> Network: </td><td class = 'content'>" + sta.auth + "</td> " + "</tr>" +
-    "<tr> <td class ='label'> Description: </td><td class = 'content'>" + sta.description + "</td> " + "</tr>" +
+    "<tr> <td class ='popup-label'> Name: </td><td class = 'content'>" + sta.sta + "</td> " + "</tr>" +
+    "<tr> <td class ='popup-label'> Network: </td><td class = 'content'>" + sta.auth + "</td> " + "</tr>" +
+    "<tr> <td class ='popup-label'> Description: </td><td class = 'content'>" + sta.description + "</td> " + "</tr>" +
     "</table>";
 
 };

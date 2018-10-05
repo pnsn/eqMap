@@ -1408,8 +1408,10 @@ var methods = {
 
     function drawXSection(e) {
       if (!$('#define-plot-area').hasClass("active") || overlays.xSectMarkers.length > 3) {
+        console.log("fail 1411")
         return;
       } else {
+        console.log("pass 1411")
         createPolyMarker([e.latlng.lat, e.latlng.lng]);
       }
     }

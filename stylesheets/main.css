@@ -548,4 +548,8 @@ table.map-list {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+.popup-label {
+  color: var(--accent-dark);
+  font-weight:bold;
+}
 /* End Tooltip Styling*/
