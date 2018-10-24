@@ -73,5 +73,5 @@ A python script is included to generate a json file from the 1 week usgs all fee
 
 
 ##Requirements
-Bootstrap v3 is now required for the UI. The Bootstrap css must be loaded before main.css. A Google Maps Elevation Service API Key is required for the X-Section Plot. Esri-Leaflet is required for basemaps.
+Bootstrap v3 is used for the UI, but it can be omitted if you have a custom UI. The Bootstrap css must be loaded before main.css. A Google Maps Elevation Service API Key is required for the X-Section Plot. Esri-Leaflet is required for basemaps.
 
