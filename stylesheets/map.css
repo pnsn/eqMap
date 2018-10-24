@@ -1,5 +1,16 @@
 
 /*Styling of the Map Icons*/
+
+#x-section-drag-handle {
+  height:15px;
+  width:15px;
+  background-color:white;
+  border: 1px solid black;
+  border-radius: 30%;
+  margin-left:-7.5px;
+  margin-top:-7.5px;
+}  
+
 .event, .nn-event, .queried {
   stroke: black;
   stroke-width: 5px;

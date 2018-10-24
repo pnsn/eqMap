@@ -1,16 +1,15 @@
 #eqMap
-EqMap is a generic mapping utility for plotting, earthquakes, monitoring stations,  and polygons on a Google Map. The plugin uses Google Maps API V3 (API V2 is deprecated and will stop working on 5/19/2013). The plugin expects a JSON objects for the earthquakes and stations, and KML files for all polygons. The JSON objects need to served via web service; the KML files must be hosted on a public facing web server.  
+EqMap is a generic mapping utility for plotting, earthquakes, monitoring stations,  and polygons on a Leaflet Map. The plugin uses Leaflet V1.3. The plugin expects a JSON objects for the earthquakes and stations, and KML files for all polygons. The JSON objects need to served via web service; the KML files must be hosted on a public facing web server.  
 
 ##Usage 
 1. Copy javascripts/eqMapConfigExample.js to javascripts/eqMapConfig.js (This file is gitignored)
 2. Point browser to one of the example html files* 
-3. Get an API key at https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+3. If you are using the X-Section Plot, Get an API key for the Elevation Service at https://developers.google.com/maps/documentation/javascript/elevation
 4. Once you create your own templates add your API Key
 
-<code> &lt;script src="https://www.google.com/jsapi?key=YOUR_KEY_HERE.js" type="text/javascript"&gt; </script></code>
+<code> &lt;script src="https://www.google.com/jsapi?key=" type="text/javascript"&gt; </script></code>
 
 *By default the example files use PNSN event and station data, a PNSN boundary KML file and a S. California fault KML file.
-
 
 The plugin is called by:
 <pre><code>
@@ -74,5 +73,5 @@ A python script is included to generate a json file from the 1 week usgs all fee
 
 
 ##Requirements
-Bootstrap v3 is now required for the UI. The Bootstrap css must be loaded before main.css.
+Bootstrap v3 is now required for the UI. The Bootstrap css must be loaded before main.css. A Google Maps Elevation Service API Key is required for the X-Section Plot. Esri-Leaflet is required for basemaps.
 

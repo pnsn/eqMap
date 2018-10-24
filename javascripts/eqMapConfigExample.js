@@ -3,11 +3,11 @@
 
 //Defines shapes of icons
 $.fn.eqMap.icons = {
-  event : '<svg width="100%" height="100%" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg>',
-  nnEvent : '<svg width="100%" height="100%" viewBox="0 0 50 50"><rect x="1" y="1" width="48" height="48"/></svg>',
-  explosion : '<svg width="100%" height="100%" viewBox="-250 -250 500 500"><polygon points="249,1 40,40 1,249 -40,40 -249,1 -40,-40 1,-249 40,-40"/></svg>',
-  queried: '<svg width="100%" height="100%" viewBox="-125 0 250 235"><polygon points="0,0 35,82 125,90 55,155 75,235 0,190 -75,235 -55,155 -125,90 -35,82" /></svg>',
-  nnStation : '<svg width="100%" height="100%" viewBox="-125 0 250 235"><polygon points="0,0 125,90 75,235 -75,235 -125,90" /></svg>',
+  event : '<svg width="100%" height="100%" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg>', //circle
+  nnEvent : '<svg width="100%" height="100%" viewBox="0 0 50 50"><rect x="1" y="1" width="48" height="48"/></svg>', //square
+  explosion : '<svg width="100%" height="100%" viewBox="-250 -250 500 500"><polygon points="249,1 40,40 1,249 -40,40 -249,1 -40,-40 1,-249 40,-40"/></svg>', //4 point star
+  queried: '<svg width="100%" height="100%" viewBox="-125 0 250 235"><polygon points="0,0 35,82 125,90 55,155 75,235 0,190 -75,235 -55,155 -125,90 -35,82" /></svg>', //star
+  nnStation : '<svg width="100%" height="100%" viewBox="-125 0 250 235"><polygon points="0,0 125,90 75,235 -75,235 -125,90" /></svg>',//pentagon
   station : '<svg width="100%" height="100%" viewBox="-125 0 250 235"><polygon points="0,0 125,217 -125,217" /></svg>', //triangle
   // station : '<svg width="100%" height="100%" viewBox="-125 0 250 235"><polygon points="0,0 30,115 125,217 0,175 -125,217 -30,120" /></svg>', //dented triangle
 }
@@ -48,18 +48,15 @@ $.fn.eqMap.eqListHtml = function(eq) {
   +" km</td></tr>";
 };
 
-
 $.fn.eqMap.staListHtml = function(sta) {
   return "<tr> <td>" + sta.sta + "</td><td>" +
     sta.auth + "</td><td>" +
     sta.sta_code + "</td></tr>";
 };
 
-
 $.fn.eqMap.polyObjectHtml = function(obj) {
   return "ehllo";
 };
-
 
 //map configs.
 $.fn.eqMap.standardDefaults = {
@@ -107,7 +104,6 @@ $.fn.eqMap.standardDefaults = {
   //event_time_local      string time stamp (optional for bubble and list only)
   //event_time_epoch      float
   //events.etype"         string ('re', 'le', 'ex', 'px') regional, local, explosion, probable explosion
-
 
   points: {
     eq: {
@@ -201,7 +197,8 @@ $.fn.eqMap.standardDefaults = {
       "<li>" + minDateObj.getUTCFullYear() + "/" + (minDateObj.getUTCMonth() + 1) + "/" + minDateObj.getUTCDate() + "</li>" +
       "</ul>";
   },
-  icons: $.fn.eqMap.icons
+  icons: $.fn.eqMap.icons,
+  layerControl: true
 };
 
 //clickable thumbnail all gmap events disabled
@@ -230,7 +227,8 @@ $.fn.eqMap.thumbDefaults = {
       url: "/assets/json/pnsn_boundaries.geojson",
       displayOnLoad: true
     }
-  }
+  },
+  layerControl: false
 };
 
 $.fn.eqMap.notableDefaults = {
