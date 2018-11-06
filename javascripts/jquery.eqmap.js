@@ -482,7 +482,7 @@ var methods = {
 
 					topRow.append(eqDepths);
 
-					if (!opts.show_depth_only) {
+					if (!opts.displayDepthOnly) {
 						var eqAges = $("<div id='eq-ages'</div>");
 						if (type == "queried") {
 							var eqAges = $("#eq-ages");
@@ -635,7 +635,7 @@ var methods = {
 			var iconClass = "event",
 				iconShape = opts.icons.event,
 				iconSize = "mag-" + (obj.magnitude > 0 ? Math.floor(obj.magnitude) : 0)
-			iconAge = "age-step-",
+			  iconAge = "age-step-",
 				iconDepth = "depth-";
 			var d = new Date;
 			var epochRenderStamp = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds()) / 1000;
@@ -700,7 +700,7 @@ var methods = {
 
 			buildLegend(iconClass);
 
-			if (opts.show_depths_only) {
+			if (opts.displayDepthOnly) {
 				iconClass += " show-depth"
 			}
 

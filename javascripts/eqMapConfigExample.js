@@ -235,14 +235,13 @@ $.fn.eqMap.notableDefaults = {
   points: {
     eq: {
       displayOnLoad: true,
-      displayDepthOnly: true,
       urls: ["/events/notable_events.json"],
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: $.fn.eqMap.eqBubbleHtml,
       listHtml: $.fn.eqMap.eqListHtml
     }
   },
-  show_depths_only:true,
+  displayDepthOnly:true,
   polygons: null
 };
 
@@ -337,9 +336,9 @@ $.fn.eqMap.customDefaults = {
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: $.fn.eqMap.eqBubbleHtml,
       listHtml: $.fn.eqMap.eqListHtml,
-      displayDepthOnly: true
     }
-  }
+  },
+  displayDepthOnly: true
 };
 
 $.fn.eqMap.stationDefaults = {
@@ -350,7 +349,6 @@ $.fn.eqMap.stationDefaults = {
       icon: $.fn.eqMap.staIcon,
       bubbleHtml: $.fn.eqMap.staBubbleHtml,
       listHtml: $.fn.eqMap.staListHtml,
-      displayDepthOnly: true,
       cluster: {
         gridSize: 50,
         maxZoom: 7
@@ -381,7 +379,6 @@ $.fn.eqMap.spectrogramDefaults = {
   //     icon: $.fn.eqMap.staIcon,
   //     bubbleHtml: $.fn.eqMap.staBubbleHtml
   //       // listHtml: $.fn.eqMap.staListHtml,
-  //       //displayDepthOnly: true
   //       // cluster:{
   //       // gridSize: 50,
   //       // maxZoom: 7
