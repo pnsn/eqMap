@@ -151,11 +151,23 @@
   fill: #EC8E00;
 }
 
+.sta-Composite {
+  fill: #EC8E00;
+}
+
 .sta-3bb {
   fill: #F2EA00;
 }
 
+.sta-Broadband {
+  fill: #F2EA00;
+}
+
 .sta-3sp {
+  fill: #555555;
+}
+
+.sta-ShortPeriod {
   fill: #555555;
 }
 

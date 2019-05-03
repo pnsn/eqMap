@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+<name>uuss.kml</name>
+<open>1</open>
+
+<Style id="black">
+  <LineStyle>
+    <color>9f000000</color>
+    <width>2</width>
+  </LineStyle>
+</Style>
+
+<Style id="grey">
+  <LineStyle>
+    <color>9f9f9f9f</color>
+    <width>2</width>
+  </LineStyle>
+</Style>
+
+
+<Placemark> 
+<styleUrl>#black</styleUrl>
+ <MultiGeometry>
+  <LineString>
+   <extrude>0</extrude>
+   <tessellate>1</tessellate>
+  <coordinates>
+   -114.250000,36.750000
+   -108.750000,36.750000
+   -108.750000,42.50
+   -114.250000,42.50
+   -114.250000,36.750000
+  </coordinates>
+ </LineString>
+</MultiGeometry>
+</Placemark>
+
+<Placemark> 
+<styleUrl>#black</styleUrl>
+ <MultiGeometry>
+  <LineString>
+   <extrude>0</extrude>
+   <tessellate>1</tessellate>
+  <coordinates>
+   -111.3333,44.0000
+   -109.75000,44.0000
+   -109.75000,45.1667
+   -111.3333,45.1667
+   -111.3333,44.0000
+  </coordinates>
+ </LineString>
+</MultiGeometry>
+</Placemark>
+
+<Placemark>
+<styleUrl>#grey</styleUrl>
+ <MultiGeometry>
+  <LineString>
+   <extrude>0</extrude>
+   <tessellate>1</tessellate>
+  <coordinates>
+   -115.2500,35.0000
+   -107.750,35.0000
+   -107.750,46.0000
+   -115.2500,46.0000
+   -115.2500,35.0000
+  </coordinates>
+ </LineString>
+</MultiGeometry>
+</Placemark>
+
+
+</Document> </kml>

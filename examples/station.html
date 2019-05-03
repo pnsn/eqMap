@@ -1,8 +1,8 @@
-<!--Map of PNSN Seismic Stations -->
+<!--Map of UUSS Seismic Stations -->
 <!DOCTYPE html>
 <html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
   <head>
-    <meta content='PNSN' name='Description' />
+    <meta content='UUSS' name='Description' />
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
     
@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     <script src="../javascripts/jquery.eqmap.js" type="text/javascript"></script>
-    <script src="../javascripts/eqMapConfigExample.js" type="text/javascript"></script>
+    <script src="../javascripts/eqMapConfig.js" type="text/javascript"></script>
     <script src="../javascripts/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="../javascripts/jquery.flot.min.js" type="text/javascript"></script>
     <script src="../javascripts/jquery.flot.time.min.js" type="text/javascript"></script>
@@ -51,10 +51,11 @@
         $(function(){
           $('#map').eqMap({
             eqMapType: "station",
-            'lat': "45.07",
-            'lng': "-120.95",
+            'lat': "41.1",
+            'lng': "-111.34",
             'zoom': parseInt("6"),
-             params: {sta: '{"sta":["1sp","3bb","3bb3sm","3sm","3sm1sp","3sp"],"net":["UW","CC","UO","TA","PB"]}'}
+             //params: {sta: '{"sta":["1sp","3bb","3bb3sm","3sm","3sm1sp","3sp"],"net":["UW","CC","UO","TA","PB"]}'}
+            params: {sta: '{"sta":["ShortPeriod","Broadband","Composite","StrongMotion","3sm1sp","3sp"],"net":["UW","CC","UO","TA","PB","UU","NP","WY","MB"]}'}
             });
           });
       //]]>
@@ -120,6 +121,7 @@
                         <label>Networks:</label>
                         <table class='table table-condensed'>
                           <tr>
+                            <!--
                             <td>
                               <label class='checkbox-inline'>
                               <input checked="checked" id="net_" name="net[]" type="checkbox" value="UW" />
@@ -150,13 +152,125 @@
                               PB
                               </label>
                             </td>
+                            -->
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="UU" />
+                              UU  
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="WY" />
+                              WY  
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="US" />
+                              US  
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="TA" />
+                              TA  
+                              </label>
+                            </td>
                           </tr>
+                          <tr>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="RE" />
+                              RE  
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="RC" />
+                              RC
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="PB" />
+                              PB
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="NP" />
+                              NP
+                              </label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="NN" />
+                              NN
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="N4" />
+                              N4
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="MB" />
+                              MB
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="LB" />
+                              LB
+                              </label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="IW" />
+                              IW
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="IU" />
+                              IU
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="IE" />
+                              IE
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="AR" />
+                              AR
+                              </label>
+                            </td>
+                           </tr>
+                           <tr>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="net_" name="net[]" type="checkbox" value="AE" />
+                              AE
+                              </label>
+                            </td>
+                           </tr>
                         </table>
                       </div>
                       <div class='form-group'>
                         <label>Station Types:</label>
                         <table class='table table-condensed'>
                           <tr>
+                            <!--
                             <td>
                               <label class='checkbox-inline'>
                               <input checked="checked" id="sta_" name="sta[]" type="checkbox" value="1sp" />
@@ -197,6 +311,33 @@
                               3SP
                               </label>
                             </td>
+                            -->
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="sta_" name="sta[]" type="checkbox" value="ShortPeriod" />
+                              ShortPeriod
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="sta_" name="sta[]" type="checkbox" value="StrongMotion" />
+                              StrongMotion 
+                              </label>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="sta_" name="sta[]" type="checkbox" value="Composite" />
+                              Composite 
+                              </label>
+                            </td>
+                            <td>
+                              <label class='checkbox-inline'>
+                              <input checked="checked" id="sta_" name="sta[]" type="checkbox" value="Broadband" />
+                              Broadband
+                              </label>
+                            </td>
                           </tr>
                         </table>
                       </div>
@@ -204,12 +345,9 @@
                         Zoom to:
                         <select id="region" name="region">
                           <option value="all">All</option>
-                          <option value="seattle">Seattle</option>
-                          <option value="columbia-basin">Columbia Basin</option>
-                          <option value="portland">Portland</option>
-                          <option value="hanford">Hanford</option>
-                          <option value="olympic-peninsula">Olympic Peninsula</option>
-                          <option value="puget-sound">Puget Sound</option>
+                          <option value="yellowstone">Yellowstone</option>
+                          <option value="slc">Salt Lake City</option>
+                          <option value="forge">FORGE</option>
                         </select>
                       </label>
                       <button class='btn btn-default center-block' id='station-submit' name='nil' type='submit'>Display</button>

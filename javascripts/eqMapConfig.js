@@ -34,7 +34,8 @@ $.fn.eqMap.staBubbleHtml = function(sta, marker) {
     "<table>" +
     "<tr> <td class ='popup-label'> Name: </td><td class = 'content'>" + sta.sta + "</td> " + "</tr>" +
     "<tr> <td class ='popup-label'> Network: </td><td class = 'content'>" + sta.auth + "</td> " + "</tr>" +
-    "<tr> <td class ='popup-label'> Description: </td><td class = 'content'>" + sta.description + "</td> " + "</tr>" +
+    //"<tr> <td class ='popup-label'> Description: </td><td class = 'content'>" + sta.description + "</td> " + "</tr>" +
+    "<tr> <td class ='popup-label'> Description: </td><td class = 'content'>" + sta.staname + "</td> " + "</tr>" +
     "</table>";
 
 };
@@ -55,15 +56,15 @@ $.fn.eqMap.staListHtml = function(sta) {
 };
 
 $.fn.eqMap.polyObjectHtml = function(obj) {
-  return "ehllo";
+  return "hello";
 };
 
 //map configs.
 $.fn.eqMap.standardDefaults = {
   evid: null, //used only for historic map
   
-  lat: 45.07, //starting center
-  lng: -120.95, //starting center
+  lat: 41.1, //starting center
+  lng: -111.34, //starting center
   
   zoom: 6,
   attributionControl:true,
@@ -79,7 +80,8 @@ $.fn.eqMap.standardDefaults = {
   //End gmap API calls
   magMin: -2,
   magMax: 7,
-  authNetworks: ['uw', 'cc', 'uo', 'np'],
+  //authNetworks: ['uw', 'cc', 'uo', 'np'],
+  authNetworks: ['uu', 'wy', 'np'],
   //Throw warning(alert) when this many events are requested.;
   list_limit: 1000,
   plot_relative_to_evid: false,
@@ -108,7 +110,9 @@ $.fn.eqMap.standardDefaults = {
   points: {
     eq: {
       displayOnLoad: true,
-      urls: ["https://pnsn.org/events/recent_events.json", "https://pnsn.org/non_net_events/recent_events.json"],
+      //urls: ["https://pnsn.org/events/recent_events.json", "https://pnsn.org/non_net_events/recent_events.json"],
+      urls: [ "https://beaker.seis.utah.edu/eqMap/php/json_service.php?callback=?",
+              "https://beaker.seis.utah.edu/eqMap/php/json_nonuu.php?callback=?"],
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: $.fn.eqMap.eqBubbleHtml,
       listHtml: $.fn.eqMap.eqListHtml,
@@ -142,11 +146,12 @@ $.fn.eqMap.standardDefaults = {
 
   polygons: {
     boundaries: {
-      url: "https://pnsn.org/assets/json/pnsn_boundaries.geojson",
+      //url: "https://pnsn.org/assets/json/pnsn_boundaries.geojson",
+      url: "https://beaker.seis.utah.edu/eqMap/examples/uuss-boundaries.kml",
       displayOnLoad: true
     },
     faults: {
-      url: "https://pnsn.org/assets/json/pnsn_faults.geojson",
+      //url: "https://pnsn.org/assets/json/pnsn_faults.geojson",
       displayOnLoad: false
     }
 
@@ -215,7 +220,8 @@ $.fn.eqMap.thumbDefaults = {
   points: {
     eq: {
       displayOnLoad: true,
-      urls: ["/events/recent_events.json", "/non_net_events/recent_events.json"],
+      //urls: ["/events/recent_events.json", "/non_net_events/recent_events.json"],
+      url: "https://beaker.seis.utah.edu/eqMap/examples/uuss-boundaries.kml",
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: null,
       listHtml: null,
@@ -224,7 +230,7 @@ $.fn.eqMap.thumbDefaults = {
   },
   polygons: {
     boundaries: {
-      url: "/assets/json/pnsn_boundaries.geojson",
+      //url: "/assets/json/pnsn_boundaries.geojson",
       displayOnLoad: true
     }
   },
@@ -345,7 +351,8 @@ $.fn.eqMap.stationDefaults = {
   points: {
     sta: {
       displayOnLoad: true,
-      urls: ["https://assets.pnsn.org/seismogram_image/stations?callback=?"],
+      //urls: ["https://assets.pnsn.org/seismogram_image/stations?callback=?"],
+      urls: ["https://beaker.seis.utah.edu/eqMap/php/stations2.php?callback=?"],
       icon: $.fn.eqMap.staIcon,
       bubbleHtml: $.fn.eqMap.staBubbleHtml,
       listHtml: $.fn.eqMap.staListHtml,

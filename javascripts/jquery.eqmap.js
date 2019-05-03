@@ -76,8 +76,10 @@ var methods = {
 				$("#map-ui button#reset").click(resetAll);
 
 				$("#req-legend-key").addClass(opts.eqMapType);
-				if (opts.points.eq && opts.points.sta) {
+                                if (opts.points) {
+				    if (opts.points.eq && opts.points.sta) {
 					$("#req-legend-key, #req-legend-key2").addClass("two-key");
+                                    }
 				}
 				//x-section handlers
 				$('#define-plot-area').click(function () {
@@ -412,7 +414,9 @@ var methods = {
 					var stationTypes = $("<div id='stations'> </div>");
 					stationTypes.append("<h4>Stations</h4>");
 
-					$.each(["1sp", "3bb3sm", "3bb", "3sp", "3sm", "3sm1sp"], function (key, value) {
+                                        // TODO modification
+					//$.each(["1sp", "3bb3sm", "3bb", "3sp", "3sm", "3sm1sp"], function (key, value) {
+                                        $.each(["ShortPeriod", "StrongMotion", "Composite", "Broadband"], function (key,value) {
 						var parentDiv = $("<div class=''></div>");
 						var icon = $("<div class='station mag-2 sta-" + value + "' </div>");
 						icon.append(opts.icons.station);
@@ -425,7 +429,9 @@ var methods = {
 					var icon = $("<div class='nn-station mag-2' </div>");
 					icon.append(opts.icons.nnStation);
 					parentDiv.append(icon);
-					parentDiv.append("<span class='legend-event'>Non Network<span>");
+                                        // TODO modification //parentDiv.append("<span class='legend-event'>Non Network<span>");
+                                        parentDiv.append("<span class='legend-event'>Non-UUSS-Network<span>");
+					//parentDiv.append("<span class='legend-event'>Non Network<span>");
 
 
 					stationTypes.append(parentDiv);

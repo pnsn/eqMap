@@ -2,7 +2,8 @@
 :root {
   
  /* Main color */
-  --primary: #107a10; // green
+  --primary: #CC0000; // university of utah red 
+  /* --primary: #107a10; // green */
   
  /* Some accent colors */
   --accent-darker: #222;
