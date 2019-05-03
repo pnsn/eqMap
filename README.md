@@ -1,7 +1,7 @@
-#eqMap
+# eqMap
 EqMap is a generic mapping utility for plotting, earthquakes, monitoring stations,  and polygons on a Leaflet Map. The plugin uses Leaflet V1.3. The plugin expects a JSON objects for the earthquakes and stations, and KML files for all polygons. The JSON objects need to served via web service; the KML files must be hosted on a public facing web server.  
 
-##Usage 
+## Usage 
 1. Copy javascripts/eqMapConfigExample.js to javascripts/eqMapConfig.js (This file is gitignored)
 2. Point browser to one of the example html files* 
 3. If you are using the X-Section Plot, Get an API key for the Elevation Service at https://developers.google.com/maps/documentation/javascript/elevation
@@ -20,7 +20,7 @@ For example to create a volcano map on a div with id ="map":
 <pre><code>
   $("#map").eqMap({map_type: "volcano"})
 </code></pre>
-##Configuration
+## Configuration
 
 The Configuration has the following hierarchy.
 
@@ -29,8 +29,8 @@ The Configuration has the following hierarchy.
 3. The arguments in the plugin call override the defaults in eqMapConfig.js. See example files.
 
 
-##Data Types
-###Events
+## Data Types
+### Events
 Events need to be in a JSON object with the following attributes. You can see an example object at http://www.pnsn.org/events/recent_events.json
 <pre><code>
   Attribute             type
@@ -48,7 +48,7 @@ Events need to be in a JSON object with the following attributes. You can see an
   events.etype"         string ('re', 'le', 'ex', 'px') regional, local, explosion, probable explosion. Defaults to local events.
 </code></pre>
 
-###Stations
+### Stations
 Stations need to be a JSON object with the following attributes. Example object can be viewed at http://www.pnsn.org/station_type_groups.json
 <pre><code>
   Attributes            type
@@ -72,6 +72,6 @@ This plugin expects a JSON object served via a web service or public facing flat
 A python script is included to generate a json file from the 1 week usgs all feed
 
 
-##Requirements
+## Requirements
 Bootstrap v3 is used for the UI, but it can be omitted if you have a custom UI. The Bootstrap css must be loaded before main.css. A Google Maps Elevation Service API Key is required for the X-Section Plot. Esri-Leaflet is required for basemaps.
 
