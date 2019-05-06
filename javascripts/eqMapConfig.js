@@ -13,10 +13,13 @@ $.fn.eqMap.icons = {
 }
 
 $.fn.eqMap.eqBubbleHtml = function(eq) {
-  if (eq.auth == "nc" || eq.auth == "us" || eq.auth == "mb" || eq.auth == "nn") {
-    a = "<a href=https://earthquake.usgs.gov/earthquakes/eventpage/" + eq.auth + eq.evid + "> View Event Page </a>";
+  if (eq.auth == "nc" || eq.auth == "us" || eq.auth == "mb" || eq.auth == "nn" || eq.auth == "UX") {
+    //a = "<a href=https://earthquake.usgs.gov/earthquakes/eventpage/" + eq.auth + eq.evid + "> View Event Page </a>";
+    a = "<a target=_blank href=https://earthquake.usgs.gov/earthquakes/eventpage/" + eq.auth + eq.evid + "> View Event Page </a>";
   } else { 
-    a = "<a href='/event/" + eq.evid + "#overview'> View Event Page </a>";
+    //a = "<a href='/event/" + eq.evid + "#overview'> View Event Page </a>"; // This is PNSN only
+    a = "<a href='/eventPage/event.php?" +  eq.evid + "#overview'> View Event Page </a>"; // This is the default UU beahvior 
+    
   }
   return a +
     "<table>" +
@@ -147,7 +150,9 @@ $.fn.eqMap.standardDefaults = {
   polygons: {
     boundaries: {
       //url: "https://pnsn.org/assets/json/pnsn_boundaries.geojson",
-      url: "https://beaker.seis.utah.edu/eqMap/examples/uuss-boundaries.kml",
+      //url: "https://beaker.seis.utah.edu/eqMap/examples/uuss-boundaries.kml",
+      // TODO bunsen is here
+      url: "https://bunsen.seis.utah.edu/eqMap/geojson/uuss_boundaries.geojson",
       displayOnLoad: true
     },
     faults: {
@@ -221,7 +226,7 @@ $.fn.eqMap.thumbDefaults = {
     eq: {
       displayOnLoad: true,
       //urls: ["/events/recent_events.json", "/non_net_events/recent_events.json"],
-      url: "https://beaker.seis.utah.edu/eqMap/examples/uuss-boundaries.kml",
+      urls: [ "https://beaker.seis.utah.edu/eqMap/php/json_service.php?callback=?","https://beaker.seis.utah.edu/eqMap/php/json_nonuu.php?callback=?"],
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: null,
       listHtml: null,
@@ -230,7 +235,8 @@ $.fn.eqMap.thumbDefaults = {
   },
   polygons: {
     boundaries: {
-      //url: "/assets/json/pnsn_boundaries.geojson",
+      // TODO bunsen is here
+      url: "https://bunsen.seis.utah.edu/eqMap/geojson/uuss_boundaries.geojson",
       displayOnLoad: true
     }
   },
@@ -241,7 +247,8 @@ $.fn.eqMap.notableDefaults = {
   points: {
     eq: {
       displayOnLoad: true,
-      urls: ["/events/notable_events.json"],
+      //urls: ["/events/notable_events.json"],
+      urls: [ "https://beaker.seis.utah.edu/many.json"],
       icon: $.fn.eqMap.eqIcon,
       bubbleHtml: $.fn.eqMap.eqBubbleHtml,
       listHtml: $.fn.eqMap.eqListHtml

@@ -11,8 +11,13 @@ EqMap was developed by Jon Connolly ([PNSN](https://pnsn.org)) and Kyla Marczews
 3. _geojson_ contains the authoritaritive boundaries of the UUSS seismic network.
 4. _php_ contains some PHP scripts for querying event and station information.
 5. _stylesheets_ most interesting facet is controlling the colors.
+6. _sql_ 
+7. _python_ contains a script to generate a Python script for one week from a USGS feed.
 
 ## Usage 
+
+If starting from scratch then follow these directions
+
 1. Copy javascripts/eqMapConfigExample.js to javascripts/eqMapConfig.js (This file is gitignored)
 2. Point browser to one of the example html files.
 3. If you are using the X-Section Plot, Get an API key for the [Elevation Service](https://developers.google.com/maps/documentation/javascript/elevation).
@@ -83,10 +88,9 @@ Polygons are served via a public facing KML file. You can add as many polygon fi
 
 ##Request types
 
-This plugin expects a JSON object served via a web service or public facing flat file. If the web service is on a different host than the web server(server that is hosting eqMap) you must create a [JSONP request](http://en.wikipedia.org/wiki/JSONP), which allows for cross site scripting. This can be done by appending "?callback=?" to the end of the webservice url. A simple php web service is included. See the  URLs in the eqMapConfigExample.js file for examples. If the JSON file is on the web server, JSONP is not required but the file must be served via http. You must use the web service for testing on local i.e. http://localhost/your/path/eqMap/php/json\_service.php
+This plugin expects a JSON object served via a web service or public facing flat file. If the web service is on a different host than the web server(server that is hosting eqMap) you must create a [JSONP request](http://en.wikipedia.org/wiki/JSONP), which allows for cross site scripting. This can be done by appending "?callback=?" to the end of the webservice url. A simple php web service is included. See the  URLs in the eqMapConfigExample.js file for examples. If the JSON file is on the web server, JSONP is not required but the file must be served via http. You must use the web service for testing locally i.e., <http://localhost/your/path/eqMap/php/json_service.php>.
 
-A python script is included to generate a json file from the 1 week usgs all feed
-
+A python script is included to generate a json file from the 1 week usgs all feed.
 
 ## Requirements
 Bootstrap v3 is used for the UI, but it can be omitted if you have a custom UI. The Bootstrap css must be loaded before main.css. A Google Maps Elevation Service API Key is required for the X-Section Plot. Esri-Leaflet is required for basemaps.

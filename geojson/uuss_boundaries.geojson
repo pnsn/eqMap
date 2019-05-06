@@ -1,0 +1,116 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {   
+      "type": "Feature",
+      "properties": {
+        "stroke": "#CC0000",
+        "stroke-width": 2,
+        "stroke-opacity": 0.8,
+        "name": "UUSS Reporting Boundary",
+        "description": "      The UUSS reports all events<br/>      within this boundary.    "   
+      },  
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [   
+            [   
+              -115.25,
+              35  
+            ],  
+            [   
+              -107.75,
+              35  
+            ],  
+            [   
+              -107.75,
+              46  
+            ],  
+            [   
+              -115.25,
+              46  
+            ],  
+            [   
+              -115.25,
+              35  
+            ]   
+          ]   
+        ]   
+      }   
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#333333",
+        "stroke-width": 2,
+        "stroke-opacity": 0.6,
+        "name": "UUSS Authoritative Boundary",
+        "description": "     The UUSS is the authorative network for <br/>    all events within this boundary.   "
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              -114.25,
+              36.75 
+            ],
+            [
+              -108.75,
+              36.75
+            ],
+            [
+              -108.75,
+              42.5
+            ],
+            [
+              -114.25,
+              42.5
+            ],
+            [
+              -114.25,
+              36.75
+            ]
+          ]
+        ]
+      }
+    },
+    { 
+      "type": "Feature",
+      "properties": {
+        "stroke": "#333333",
+        "stroke-width": 2,
+        "stroke-opacity": 0.6,
+        "name": "UUSS Authoritative Boundary",
+        "description": "     The UUSS is the authorative network for <br/>    all events within this boundary.   "
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [ 
+            [ 
+              -111.333,
+              44.0
+            ],
+            [ 
+              -109.75,
+              44.0
+            ],
+            [ 
+              -109.75,
+              45.167
+            ],
+            [ 
+              -111.333,
+              45.167
+            ],
+            [ 
+              -111.333,
+              44.0
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
