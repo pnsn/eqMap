@@ -1,17 +1,16 @@
 # eqMap
 
-EqMap is a generic mapping utility for plotting, earthquakes, monitoring stations,  and polygons on a Leaflet Map. The plugin uses Leaflet V1.3. The plugin expects a JSON objects for the earthquakes and stations, and KML files for all polygons. The JSON objects need to served via web service; the KML files must be hosted on a public facing web server.  
+EqMap is a generic mapping utility for plotting, earthquakes, monitoring stations,  and polygons on a Leaflet Map. The plugin uses Leaflet V1.3. The plugin expects a JSON objects for the earthquakes and stations, and KML files for all polygons. The JSON objects need to served via web service; the KML files must be hosted on a public facing web server. 
 
+EqMap was developed by Jon Connolly ([PNSN](https://pnsn.org)) and Kyla Marczewski ([PNSN](https://pnsn.org)).  This fork has customized EqMap for the [UUSS](https://quake.utah.edu/).
 
 ## Usage 
 1. Copy javascripts/eqMapConfigExample.js to javascripts/eqMapConfig.js (This file is gitignored)
-2. Point browser to one of the example html files* 
-3. If you are using the X-Section Plot, Get an API key for the Elevation Service at https://developers.google.com/maps/documentation/javascript/elevation
-4. Once you create your own templates add your API Key
+2. Point browser to one of the example html files.
+3. If you are using the X-Section Plot, Get an API key for the [Elevation Service](https://developers.google.com/maps/documentation/javascript/elevation).
+4. Once you create your own templates add your API key, e.g.,.
 
-<code> &lt;script src="https://www.google.com/jsapi?key=" type="text/javascript"&gt; </script></code>
-
-*By default the example files use PNSN event and station data, a PNSN boundary KML file and a S. California fault KML file.
+    <code> &lt;script src="https://www.google.com/jsapi?key=" type="text/javascript"&gt; </script></code>
 
 The plugin is called by:
 
@@ -57,7 +56,7 @@ Events need to be in a JSON object with the following attributes. You can see an
 
 ### Stations
 
-Stations need to be a JSON object with the following attributes. Example object can be viewed at http://www.pnsn.org/station_type_groups.json
+Stations need to be a JSON object with the following attributes. Example object can be viewed at http://www.pnsn.org/station\_type\_groups.json
     <pre><code>
        Attributes            type
        sta                   string
