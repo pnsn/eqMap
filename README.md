@@ -2,7 +2,15 @@
 
 EqMap is a generic mapping utility for plotting, earthquakes, monitoring stations,  and polygons on a Leaflet Map. The plugin uses Leaflet V1.3. The plugin expects a JSON objects for the earthquakes and stations, and KML files for all polygons. The JSON objects need to served via web service; the KML files must be hosted on a public facing web server. 
 
-EqMap was developed by Jon Connolly ([PNSN](https://pnsn.org)) and Kyla Marczewski ([PNSN](https://pnsn.org)).  This fork has customized EqMap for the [UUSS](https://quake.utah.edu/).
+EqMap was developed by Jon Connolly ([PNSN](https://pnsn.org)) and Kyla Marczewski ([PNSN](https://pnsn.org)).  This fork has customized EqMap for use by the [UUSS](https://quake.utah.edu/).
+
+## Directory Structure
+
+1. _examples_ contains the .html files for station, event, and thumbnail maps.
+2. _javascripts_ contains the javascripts used by the html files in _examples_.  By design, the most important file is eqMapConfig.js.
+3. _geojson_ contains the authoritaritive boundaries of the UUSS seismic network.
+4. _php_ contains some PHP scripts for querying event and station information.
+5. _stylesheets_ most interesting facet is controlling the colors.
 
 ## Usage 
 1. Copy javascripts/eqMapConfigExample.js to javascripts/eqMapConfig.js (This file is gitignored)
