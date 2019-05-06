@@ -44,7 +44,7 @@ The Configuration has the following hierarchy.
 ## Data Types
 ### Events
 
-Events need to be in a JSON object with the following attributes. You can see an example object at http://www.pnsn.org/events/recent\_events.json
+Events need to be in a JSON object with the following attributes. You can see an example object at <http://www.pnsn.org/events/recent_events.json>
 
     <pre><code>
        Attribute             type
@@ -64,7 +64,7 @@ Events need to be in a JSON object with the following attributes. You can see an
 
 ### Stations
 
-Stations need to be a JSON object with the following attributes. Example object can be viewed at http://www.pnsn.org/station\_type\_groups.json
+Stations need to be a JSON object with the following attributes. Example object can be viewed at <http://www.pnsn.org/station_type_groups.json>
     <pre><code>
        Attributes            type
        sta                   string
