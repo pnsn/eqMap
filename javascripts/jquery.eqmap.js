@@ -613,9 +613,9 @@ var methods = {
 				icon: L.divIcon({
 					className: iconClass + " " + iconColor,
 					iconSize: null,
-					html: iconShape,
-					zIndexOffset: zIndex
-				})
+					html: iconShape
+				}),
+				zIndexOffset: zIndex
 			});
 
 			if (collection.bubbleHtml) {
@@ -710,7 +710,8 @@ var methods = {
 					iconSize: null,
 					html: iconShape
 				}),
-				title: "M " + obj.magnitude
+				title: "M " + obj.magnitude,
+				zIndexOffset: zIndex
 			});
 
 
